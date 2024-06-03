@@ -1,15 +1,24 @@
 import React from 'react';
-
+import Background from '../components/image/backgound.jpeg'
 
 export default function Index() {
 
 
     return (
-        <div>
-            <header className="App-header">
-                <h1> 歡迎來到我的網站</h1>
-                <p>這是一個使用 React 建立的主頁示例。</p>
-            </header>
-        </div>
+        <div className='relative h-fit'>
+            <div className='h-dvh bg-cover'
+                style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/background.jpg)` }}
+            >
+            </div>
+            <div className='h-dvh'>
+                ?
+            </div>
+            <div className='h-dvh'>
+                ?
+            </div>
+            <footer className='font-sans' >
+                copyright ©    created by 張文輝（Cheung Man Fai）
+            </footer>
+        </div >
     );
 }
