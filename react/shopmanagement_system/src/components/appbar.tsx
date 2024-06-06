@@ -15,8 +15,8 @@ import CottageIcon from '@mui/icons-material/Cottage';
 
 
 const pages = [
-    { "name": 'Products', "link": "/" },
-    { "name": 'ProPricingfile', "link": "/" },
+    { "name": '主頁', "link": "/" },
+    { "name": '', "link": "/" },
     { "name": 'Blog', "link": "/" }
 ]
 const settings = [
