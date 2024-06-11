@@ -20,10 +20,10 @@ const pages = [
     { "name": 'Blog', "link": "/" }
 ]
 const settings = [
-    { "name": 'Profile', "link": "/" },
+    { "name": '帳號', "link": "/" },
     { "name": 'Account', "link": "/" },
     { "name": 'Dashboard', "link": "/" },
-    { "name": 'Logout', "link": "/logout" }
+    { "name": '登出', "link": "/logout" }
 ]
 
 function TopAppBar() {
