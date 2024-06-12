@@ -9,6 +9,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import EmailIcon from '@mui/icons-material/Email';
 import SkillProgress from '../components/progress/skillprogress';
 import ProjectCard from '../components/card/projectcard';
+import SkillSwitchTabs from '../components/tabs/skilltabs';
 
 
 export default function Index() {
@@ -18,24 +19,27 @@ export default function Index() {
 
     return (
         <div className='relative h-fit'>
-            <div className='relative h-dvh bg-cover' style={{ backgroundImage: `url(${backgroundImage})` }}  >
+            <div className='relative h-dvh bg-cover'
+
+            //  style={{ backgroundImage: `url(${backgroundImage})` }}  
+            >
 
                 <div className='absolute  w-full top-1/2'>
                     <div className=' flex justify-center content-center '>
-                        <Button variant="outlined" className='hover:ease-in-out hover:duration-300  text-xl'>登入</Button>
+                        <button className='outline-1' onClick={() => { }}>    <div className='pt-3 pb-3 pl-8 pr-8 tracking-wide rounded-lg font-mono bg-gradient-to-r from-cyan-500 to-blue-500 text-3xl font-medium text-white shadow-lg' >登入</div></button>
                     </div>
                 </div>
-                <div className=' absolute bottom-0 w-full text-center shadow-2xl opacity-80  animate-bounce  space-y-2' onClick={() => {
-                    setPersonalProfileDisplay(!personalProfileDisplay)
-                }}>
+                <div className='absolute bottom-0 w-full text-center   space-y-2'>
                     <div className='text-2xl'>
                         關於我
                     </div>
-                    <div>
+                    <button className='animate-bounce shadow-2xl' onClick={() => {
+                        setPersonalProfileDisplay(!personalProfileDisplay)
+                    }}>
                         <KeyboardDoubleArrowDownIcon sx={{ fontSize: 50 }} />
                         <KeyboardDoubleArrowDownIcon sx={{ fontSize: 50 }} />
                         <KeyboardDoubleArrowDownIcon sx={{ fontSize: 50 }} />
-                    </div>
+                    </button>
                 </div>
             </div>
 
@@ -48,7 +52,7 @@ export default function Index() {
                         <div className=' relative col-span-4 flex p-72 p '
                         // style={{ backgroundImage: `url(${backgroundImage})` }}
                         >
-                            <div className='text-6xl font-mono  content-center w-full space-y-5'>
+                            <div className='text-5xl font-mono  content-center w-full space-y-5'>
                                 張文輝
                                 <br />
                                 Cheung Man Fai
@@ -100,34 +104,26 @@ export default function Index() {
                             </div>
                         </div>
                         <div className='h-dvh bg-slate-400'>
-                            我的經驗
-                        </div>
-                        <div className='h-dvh bg-slate-400'>
-                            <div className=' text-6xl'>  我的技能</div>
-                            <div className='flex flex-wrap overflow-x-auto'   >
-                                <SkillProgress name={'hi'} num={10} />
-                                <SkillProgress name={'hi'} num={10} />
-                                <SkillProgress name={'hi'} num={10} />
-                                <SkillProgress name={'hi'} num={10} />
-                                <SkillProgress name={'hi'} num={10} />
-                                <SkillProgress name={'hi'} num={10} />
-                                <SkillProgress name={'hi'} num={10} />
-                                <SkillProgress name={'hi'} num={10} />
-                                <SkillProgress name={'hi'} num={10} />
-                                <SkillProgress name={'hi'} num={10} />
-                                <SkillProgress name={'hi'} num={10} />
-                                <SkillProgress name={'hi'} num={10} />
-                                <SkillProgress name={'hi'} num={10} />
-                                <SkillProgress name={'hi'} num={10} />
-                                <SkillProgress name={'hi'} num={10} />
-                                <SkillProgress name={'hi'} num={10} />
-                                <SkillProgress name={'hi'} num={10} />
-                                <SkillProgress name={'hi'} num={10} />
-                                <SkillProgress name={'hi'} num={10} />
-                                <SkillProgress name={'hi'} num={10} />
-                                <SkillProgress name={'hi'} num={10} />
-                                <SkillProgress name={'hi'} num={10} />
+                            <div className=' grid grid-flow-row  gap-4'>
+                                <div>
+                                    教育
+                                </div>
+                                <div>
+                                    工作
+                                </div>
+                                <div className=''>
+                                    工作經驗
+                                </div>
+
                             </div>
+                        </div>
+                        <div className='h-dvh bg-slate-400 overflow-x-auto'>
+                            <div className='text-6xl'>  我的技能</div>
+
+                            <SkillSwitchTabs />
+
+
+
                         </div>
                         <div className='h-dvh w-full bg-slate-400 p-5 space-y-4  overflow-hidden'>
                             <div className='text-5xl'>

@@ -8,9 +8,9 @@ class Skillinfo {
 
 export default function SkillProgress(skillinfo: Skillinfo) {
     return (
-        <>
+        <div className='  '>
 
-            <Grid container width={"80%"}>
+            <Grid container width={"100%"}>
                 <Grid item xs={2}>
                     {skillinfo.name}
                 </Grid>
@@ -23,7 +23,7 @@ export default function SkillProgress(skillinfo: Skillinfo) {
                 </Grid>
 
             </Grid>
-        </>
+        </div>
 
 
     )
