@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import routers from './router/routers';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import ResponsiveAppBar from './components/appbar';
 
 

@@ -2,13 +2,15 @@ import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Button, CardActionArea, CardActions } from '@mui/material';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import icons from '../image/12.jpg'
 import bgi from '../image/background.jpeg'
 class CardInfo {
     photo: string = '';
     info: string = '';
-    link: string = '';
+    link: string = ''
 }
 
 export default function ProjectCard(cards: CardInfo) {

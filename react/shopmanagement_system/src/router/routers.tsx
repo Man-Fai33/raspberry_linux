@@ -2,6 +2,7 @@ import Index from "../pages/index"
 import Personal_Profile from "../pages/personal_profile"
 const routers = [
     { path: '/', element: <Index /> },
+    // eslint-disable-next-line react/jsx-pascal-case
     { path: '/personal_profile', element: <Personal_Profile /> },
     // { path: 'sa_add', element: <SCAdd /> },
     // { path: 'sa_edit', element: <SCEdit /> },
