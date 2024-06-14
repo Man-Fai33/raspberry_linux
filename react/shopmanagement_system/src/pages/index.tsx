@@ -4,13 +4,14 @@ import Footer from '../components/footer';
 import backgroundImage from '../components/image/background.jpeg'; // Adjust the path as necessary
 import icon from '../components/image/12.jpg';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Avatar, Box, Button, Divider, IconButton, Stack } from '@mui/material';
+import { Avatar, Box, Button, Divider, IconButton, List, ListItemIcon, ListItemText, Stack } from '@mui/material';
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import EmailIcon from '@mui/icons-material/Email';
 import ProjectCard from '../components/card/projectcard';
 import SkillSwitchTabs from '../components/tabs/skilltabs';
+import { School } from '@mui/icons-material';
 
 
 export default function Index() {
@@ -50,7 +51,7 @@ export default function Index() {
             {personalProfileDisplay ?
                 <>
                     <div className=" relative h-dvh w-full bg-scroll grid grid-cols-6 gap-4    max-lg:grid-cols-1  max-lg:gap-0   " >
-                        <div className='relative col-span-4   flex p-72  max-lg:p-0   '
+                        <div className='relative col-span-4 flex p-72  max-lg:p-0 '
                         // style={{ backgroundImage: `url(${backgroundImage})` }}
                         >
                             <div className='text-5xl font-mono  content-center w-full space-y-5 max-lg:text-2xl max-lg:text-center  '>
@@ -95,11 +96,11 @@ export default function Index() {
                         </div>
                     </div>
                     <Divider />
-                    <div className='h-auto w-full  pl-80 pr-80  max-md:pr-0 max-md:pl-0  max-lg:pl-20 max-lg:pr-20 '>
-                        <div className='h-dvh bg-slate-400 bg-scroll overflow-y-auto space-y-4 p-4  '>
+                    <div className='h-auto w-full  pl-80 pr-80  max-lg:pr-0 max-lg:pl-0  max-xl:pl-20 max-xl:pr-20 duration-700 '>
+                        <div className='h-dvh bg-slate-400 bg-scroll overflow-y-auto space-y-8 p-8  '>
                             <div className='intro font-mono '>
-                                <div className='float-left pt-2 pr-4'> 自我介紹</div>
-                                <div className='text-sm'>
+                                <div className='float-left pt-2 pr-4  text-2xl underline  underline-offset-8'> 自我介紹</div>
+                                <div className='text-lg max-lg:text-md max-md:text-sm'>
                                     大家好，我是[你的名字]，一位熱愛前端開發的工程師。我畢業於[你的學校]，獲得了[你的學位]，主修計算機科學。在過去的[相關年數]年裡，我專注於前端開發，積累了豐富的經驗和技術能力。我擅長使用HTML、CSS和JavaScript，並精通現代前端框架如React、Vue.js和Angular。
 
                                     在職業生涯中，我參與了多個大型項目，從初期的需求分析、設計到最終的實現和部署。我不僅注重代碼的質量和性能，還關心用戶體驗，致力於提供簡潔、高效、美觀的前端界面。我曾在[公司名稱]工作，作為一名高級前端工程師，負責網站的前端架構設計和開發，並在項目中引入了多種前沿技術和最佳實踐，顯著提升了網站的響應速度和用戶滿意度。
@@ -108,8 +109,8 @@ export default function Index() {
                                 </div>
                             </div>
                             <div className='futureplane'>
-                                <div className='float-left pt-2 pr-4' > 未來計畫</div>
-                                <div className='text-sm'>
+                                <div className='float-left pt-2 pr-4 text-2xl underline underline-offset-8 shadow-md'  > 未來計畫</div>
+                                <div className='text-lg max-lg:text-md max-md:text-sm'>
                                     未來，我計劃繼續深耕前端開發領域，並探索更多新興技術，如WebAssembly、Progressive Web Apps (PWA) 和Server-Side Rendering (SSR) 等。我希望能夠參與到更加複雜和具挑戰性的項目中，進一步提升自己的技術水平和解決問題的能力。
 
                                     我計劃考取一些重要的技術認證，如Google的Web開發認證和Microsoft的Azure開發者認證，這將有助於我更好地理解和應用各種前端技術。同時，我也希望能夠在工作中承擔更多的領導角色，帶領團隊實現技術突破，並在公司內部推動技術創新和最佳實踐的落地。
@@ -118,8 +119,8 @@ export default function Index() {
                                 </div>
                             </div>
                             <div className='mybackground'>
-                                <div className='float-left pt-2 pr-4'> 我的背景</div>
-                                <div className='text-sm'>
+                                <div className='float-left pt-2 pr-4 text-2xl underline underline-offset-8'> 我的背景</div>
+                                <div className='text-lg max-lg:text-md max-md:text-sm'>
                                     我來自[你的城市]，從小對技術和編程充滿了濃厚的興趣。大學期間，我主修計算機科學，系統學習了數據結構、演算法、操作系統等基礎知識，並選修了多門與前端開發相關的課程。通過不斷的學習和實踐，我掌握了HTML、CSS、JavaScript等基本技能，並逐漸深入學習了React、Vue.js、Angular等前端框架。
 
                                     在校期間，我參與了多個校內外的項目，積累了豐富的實戰經驗。例如，我曾經參與設計和開發了一個校園社交平台，負責前端的架構設計和實現，該平台最終獲得了學校的創新獎。畢業後，我加入了[公司名稱]，在那裡，我參與了多個大型項目，並逐漸成長為一名高級前端工程師。
@@ -132,25 +133,48 @@ export default function Index() {
                                 </div>
                             </div>
                         </div>
-                        <div className='h-dvh bg-slate-400  flex-wrap p-5 '>
-                            <div className=' grid  min-md:grid-flow-row  max-md:grid-flow-col max-md:gap-0     grid-cols-2 gap-4 h-1/2 max-md:h-3/5'>
-                                <div className='max-md:grid-cols-1'>
-                                    <div className='text-xl'>教育 education</div>
-                                    <div className='text-base text-left font-sans tracking-normal text-ellipsis'>
-                                        2021-2023 <br />
-                                        國立臺灣科技大學 學士學位畢業 資訊管理系 <br />
-                                        2019-2021 <br />
-                                        香港專業教育學院(沙田) 高級文憑 軟體工程 <br />
-                                        2018-2019 <br />
-                                        香港專業教育學院(沙田) 基礎文憑 資訊科技 <br />
-                                        2012-2018 <br />
-                                        香港教師會李興貴中學 <br />
+                        <div className='h-dvh bg-slate-400  flex-wrap p-5  '>
+                            <div className='flex  flex-row max-xl:flex-col  max-xl:space-y-4 h-1/2 max-xl:h-fit '>
+                                <div className='flex-none  w-1/2 max-xl:w-fit '>
+                                    <div className='text-xl max-xl:text-base '>教育 education</div>
+                                    <div className='text-base text-left font-sans tracking-normal text-ellipsis max-lg:text-sm'>
+                                        <List>
+                                            <div>2021-2023</div>
+                                            <div className='flex flex-row'>
+                                                <ListItemIcon>
+                                                    <School />
+                                                </ListItemIcon>
+                                                <ListItemText primary="國立臺灣科技大學 學士學位畢業 資訊管理系" />
+                                            </div>
+                                            <div> 2019-2021</div>
 
+                                            <div className='flex flex-row'>
+                                                <ListItemIcon>
+                                                    <School />
+                                                </ListItemIcon>
+                                                <ListItemText primary="香港專業教育學院(沙田) 高級文憑 軟體工程" />
+                                            </div>
+                                            <div >2018-2019</div>
+                                            <div className='flex flex-row'>
+                                                <ListItemIcon>
+                                                    <School />
+                                                </ListItemIcon>
+                                                <ListItemText primary="香港專業教育學院(沙田) 基礎文憑 資訊科技" />
+
+                                            </div>
+                                            <div >2012-2018</div>
+                                            <div className='flex flex-row'>
+                                                <ListItemIcon>
+                                                    <School />
+                                                </ListItemIcon>
+                                                <ListItemText primary="香港教師會李興貴中學" />
+                                            </div>
+                                        </List>
                                     </div>
                                 </div>
-                                <div className='max-md:grid-cols-1'>
-                                    <div className='text-xl'>工作 worker</div>
-                                    <div className='text-base text-left font-sans tracking-normal text-ellipsis'>
+                                <div className='flex-none w-1/2 max-xl:w-fit '>
+                                    <div className='text-xl max-xl:text-base'>工作 worker</div>
+                                    <div className='text-base text-left font-sans tracking-normal text-ellipsis max-xl:text-sm'>
                                         2023/8~2024/10<br />
                                         大博系統工程股份有限公司 <br />
                                         2021/10~2022/10-遠端工程師 <br />
