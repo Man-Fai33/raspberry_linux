@@ -49,11 +49,11 @@ export default function Index() {
 
             {personalProfileDisplay ?
                 <>
-                    <div className=" relative h-dvh w-full bg-scroll grid grid-cols-6 gap-4" >
-                        <div className='relative col-span-4 flex p-72 p '
+                    <div className=" relative h-dvh w-full bg-scroll grid grid-cols-6 gap-4    max-lg:grid-cols-1  max-lg:gap-0   " >
+                        <div className='relative col-span-4   flex p-72  max-lg:p-0   '
                         // style={{ backgroundImage: `url(${backgroundImage})` }}
                         >
-                            <div className='text-5xl font-mono  content-center w-full space-y-5'>
+                            <div className='text-5xl font-mono  content-center w-full space-y-5 max-lg:text-2xl max-lg:text-center  '>
                                 文輝
                                 <br />
                                 Cheung Man Fai
@@ -63,9 +63,11 @@ export default function Index() {
                             </div>
 
                         </div>
-                        <div className="col-span-2 flex justify-center flex-col space-y-8    justify-self-center ">
+                        <div className="col-span-2 flex justify-center flex-col space-y-8  max-lg:space-y-4 max-md:space-y-1  justify-self-center ">
 
-                            <Avatar alt="Remy Sharp" src={icon} sx={{ width: 200, height: 200 }} />
+                            <div className=' relative flex justify-center'>
+                                <Avatar alt="Remy Sharp" src={icon} sx={{ width: 200, height: 200 }} />
+                            </div>
                             <div className="text-center">
                                 文輝<br />
                                 Cheung Man Fai
@@ -93,7 +95,7 @@ export default function Index() {
                         </div>
                     </div>
                     <Divider />
-                    <div className='h-auto w-full  pl-80 pr-80  '>
+                    <div className='h-auto w-full  pl-80 pr-80  max-md:pr-0 max-md:pl-0  max-lg:pl-20 max-lg:pr-20 '>
                         <div className='h-dvh bg-slate-400 bg-scroll overflow-y-auto space-y-4 p-4  '>
                             <div className='intro font-mono '>
                                 <div className='float-left pt-2 pr-4'> 自我介紹</div>
@@ -130,9 +132,9 @@ export default function Index() {
                                 </div>
                             </div>
                         </div>
-                        <div className='h-dvh bg-slate-400  flex-wrap p-5'>
-                            <div className=' grid grid-flow-row grid-cols-2 gap-4 h-1/2 '>
-                                <div className=''>
+                        <div className='h-dvh bg-slate-400  flex-wrap p-5 '>
+                            <div className=' grid  min-md:grid-flow-row  max-md:grid-flow-col max-md:gap-0     grid-cols-2 gap-4 h-1/2 max-md:h-3/5'>
+                                <div className='max-md:grid-cols-1'>
                                     <div className='text-xl'>教育 education</div>
                                     <div className='text-base text-left font-sans tracking-normal text-ellipsis'>
                                         2021-2023 <br />
@@ -146,7 +148,7 @@ export default function Index() {
 
                                     </div>
                                 </div>
-                                <div className=''>
+                                <div className='max-md:grid-cols-1'>
                                     <div className='text-xl'>工作 worker</div>
                                     <div className='text-base text-left font-sans tracking-normal text-ellipsis'>
                                         2023/8~2024/10<br />
@@ -161,8 +163,8 @@ export default function Index() {
                                 </div>
                             </div>
                             <div className=' space-y-3 space-x-3'>
-                                <div className='float-left  text-2xl pt-2 pr-2'>工作經驗</div>
-                                <div className='text-xl'>
+                                <div className='float-left  text-2xl pt-2 pr-2 max-md'>工作經驗</div>
+                                <div className='text-xl max-md:text-base'>
                                     I have experienced a particularly deep part-time job as a summer vacation worker in 2019. This job mainly helps the staff of the Housing Department to change their hosts and data. Before that, I needed to make an appointment with the staff who want to update their computers, and also had problems in communicating data with him. In this job, I learned how to communicate with different employees and how to cooperate with IT departments, especially with IT departments, which is very important, which will affect work efficiency. It is a rare opportunity for me, and I believe I will use this kind of communication to meet friends in the future.
                                 </div>
                             </div>

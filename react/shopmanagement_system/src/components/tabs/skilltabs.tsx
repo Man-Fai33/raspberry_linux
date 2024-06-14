@@ -43,7 +43,7 @@ export default function SkillSwitchTabs() {
     return (
         <Box sx={{ width: '100%' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+                <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" variant="scrollable">
                     <Tab label="語言" {...a11yProps(4)} />
                     <Tab label="前端技能" {...a11yProps(0)} />
                     <Tab label="後端技能" {...a11yProps(1)} />
