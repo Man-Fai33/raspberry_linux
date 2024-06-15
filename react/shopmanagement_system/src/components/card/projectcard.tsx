@@ -7,13 +7,14 @@ import { Button, CardActionArea, CardActions } from '@mui/material';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import icons from '../image/12.jpg'
 import bgi from '../image/background.jpeg'
-class CardInfo {
-    photo: string = '';
-    info: string = '';
-    link: string = ''
-}
 
-export default function ProjectCard(cards: CardInfo) {
+
+export default function ProjectCard(props: {
+    photo: string,
+    info: string,
+    link: string,
+    onclick: () => void
+}) {
     return (
 
         <Card sx={{ maxWidth: 500 }} className='flex-none '>
@@ -38,7 +39,7 @@ export default function ProjectCard(cards: CardInfo) {
                 </CardContent>
             </CardActionArea >
             <div className='p-2 text-right'>
-                <Button size="small" color="primary" onClick={() => { alert("link") }}>
+                <Button size="small" color="primary" onClick={props.onclick}>
                     Share
                 </Button>
             </div>
