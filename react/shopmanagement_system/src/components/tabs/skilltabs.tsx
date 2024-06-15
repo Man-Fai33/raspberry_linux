@@ -51,107 +51,109 @@ export default function SkillSwitchTabs() {
                     <Tab label="資料庫" {...a11yProps(3)} />
                 </Tabs>
             </Box>
-            <CustomTabPanel value={value} index={0}  >
-                <div className='grid grid-cols-2 grid-flow-row gap-4'>
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                </div>
-            </CustomTabPanel>
-            <CustomTabPanel value={value} index={1}>
-                <div className='grid grid-cols-2 grid-flow-row gap-4'>
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                </div>
-            </CustomTabPanel>
-            <CustomTabPanel value={value} index={2}>
-                <div className='grid grid-cols-2 grid-flow-row gap-4'>
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                </div>
-            </CustomTabPanel>
-            <CustomTabPanel value={value} index={3}>
-                <div className='grid grid-cols-2 grid-flow-row gap-4'>
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                    <SkillProgress name={'hi'} num={10} />
-                </div>
-            </CustomTabPanel>
+            <div className='p-4'>
+                <CustomTabPanel value={value} index={0}  >
+                    <div className='grid grid-cols-2 grid-flow-row gap-6  '>
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                    </div>
+                </CustomTabPanel>
+                <CustomTabPanel value={value} index={1}>
+                    <div className='grid grid-cols-2 grid-flow-row gap-6'>
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                    </div>
+                </CustomTabPanel>
+                <CustomTabPanel value={value} index={2}>
+                    <div className='grid grid-cols-2 grid-flow-row gap-6'>
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                    </div>
+                </CustomTabPanel>
+                <CustomTabPanel value={value} index={3}>
+                    <div className='grid grid-cols-2 grid-flow-row gap-6'>
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                        <SkillProgress name={'hi'} num={10} />
+                    </div>
+                </CustomTabPanel>
+            </div>
         </Box>
     );
 }

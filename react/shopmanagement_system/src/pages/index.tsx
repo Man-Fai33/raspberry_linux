@@ -28,7 +28,11 @@ export default function Index() {
 
                 <div className='absolute  w-full top-1/2'>
                     <div className=' flex justify-center content-center '>
-                        <button className='outline-1' onClick={() => { }}>    <div className='pt-3 pb-3 pl-8 pr-8 tracking-wide rounded-lg font-mono bg-gradient-to-r from-cyan-500 to-blue-500 text-3xl font-medium text-white shadow-lg' >登入</div></button>
+                        <div className='pt-3 pb-3 pl-8 pr-8 tracking-wide rounded-lg font-mono bg-gradient-to-r from-cyan-500 to-blue-500 text-3xl font-medium text-white shadow-lg space-x-8' >
+                            <button className='outline-1' onClick={() => { }}> 登入</button>
+                            <button className='outline-1' onClick={() => { }}> 註冊</button>
+                        </div>
+
                     </div>
                 </div>
                 <div className='absolute bottom-0 w-full text-center   space-y-2'>
@@ -51,7 +55,7 @@ export default function Index() {
             {personalProfileDisplay ?
                 <>
                     <div className=" relative h-dvh w-full bg-scroll grid grid-cols-6 gap-4    max-lg:grid-cols-1  max-lg:gap-0   " >
-                        <div className='relative col-span-4 flex p-72  max-lg:p-0 '
+                        <div className='relative col-span-4 flex p-72  max-lg:p-0 bg-slate-500 '
                         // style={{ backgroundImage: `url(${backgroundImage})` }}
                         >
                             <div className='text-5xl font-mono  content-center w-full space-y-5 max-lg:text-2xl max-lg:text-center  '>
@@ -97,10 +101,10 @@ export default function Index() {
                     </div>
                     <Divider />
                     <div className='h-auto w-full  pl-80 pr-80  max-lg:pr-0 max-lg:pl-0  max-xl:pl-20 max-xl:pr-20 duration-700 '>
-                        <div className='h-dvh bg-slate-400 bg-scroll overflow-y-auto space-y-8 p-8  '>
+                        <div className='h-dvh bg-rose-300 bg-scroll overflow-y-auto space-y-14 p-8  '>
                             <div className='intro font-mono '>
                                 <div className='float-left pt-2 pr-4  text-2xl underline  underline-offset-8'> 自我介紹</div>
-                                <div className='text-lg max-lg:text-md max-md:text-sm'>
+                                <div className='text-xl max-lg:text-md max-md:text-sm tracking-wide'>
                                     大家好，我是[你的名字]，一位熱愛前端開發的工程師。我畢業於[你的學校]，獲得了[你的學位]，主修計算機科學。在過去的[相關年數]年裡，我專注於前端開發，積累了豐富的經驗和技術能力。我擅長使用HTML、CSS和JavaScript，並精通現代前端框架如React、Vue.js和Angular。
 
                                     在職業生涯中，我參與了多個大型項目，從初期的需求分析、設計到最終的實現和部署。我不僅注重代碼的質量和性能，還關心用戶體驗，致力於提供簡潔、高效、美觀的前端界面。我曾在[公司名稱]工作，作為一名高級前端工程師，負責網站的前端架構設計和開發，並在項目中引入了多種前沿技術和最佳實踐，顯著提升了網站的響應速度和用戶滿意度。
@@ -110,7 +114,7 @@ export default function Index() {
                             </div>
                             <div className='futureplane'>
                                 <div className='float-left pt-2 pr-4 text-2xl underline underline-offset-8 shadow-md'  > 未來計畫</div>
-                                <div className='text-lg max-lg:text-md max-md:text-sm'>
+                                <div className='text-xl max-lg:text-md max-md:text-sm tracking-wide'>
                                     未來，我計劃繼續深耕前端開發領域，並探索更多新興技術，如WebAssembly、Progressive Web Apps (PWA) 和Server-Side Rendering (SSR) 等。我希望能夠參與到更加複雜和具挑戰性的項目中，進一步提升自己的技術水平和解決問題的能力。
 
                                     我計劃考取一些重要的技術認證，如Google的Web開發認證和Microsoft的Azure開發者認證，這將有助於我更好地理解和應用各種前端技術。同時，我也希望能夠在工作中承擔更多的領導角色，帶領團隊實現技術突破，並在公司內部推動技術創新和最佳實踐的落地。
@@ -120,7 +124,7 @@ export default function Index() {
                             </div>
                             <div className='mybackground'>
                                 <div className='float-left pt-2 pr-4 text-2xl underline underline-offset-8'> 我的背景</div>
-                                <div className='text-lg max-lg:text-md max-md:text-sm'>
+                                <div className='text-xl max-lg:text-md max-md:text-sm tracking-wide' >
                                     我來自[你的城市]，從小對技術和編程充滿了濃厚的興趣。大學期間，我主修計算機科學，系統學習了數據結構、演算法、操作系統等基礎知識，並選修了多門與前端開發相關的課程。通過不斷的學習和實踐，我掌握了HTML、CSS、JavaScript等基本技能，並逐漸深入學習了React、Vue.js、Angular等前端框架。
 
                                     在校期間，我參與了多個校內外的項目，積累了豐富的實戰經驗。例如，我曾經參與設計和開發了一個校園社交平台，負責前端的架構設計和實現，該平台最終獲得了學校的創新獎。畢業後，我加入了[公司名稱]，在那裡，我參與了多個大型項目，並逐漸成長為一名高級前端工程師。
@@ -193,19 +197,19 @@ export default function Index() {
                                 </div>
                             </div>
                         </div>
-                        <div className='h-dvh bg-slate-400 overflow-x-auto p-4'>
-                            <div className='text-6xl'>  我的技能</div>
-
-                            <SkillSwitchTabs />
-
+                        <div className='h-dvh bg-slate-700 overflow-x-auto p-4'>
+                            <div className='text-3xl pl-2'>  我的技能</div>
+                            <div className='p-2 pt-6'>
+                                <SkillSwitchTabs />
+                            </div>
 
 
                         </div>
                         <div className='h-dvh w-full bg-slate-400 p-5 space-y-4  overflow-hidden'>
-                            <div className='text-5xl'>
+                            <div className='text-3xl'>
                                 處理的項目
                             </div>
-                            <div className=' relative overflow-x-auto pt-10 pb-10'>
+                            <div className='relative  flex justify-center content-center items-center h-full  overflow-x-auto pt-10 pb-10'>
                                 <div className='flex flex-nowrap relative  w-full gap-5'>
                                     <ProjectCard photo={''} info={''} link={''} />
                                     <ProjectCard photo={''} info={''} link={''} />
