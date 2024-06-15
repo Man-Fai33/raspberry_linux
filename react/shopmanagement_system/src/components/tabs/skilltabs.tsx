@@ -15,13 +15,14 @@ function CustomTabPanel(props: TabPanelProps) {
 
     return (
         <div
+
             role="tabpanel"
             hidden={value !== index}
             id={`simple-tabpanel-${index}`}
             aria-labelledby={`simple-tab-${index}`}
             {...other}
         >
-            {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+            {value === index && <div className='p-3 max-md:p-1'>{children}</div>}
         </div>
     );
 }
@@ -51,9 +52,9 @@ export default function SkillSwitchTabs() {
                     <Tab label="資料庫" {...a11yProps(3)} />
                 </Tabs>
             </Box>
-            <div className='p-4'>
+            <div className='p-4 max-lg:p-2  max-md:p-0'>
                 <CustomTabPanel value={value} index={0}  >
-                    <div className='grid grid-cols-2 grid-flow-row gap-6  '>
+                    <div className='grid grid-cols-2 grid-flow-row gap-6 max-lg:grid-cols-1 max-lg:gap-4 max-md:gap-3  '>
                         <SkillProgress name={'hi'} num={10} />
                         <SkillProgress name={'hi'} num={10} />
                         <SkillProgress name={'hi'} num={10} />
@@ -82,7 +83,7 @@ export default function SkillSwitchTabs() {
                     </div>
                 </CustomTabPanel>
                 <CustomTabPanel value={value} index={1}>
-                    <div className='grid grid-cols-2 grid-flow-row gap-6'>
+                    <div className='grid grid-cols-2 grid-flow-row gap-6  max-lg:grid-cols-1 '>
                         <SkillProgress name={'hi'} num={10} />
                         <SkillProgress name={'hi'} num={10} />
                         <SkillProgress name={'hi'} num={10} />
@@ -106,7 +107,7 @@ export default function SkillSwitchTabs() {
                     </div>
                 </CustomTabPanel>
                 <CustomTabPanel value={value} index={2}>
-                    <div className='grid grid-cols-2 grid-flow-row gap-6'>
+                    <div className='grid grid-cols-2 grid-flow-row gap-6  max-lg:grid-cols-1 '>
                         <SkillProgress name={'hi'} num={10} />
                         <SkillProgress name={'hi'} num={10} />
                         <SkillProgress name={'hi'} num={10} />
@@ -130,7 +131,7 @@ export default function SkillSwitchTabs() {
                     </div>
                 </CustomTabPanel>
                 <CustomTabPanel value={value} index={3}>
-                    <div className='grid grid-cols-2 grid-flow-row gap-6'>
+                    <div className='grid grid-cols-2 grid-flow-row gap-6  max-lg:grid-cols-1 max-lg:gap-3 max-md:gap-1 '>
                         <SkillProgress name={'hi'} num={10} />
                         <SkillProgress name={'hi'} num={10} />
                         <SkillProgress name={'hi'} num={10} />

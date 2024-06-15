@@ -23,7 +23,7 @@ export default function Index() {
 
     return (
         <div className='relative h-fit'>
-            <div className='relative h-dvh bg-cover'
+            <div className='relative h-dvh bg-container '
 
                 style={{ backgroundImage: `url(${backgroundImage})` }}
             >
@@ -70,8 +70,8 @@ export default function Index() {
             {
                 personalProfileDisplay ?
                     <>
-                        <div className=" relative h-dvh w-full bg-scroll grid grid-cols-6 gap-4    max-lg:grid-cols-1  max-lg:gap-0   " >
-                            <div className='relative col-span-4 flex p-72  max-lg:p-0 bg-slate-500 '
+                        <div className=" relative h-dvh w-full bg-scroll grid grid-cols-6 gap-4    max-lg:grid-cols-1  max-lg:gap-0   justify-self-center " >
+                            <div className='relative col-span-4 flex p-72  max- max-lg:p-0 bg-slate-500 '
                             // style={{ backgroundImage: `url(${backgroundImage})` }}
                             >
                                 <div className='text-5xl font-mono  content-center w-full space-y-5 max-lg:text-2xl max-lg:text-center  '>
@@ -84,7 +84,7 @@ export default function Index() {
                                 </div>
 
                             </div>
-                            <div className="col-span-2 flex justify-center flex-col space-y-8  max-lg:space-y-4 max-md:space-y-1  justify-self-center ">
+                            <div className="col-span-2 flex justify-center flex-col space-y-8  max-lg:space-y-4 max-md:space-y-1  justify-self-center   ">
 
                                 <div className=' relative flex justify-center'>
                                     <Avatar alt="Remy Sharp" src={icon} sx={{ width: 200, height: 200 }} />
@@ -117,7 +117,7 @@ export default function Index() {
                         </div>
                         <Divider />
                         <div className='h-auto w-full  pl-80 pr-80  max-lg:pr-0 max-lg:pl-0  max-xl:pl-20 max-xl:pr-20 duration-700 '>
-                            <div className='h-dvh bg-rose-300 bg-scroll overflow-y-auto space-y-20 p-8  pt-14 '>
+                            <div className='h-dvh bg-rose-300 bg-scroll overflow-y-auto space-y-20  max-md:space-y-4 p-5  pt-14 max-lg:pt-2 '>
                                 <div className='intro font-mono '>
                                     <div className='float-left pt-2 pr-4  text-2xl underline  underline-offset-8'> 自我介紹</div>
                                     <div className='text-xl max-lg:text-md max-md:text-sm tracking-wide text-justify'>
@@ -153,20 +153,21 @@ export default function Index() {
                                     </div>
                                 </div>
                             </div>
-                            <div className='h-dvh bg-slate-400  flex-wrap p-5  '>
+                            <div className='h-dvh bg-slate-400  flex-wrap p-5  overflow-y-scroll  '>
+
                                 <div className='flex  flex-row max-xl:flex-col  max-xl:space-y-4 h-2/3 max-xl:h-fit '>
                                     <div className='flex-none  w-1/2 max-xl:w-fit '>
                                         <div className='text-3xl max-xl:text-base '>教育 education</div>
                                         <div className='text-base text-left font-sans tracking-normal text-ellipsis max-lg:text-sm'>
                                             <List>
-                                                <div className='text-xl'>2021-2023</div>
+                                                <div className='text-xl max-lg:text-base' >2021-2023</div>
                                                 <div className='flex flex-row'>
                                                     <ListItemIcon>
                                                         <School />
                                                     </ListItemIcon>
                                                     <ListItemText className='text-xl max-lg:text-md max-md:text-sm tracking-wide text-justify' primary="國立臺灣科技大學 學士學位畢業 資訊管理系" />
                                                 </div>
-                                                <div className='text-xl'> 2019-2021</div>
+                                                <div className='text-xl max-lg:text-base'> 2019-2021</div>
 
                                                 <div className='flex flex-row'>
                                                     <ListItemIcon>
@@ -174,7 +175,7 @@ export default function Index() {
                                                     </ListItemIcon>
                                                     <ListItemText className='text-xl max-lg:text-md max-md:text-sm tracking-wide text-justify' primary="香港專業教育學院(沙田) 高級文憑 軟體工程" />
                                                 </div>
-                                                <div className='text-xl'>2018-2019</div>
+                                                <div className='text-xl max-lg:text-base'>2018-2019</div>
                                                 <div className='flex flex-row'>
                                                     <ListItemIcon>
                                                         <School />
@@ -182,7 +183,7 @@ export default function Index() {
                                                     <ListItemText className='text-xl max-lg:text-md max-md:text-sm tracking-wide text-justify' primary="香港專業教育學院(沙田) 基礎文憑 資訊科技" />
 
                                                 </div>
-                                                <div className='text-xl' >2012-2018</div>
+                                                <div className='text-xl max-lg:text-base' >2012-2018</div>
                                                 <div className='flex flex-row'>
                                                     <ListItemIcon>
                                                         <School />
@@ -206,22 +207,23 @@ export default function Index() {
                                         </div>
                                     </div>
                                 </div>
-                                <div className=' space-y-3 space-x-3'>
-                                    <div className='float-left  text-2xl pt-2 pr-2 max-md'>工作經驗</div>
-                                    <div className='text-xl max-lg:text-md max-md:text-sm tracking-wide text-justify'>
+                                <div className=' space-y-3 space-x-3  '>
+                                    <div className='float-left  text-2xl pt-2 pr-2 max-md:text-lg max-md:pt-4'>工作經驗</div>
+                                    <div className='text-xl max-lg:text-md max-md:text-sm tracking-wide text-justify   '>
                                         I have experienced a particularly deep part-time job as a summer vacation worker in 2019. This job mainly helps the staff of the Housing Department to change their hosts and data. Before that, I needed to make an appointment with the staff who want to update their computers, and also had problems in communicating data with him. In this job, I learned how to communicate with different employees and how to cooperate with IT departments, especially with IT departments, which is very important, which will affect work efficiency. It is a rare opportunity for me, and I believe I will use this kind of communication to meet friends in the future.
                                     </div>
                                 </div>
+
                             </div>
                             <div className='h-dvh bg-slate-700 overflow-x-auto p-4'>
                                 <div className='text-3xl pl-2'>  我的技能</div>
-                                <div className='p-2 pt-6'>
+                                <div className='p-2 max-md:p-1 pt-6'>
                                     <SkillSwitchTabs />
                                 </div>
 
 
                             </div>
-                            <div className='h-dvh w-full bg-slate-400 p-5 space-y-4  overflow-hidden'>
+                            <div className='h-dvh w-full bg-slate-400 p-5 max-md:p-2 space-y-4  overflow-hidden'>
                                 <div className='text-3xl'>
                                     處理的項目
                                 </div>

@@ -8,7 +8,7 @@ class Skillinfo {
 
 export default function SkillProgress(skillinfo: Skillinfo) {
     return (
-        <div className=' shadow-xl p-2 rounded-lg bg-slate-300'>
+        <div className=' shadow-xl p-2  rounded-lg bg-slate-300'>
 
             <Grid container width={"100%"}>
                 <Grid item xs={2}>
