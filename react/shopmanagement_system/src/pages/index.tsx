@@ -76,7 +76,7 @@ export default function Index() {
                 personalProfileDisplay ?
                     <>
                         <div className=" relative h-dvh w-full bg-scroll grid grid-cols-6 gap-4    max-lg:grid-cols-1  max-lg:gap-0   justify-self-center " >
-                            <div className='relative col-span-4 flex p-72   max-xl:p-20 max-md:p-0 bg-slate-500 '
+                            <div className='relative col-span-4 flex p-72 max-2xl:p-40  max-xl:p-20 max-md:p-0 bg-slate-500 '
                             // style={{ backgroundImage: `url(${backgroundImage})` }}
                             >
                                 <div className='text-5xl font-mono  content-center w-full space-y-5  max-lg:text-2xl max-lg:text-center  '>
