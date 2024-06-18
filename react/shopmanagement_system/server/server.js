@@ -14,15 +14,15 @@ var config = require('./config');
 //data model
 
 
-
+var UserRouter = require('./routers/users')
 const app = express();
-const port = 3000;
+const port = 3020;
 
 
 
 // MongoDB 连接字符串
-const dbURI = 'mongodb://manfai:mf330@localhost:27017/shopmanagement_react';
-
+// const dbURI = 'mongodb://manfai:mf330@localhost:27017/shopmanagement_react';
+const dbURI = 'mongodb://localhost:27017/shopmanagement_react';
 // 连接到 MongoDB
 mongoose.connect(dbURI)
   .then(() => {
@@ -56,9 +56,7 @@ app.use(bodyParser.json({ limit: '50mb' }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
- 
-
-
+app.use('/api/user', UserRouter)
 
 //error handle 
 app.use((req, res, next) => {

@@ -1,9 +1,35 @@
 import { ButtonGroup, TextField } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
+import { ApiHelper } from '../../helper/apihelper'
+
+class RegisterUser {
+    username: string = '';
+    password: string = '';
+    email: string = '';
+}
+class ErrorMessage {
+    nameerror: boolean = false;
+    pwderror: boolean = false;
+    emailerror: boolean = false;
+}
 
 export default function Register(props: {
     Registered: () => void
 }) {
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
+    const [errorDisplay,] = useState<ErrorMessage>(new ErrorMessage())
+    const [user_info,] = useState<RegisterUser>(new RegisterUser());
+    const UserRegister = async () => {
+        let data = new FormData();
+        let user = ({
+            username: user_info.username,
+            password: user_info.password,
+            email: user_info.email,
+        })
+        alert(JSON.stringify(user));
+        let response = ApiHelper.AsyncUserCreate(user)
+        console.log(response)
+    }
     return (
         <div className=" h-dvh w-full  rounded-lg  drop-shadow-2xl shadow-inner shadow-gray-900 backdrop-blur-md  bg-white/60 ">
             <div className=" h-full w-full  text-center space-y-8 flex flex-col justify-center content-center ">
@@ -16,23 +42,29 @@ export default function Register(props: {
                 <div className="">
                     <TextField
                         className='w-1/2'
-                        error={false}
+                        error={errorDisplay.nameerror}
                         required
                         helperText={''}
                         autoFocus={true}
                         id="standard-required"
                         label="名字"
 
+                        onChange={(e) => {
+
+                            user_info.username = e.target.value
+                        }}
                         variant="standard"
                     />
                 </div>
                 <div className="">
                     <TextField
+                        type='email'
                         className='w-1/2'
-                        error={false}
+                        error={errorDisplay.emailerror}
                         required
                         helperText={''}
                         autoFocus={true}
+                        onChange={(e) => { user_info.email = e.target.value }}
                         id="standard-required"
                         label="帳號/Email"
                         variant="standard"
@@ -42,26 +74,21 @@ export default function Register(props: {
                     <TextField
                         className='w-1/2'
                         required
+                        error={errorDisplay.pwderror}
                         helperText={''}
                         id="standard-required"
                         label="密碼"
+                        onChange={(e) => {
+                            user_info.password = e.target.value
+                        }}
                         variant="standard"
                     />
                 </div>
-                <div className=''>
-                    <TextField
-                        className='w-1/2'
-                        required
-                        helperText={''}
-                        id="standard-required"
-                        label="密碼2"
-                        variant="standard"
-                    />
-                </div>
+
                 <div className='btn'>
                     <ButtonGroup size="large" aria-label="Large button group">
 
-                        <button className='p-2' onClick={props.Registered} >註冊</button>
+                        <button className='p-2' onClick={UserRegister} >註冊</button>
 
                     </ButtonGroup>
 
@@ -70,6 +97,6 @@ export default function Register(props: {
 
                 </div>
             </div>
-        </div>
+        </div >
     )
 }

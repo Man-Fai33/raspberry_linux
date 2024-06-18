@@ -1,6 +1,7 @@
 import { ButtonGroup, TextField } from '@mui/material'
 import React from 'react'
 import backgroundImage from '../../components/image/12.jpg';
+import { ApiHelper } from '../../helper/apihelper';
 export default function Login(props: {
     isRegister: () => void
 }) {
@@ -42,7 +43,8 @@ export default function Login(props: {
                 </div>
                 <div className='btn'>
                     <ButtonGroup size="large" aria-label="Large button group">
-                        <button className='p-8 text-xl' onClick={() => { }} >登入</button>
+                        <button className='p-8 text-xl' onClick={() => {
+                        }} >登入</button>
                         <button className='p-2' onClick={props.isRegister} >註冊</button>
                     </ButtonGroup>
 

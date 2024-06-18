@@ -11,9 +11,9 @@ const User = new mongoose.Schema({
     4. "Administrator"
     */
     password: { type: String },
-    role: { type: String, required: true },
-    phone: { type: String, required: true },
-    introduction: { type: String, default:"" },
+    role: { type: String, default: 'user'},
+    phone: { type: String, required: false },
+    introduction: { type: String, default: "" },
     location: String,
     gender: Boolean,
     date: Date,
