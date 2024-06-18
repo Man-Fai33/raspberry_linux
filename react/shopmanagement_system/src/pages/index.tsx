@@ -13,6 +13,8 @@ import ProjectCard from '../components/card/projectcard';
 import SkillSwitchTabs from '../components/tabs/skilltabs';
 import { School } from '@mui/icons-material';
 import SkillModal from '../components/Modal/skillmodal';
+import Login from './unregister/login';
+import Register from './unregister/register';
 
 
 export default function Index() {
@@ -22,34 +24,38 @@ export default function Index() {
     const [register, setRegister] = useState(false)
 
     return (
-        <div className='relative h-fit'>
-            <div className='relative h-dvh bg-container '
+        <div className='relative h-full '>
+            <div className='  relative  h-dvh bg-container w-full   '
 
                 style={{ backgroundImage: `url(${backgroundImage})` }}
             >
 
-                <div className='absolute  w-full top-1/2'>
-                    <div className=' flex content-center '>
-                        <div className={`w-1/2   ${login ? 'text-center' : 'text-right'} duration-700`}>
-                            <button className='pt-3 pb-3 pl-8 pr-8 tracking-wide font-mono bg-gradient-to-r from-cyan-500 to-blue-500 text-3xl font-medium text-white shadow-lg space-x-8'
+                <div className=' relative  w-full h-dvh '>
+                    <div className=' relative flex h-full   ' >
+                        <div className={`${login ? 'w-full' : 'w-full'} h-full top-1/2  text-center  items-center  content-center`}>
+
+                            <button className=' animate-pulse pt-3 pb-3 pl-8 pr-8 tracking-wide font-mono bg-gradient-to-r from-cyan-500 to-blue-500 text-3xl font-medium rounded-2xl text-white shadow-lg space-x-8'
                                 onClick={() => {
                                     setLogin(!login)
+                                    setRegister(false)
                                 }}> 登入</button>
                         </div>
-                        <div className={`w-1/2 ${login ? ' ' : 'hidden'}`} ></div>
-                        <div className={`w-1/2 ${register ? ' ' : 'hidden'}`} ></div>
-                        <div className={`w-1/2 ${register ? 'text-center' : 'text-left'} duration-300`}>
-                            <button className='pt-3 pb-3 pl-8 pr-8 tracking-wide font-mono bg-gradient-to-r from-cyan-500 to-blue-500 text-3xl font-medium text-white shadow-lg space-x-8'
-                                onClick={() => {
-                                    setRegister(!register)
-                                }} > 註冊</button>
+                        <div className={` w-full  h-full  z-50   left-1/2  ${login ? '  flex' : ' hidden'}`}>
+
+                            <Login isRegister={() => {
+                                setRegister(!register)
+                                setLogin(false)
+                            }} />
                         </div>
-                        {/* <div className='pt-3 pb-3 pl-8 pr-8 tracking-wide rounded-lg font-mono bg-gradient-to-r from-cyan-500 to-blue-500 text-3xl font-medium text-white shadow-lg space-x-8'  >
-                        </div> */}
+                        <div className={` w-full h-full  z-50  left-1/2 ${register ? '  flex' : '  hidden'}`}>
+                            <Register Registered={() => {
+                                setRegister(!register)
+                            }} />
+                        </div>
                     </div>
                 </div>
 
-                <div className='absolute bottom-0 w-full text-center   space-y-2'>
+                <div className='absolute bottom-0 w-full text-center space-y-2'>
                     <div className='text-2xl'>
                         關於我
                     </div>
@@ -61,7 +67,6 @@ export default function Index() {
                         <KeyboardDoubleArrowDownIcon sx={{ fontSize: 50 }} />
                     </button>
                 </div>
-
             </div>
 
 
@@ -103,7 +108,7 @@ export default function Index() {
                                     <IconButton aria-label="Facebook" onClick={() => { window.location.href = "https://www.facebook.com/leo.Fai.F/"; }}><FacebookIcon fontSize="large" /></IconButton>
                                     <Divider orientation="vertical" variant="middle" flexItem />
                                     <IconButton aria-label="LinkedIn" onClick={() => {
-                                        window.location.href = "https://www.facebook.com/leo.Fai.F/";
+                                        window.location.href = "https://linkedin.com/in/文輝-張-2b375823a";
                                     }} ><LinkedInIcon fontSize="large" /></IconButton>
                                     < Divider orientation="vertical" variant="middle" flexItem />
                                     <IconButton aria-label="Email" onClick={() => { alert("cheungmanfai330@gmail.com") }} ><EmailIcon fontSize="large" /></IconButton>
@@ -116,8 +121,8 @@ export default function Index() {
                             </div>
                         </div>
                         <Divider />
-                        <div className='h-auto w-full  pl-80 pr-80  max-lg:pr-0 max-lg:pl-0  max-xl:pl-20 max-xl:pr-20 duration-700 '>
-                            <div className='h-dvh bg-rose-300 bg-scroll overflow-y-auto space-y-20  max-md:space-y-4 p-5  pt-14 max-lg:pt-2 '>
+                        <div className='h-auto w-full  pl-80 pr-80  max-lg:pr-0 max-lg:pl-0  max-xl:pl-20 max-xl:pr-20 '>
+                            <div className='h-dvh bg-rose-300 bg-scroll overflow-y-auto touch-pan-y space-y-20  max-md:space-y-4 p-5  pt-14 max-lg:pt-2 '>
                                 <div className='intro font-mono '>
                                     <div className='float-left pt-2 pr-4  text-2xl underline  underline-offset-8'> 自我介紹</div>
                                     <div className='text-xl max-lg:text-md max-md:text-sm tracking-wide text-justify'>
@@ -153,7 +158,7 @@ export default function Index() {
                                     </div>
                                 </div>
                             </div>
-                            <div className='h-dvh bg-slate-400  flex-wrap p-5  overflow-y-scroll  '>
+                            <div className='h-dvh bg-slate-400  flex-wrap p-5  overflow-y-scroll touch-pan-y '>
 
                                 <div className='flex  flex-row max-xl:flex-col  max-xl:space-y-4 h-2/3 max-xl:h-fit '>
                                     <div className='flex-none  w-1/2 max-xl:w-fit '>
@@ -196,14 +201,37 @@ export default function Index() {
                                     <div className='flex-none w-1/2 max-xl:w-fit '>
                                         <div className='text-3xl max-xl:text-base'>工作 worker</div>
                                         <div className='text-base text-left font-sans tracking-normal text-ellipsis max-xl:text-sm'>
-                                            2023/8~2024/10<br />
-                                            大博系統工程股份有限公司 <br />
-                                            2021/10~2022/10-遠端工程師 <br />
-                                            Jedies Advance Technology Limited <br />
-                                            July .2020–school intern <br />
-                                            Career relating workshop: Working Holiday <br />
-                                            July .2019–summer job <br />
-                                            PIREN – 暑期工  <br />
+                                            <List>
+                                                <div className='text-xl max-lg:text-base' >    2023/8~2024/10 - 全職工程師</div>
+                                                <div className='flex flex-row'>
+                                                    <ListItemIcon>
+                                                        <School />
+                                                    </ListItemIcon>
+                                                    <ListItemText className='text-xl max-lg:text-md max-md:text-sm tracking-wide text-justify' primary="大博系統工程股份有限公司" />
+
+                                                </div>
+                                                <div className='text-xl max-lg:text-base' >     2021/10~2022/10 - 遠端工程師 </div>
+                                                <div className='flex flex-row'>
+                                                    <ListItemIcon>
+                                                        <School />
+                                                    </ListItemIcon>
+                                                    <ListItemText className='text-xl max-lg:text-md max-md:text-sm tracking-wide text-justify' primary="Jedies Advance Technology Limited" />
+                                                </div>
+                                                <div className='text-xl max-lg:text-base' > 2020/5~2020/9 - 學校實習 </div>
+                                                <div className='flex flex-row'>
+                                                    <ListItemIcon>
+                                                        <School />
+                                                    </ListItemIcon>
+                                                    <ListItemText className='text-xl max-lg:text-md max-md:text-sm tracking-wide text-justify' primary=" Career relating workshop: Working Holiday" />
+                                                </div>
+                                                <div className='text-xl max-lg:text-base' >     July .2019–summer job </div>
+                                                <div className='flex flex-row'>
+                                                    <ListItemIcon>
+                                                        <School />
+                                                    </ListItemIcon>
+                                                    <ListItemText className='text-xl max-lg:text-md max-md:text-sm tracking-wide text-justify' primary="PIREN – 暑期工" />
+                                                </div>
+                                            </List>
                                         </div>
                                     </div>
                                 </div>
@@ -215,7 +243,7 @@ export default function Index() {
                                 </div>
 
                             </div>
-                            <div className='h-dvh bg-slate-700 overflow-x-auto p-4'>
+                            <div className='h-dvh bg-slate-700 overflow-y-auto p-4 touch-pan-y'>
                                 <div className='text-3xl pl-2'>  我的技能</div>
                                 <div className='p-2 max-md:p-1 pt-6'>
                                     <SkillSwitchTabs />
