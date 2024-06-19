@@ -24,7 +24,7 @@ export default function ProjectCard(props: {
                     title
 
                 </div>
-                <div className="bg-cover  bg-center w-full  " style={{ backgroundImage: `url(${bgi})`, height: '450px' }}  >
+                <div className="bg-cover  bg-center w-full  " style={{ backgroundImage: `url(https://picsum.photos/1920/1080)`, height: '450px' }}  >
                 </div>
                 <CardContent>
 

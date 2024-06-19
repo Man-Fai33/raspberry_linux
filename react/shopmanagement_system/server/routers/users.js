@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
+const { Helper } = require('../helper/helper');
 router.get('/', (req, res) => {
 
     User.findOne().exec().then(result => {
@@ -12,54 +13,42 @@ router.get('/', (req, res) => {
 
 // Create a new user specified by a User object
 router.post('/', async (req, res) => {
-    console.log(req.body)
-    let target = req.body.user
-    // check if the email is duplicated
-    let email = target.email
-    let error = false
-    let resp = {}
-    let user = null
+    let user = req.body
+    let userCreate = null
+    let type = user.type || null
+    let response = {}
     try {
+        if (!type && type !== "signin") {
+            let message = await Helper.SignUpCheck(user.email, user.username)
+            if (message === "") {
+                user.role = 'user';
+                console.log(user)
+                userCreate = new User(user); // 将 user 对象传递给构造函数
+                const createdUser = await userCreate.save(); // 创建并保存文档实例
+                response.message = "用戶創建成功";
+                response.data = createdUser;
+                response.error = false;
+                return res.json(response);
+            } else {
+                response.message = message + "已經存在"
+                response.error = true
+                return res.json(response)
+            }
+        } else {
+            if (await User.findOne({ username: user.username, password: user.password }).exec() !== null || await User.findOne({ email: user.vainput, password: user.password }).exec() !== null) {
 
-        // find a user with a duplicated email
-        user = await User.findOne({ email: email }).exec()
-        if (user != null) {
-            resp.message = "Email already existed"
-            error = true
-        }
+                if (await User.findOne({ username: user.username, password: user.password }).exec() !== null) {
+                    response.message = "用戶名稱登入"
+                } else {
+                    response.message = "用戶電郵登入"
+                }
+            } else {
+                response.message = "密碼名字錯誤/n 註冊新的賬號"
+            }
+        } return res.json(response)
+
+    } catch (error) {
+        console.log(error)
     }
-    catch (err) {
-        // if the user cannot be found, do nothing
-    }
-
-    if (error) {
-        resp.status = "fail"
-        res.json(resp)
-        return
-    }
-
-    // After checking the username is not duplicated
-
-
-    // generate a userid for the user
-    user = new User(target)
-    try {
-        resp.user = await user.save()
-    }
-    catch (err) {
-        error = true
-        resp.message = "User cannot be added"
-        resp.err = err
-        console.log(err);
-    }
-
-    if (error) {
-        resp.status = "fail"
-        res.json(resp)
-        return
-    }
-
-    resp.status = "success"
-    res.json(resp)
 })
 module.exports = router;

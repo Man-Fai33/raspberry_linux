@@ -1,6 +1,7 @@
 import { ButtonGroup, TextField } from '@mui/material'
 import React, { useState } from 'react'
 import { ApiHelper } from '../../helper/apihelper'
+import { FuncHelper } from '../../helper/funchelper';
 
 class RegisterUser {
     username: string = '';
@@ -20,7 +21,6 @@ export default function Register(props: {
     const [errorDisplay,] = useState<ErrorMessage>(new ErrorMessage())
     const [user_info,] = useState<RegisterUser>(new RegisterUser());
     const UserRegister = async () => {
-        let data = new FormData();
         let user = ({
             username: user_info.username,
             password: user_info.password,
@@ -31,7 +31,7 @@ export default function Register(props: {
         console.log(response)
     }
     return (
-        <div className=" h-dvh w-full  rounded-lg  drop-shadow-2xl shadow-inner shadow-gray-900 backdrop-blur-md  bg-white/60 ">
+        <div className=" h-dvh w-full  rounded-lg  drop-shadow-2xl shadow-inner shadow-gray-900 backdrop-blur-md  bg-white/50 ">
             <div className=" h-full w-full  text-center space-y-8 flex flex-col justify-center content-center ">
                 <div className="Logo">
 
@@ -50,8 +50,14 @@ export default function Register(props: {
                         label="名字"
 
                         onChange={(e) => {
-
                             user_info.username = e.target.value
+                            if (!FuncHelper.trimSpace(user_info.username) && e.target.value.length > 0) {
+                                errorDisplay.nameerror = false
+
+                            } else {
+                                errorDisplay.nameerror = true
+                            }
+
                         }}
                         variant="standard"
                     />
@@ -62,9 +68,18 @@ export default function Register(props: {
                         className='w-1/2'
                         error={errorDisplay.emailerror}
                         required
-                        helperText={''}
+                        helperText={errorDisplay.emailerror ? 'Invalid email address' : ''}
                         autoFocus={true}
-                        onChange={(e) => { user_info.email = e.target.value }}
+                        onChange={(e) => {
+                            user_info.email = e.target.value
+                            if (!FuncHelper.trimSpace(e.target.value) && e.target.value.length > 0) {
+                                errorDisplay.nameerror = false
+                            } else {
+                                errorDisplay.nameerror = true
+                            }
+
+                        }}
+
                         id="standard-required"
                         label="帳號/Email"
                         variant="standard"

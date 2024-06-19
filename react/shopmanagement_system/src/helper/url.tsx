@@ -1,8 +1,6 @@
 export const HOST = 'http://localhost:3020/api'
 export const Url = {
-
     User: (HOST + "/user"),
-
 }
 
 

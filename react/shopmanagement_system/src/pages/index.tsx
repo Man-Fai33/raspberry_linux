@@ -25,9 +25,10 @@ export default function Index() {
 
     return (
         <div className='relative h-full '>
-            <div className='  relative  h-dvh bg-container w-full   '
+            <div className='  relative  h-dvh b  bg-no-repeat bg-cover w-full   '
 
-                style={{ backgroundImage: `url(${backgroundImage})` }}
+                // style={{ backgroundImage: `url(${backgroundImage})` }}
+                style={{ backgroundImage: ` url(https://picsum.photos/2560/1440)` }}
             >
 
                 <div className=' relative  w-full h-dvh '>
