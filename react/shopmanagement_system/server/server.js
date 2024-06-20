@@ -7,8 +7,8 @@ const bodyParser = require('body-parser');
 var cors = require('cors')
 //setting
 var morgan = require('morgan');
-require('dotenv').config();
-var config = require('./config');
+ 
+
 
 
 //data model
@@ -54,6 +54,8 @@ app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 }));
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+ 
 
 
 app.use('/api/user', UserRouter)

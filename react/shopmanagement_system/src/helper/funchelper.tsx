@@ -3,10 +3,18 @@ export const FuncHelper = {
         const reg = /\s+/g;
         return str.replace(reg, '')
     },
-    validateEmail: (email: string) => {
-        // 簡單的電子郵件格式驗證
-        return /\S+@\S+\.\S+/.test(email);
+    validateEmail(email: string) {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailPattern.test(email);
     },
+    validatePwd(pwd: string) {
+        return pwd === "" ? false : true
+    },
+    validateInputError(input: string) {
+        // 如果 input 是空字符串、未定义、null 或 '0'，返回 false；否则返回 true
+        return (input === '' || input === undefined || input === null || input === '0') ;
+    }
+    
 
 }
 

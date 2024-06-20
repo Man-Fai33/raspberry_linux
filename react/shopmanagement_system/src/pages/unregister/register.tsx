@@ -1,35 +1,57 @@
 import { ButtonGroup, TextField } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ApiHelper } from '../../helper/apihelper'
-import { FuncHelper } from '../../helper/funchelper';
+import { FuncHelper } from '../../helper/funchelper'
+import { SignUpUser } from '../../models/userModels'
 
-class RegisterUser {
-    username: string = '';
-    password: string = '';
-    email: string = '';
-}
 class ErrorMessage {
-    nameerror: boolean = false;
-    pwderror: boolean = false;
-    emailerror: boolean = false;
+    name: boolean = false;
+    pwd: boolean = false;
+    email: boolean = false;
 }
 
 export default function Register(props: {
     Registered: () => void
 }) {
-    // eslint-disable-next-line @typescript-eslint/no-use-before-define
+
+
     const [errorDisplay,] = useState<ErrorMessage>(new ErrorMessage())
-    const [user_info,] = useState<RegisterUser>(new RegisterUser());
+    const [user_info,] = useState<SignUpUser>(new SignUpUser());
+    const [register, setRegister] = useState<boolean>(false)
     const UserRegister = async () => {
-        let user = ({
-            username: user_info.username,
-            password: user_info.password,
-            email: user_info.email,
-        })
-        alert(JSON.stringify(user));
-        let response = ApiHelper.AsyncUserCreate(user)
-        console.log(response)
+        let error: Boolean = false
+        try {
+            errorDisplay.email = FuncHelper.validateInputError(user_info.email) && !FuncHelper.validateEmail(user_info.email)
+            errorDisplay.name = FuncHelper.validateInputError(user_info.username)
+            errorDisplay.pwd = FuncHelper.validateInputError(user_info.password)
+
+            let error = errorDisplay.email || errorDisplay.pwd || errorDisplay.name;
+            if (error === false) {
+                console.log(error);
+                ApiHelper.AsyncUserCreate(user_info).then((res) => {
+                    if (res.error) {
+                        alert(res.message)
+                    } else {
+                        alert(res.message)
+                    }
+                })
+            } else {
+                setRegister(false)
+            }
+        } catch (err) {
+            console.log(error)
+        }
+
     }
+    useEffect(() => {
+        if (register) {
+            UserRegister();
+        }
+    }, [register]);
+
+
+
+
     return (
         <div className=" h-dvh w-full  rounded-lg  drop-shadow-2xl shadow-inner shadow-gray-900 backdrop-blur-md  bg-white/50 ">
             <div className=" h-full w-full  text-center space-y-8 flex flex-col justify-center content-center ">
@@ -42,23 +64,17 @@ export default function Register(props: {
                 <div className="">
                     <TextField
                         className='w-1/2'
-                        error={errorDisplay.nameerror}
-
-                        helperText={''}
+                        error={errorDisplay.name}
                         autoFocus={true}
                         id="standard-required"
                         label="名字"
-
+                        helperText={errorDisplay.name ? '請輸入名字' : ''}
                         onChange={(e) => {
                             user_info.username = e.target.value
-                            if (!FuncHelper.trimSpace(user_info.username) && e.target.value.length > 0) {
-                                errorDisplay.nameerror = false
 
-                            } else {
-                                errorDisplay.nameerror = true
-                            }
 
                         }}
+
                         variant="standard"
                     />
                 </div>
@@ -66,22 +82,17 @@ export default function Register(props: {
                     <TextField
                         type='email'
                         className='w-1/2'
-                        error={errorDisplay.emailerror}
-
-                        helperText={errorDisplay.emailerror ? 'Invalid email address' : ''}
+                        error={errorDisplay.email}
+                        
+                        helperText={errorDisplay.email ? '請輸入包括@的關鍵字' : ''}
                         autoFocus={true}
                         onChange={(e) => {
                             user_info.email = e.target.value
-                            if (!FuncHelper.trimSpace(e.target.value) && e.target.value.length > 0) {
-                                errorDisplay.nameerror = false
-                            } else {
-                                errorDisplay.nameerror = true
-                            }
 
                         }}
 
                         id="standard-required"
-                        label="Email"
+                        label="電郵Email"
                         variant="standard"
                     />
                 </div>
@@ -89,12 +100,14 @@ export default function Register(props: {
                     <TextField
                         className='w-1/2'
 
-                        error={errorDisplay.pwderror}
-                        helperText={''}
+                        error={errorDisplay.pwd}
+                        helperText={errorDisplay.pwd?'請輸入密碼':''}
                         id="standard-required"
                         label="密碼"
                         onChange={(e) => {
                             user_info.password = e.target.value
+
+
                         }}
                         variant="standard"
                     />
@@ -103,7 +116,7 @@ export default function Register(props: {
                 <div className='btn'>
                     <ButtonGroup size="large" aria-label="Large button group">
 
-                        <button className='p-2' onClick={UserRegister} >註冊</button>
+                        <button className='p-2' onClick={(e) => { setRegister(!register) }} >註冊</button>
 
                     </ButtonGroup>
 

@@ -1,3 +1,4 @@
+import { SignInUser, SignUpUser } from '../models/userModels'
 import URL from './url'
 
 const methods = {
@@ -22,41 +23,25 @@ export const ApiHelper = {
         return responseJson;
     },
 
-    AsyncValidateUser: async (inputuni: string, pwd: string) => {
+    AsyncValidateUser: async (user: SignInUser) => {
         let response = await fetch(URL.Url.User, {
             headers: header.json,
             method: methods.post,
-            body: JSON.stringify({
-                type: "signin",
-                vainput: inputuni,
-                password: pwd
-            })
+            body: JSON.stringify(user)
         })
         let responseJson = await response.json();
         return responseJson;
     },
 
-    AsyncUserCreate: async (user: {
-        username: string,
-        password: string,
-        email: string,
-    }) => {
-        console.log(user)
+    AsyncUserCreate: async (user: SignUpUser) => {
         try {
-            let jsonBody = JSON.stringify({
-                requesterid: null,
 
-                user: user
-            })
-            console.log(jsonBody)
+            console.log(user)
             let url = URL.Url.User
             let response = await fetch(url, {
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
-                },
-                method: "post",
-                body: jsonBody
+                headers: header.json,
+                method: methods.post,
+                body: JSON.stringify(user),
             })
             let respJson = await response.json();
             return respJson;
@@ -64,7 +49,6 @@ export const ApiHelper = {
         } catch (e) {
             console.log(e)
             let msg = {};
-
             return msg;
         }
     },

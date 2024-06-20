@@ -1,4 +1,4 @@
-exports.KEY = "dc7acf10-132b-4e20-a3d2-027dd98322e7"
+exports.KEY = "928e7aab-68d9-466b-b30d-e2430f6ae801"
 exports.TimeOut = "1h"
 exports.MongoDB_Name = "manfai"
 exports.MongoDB_Pass = "mf330"
