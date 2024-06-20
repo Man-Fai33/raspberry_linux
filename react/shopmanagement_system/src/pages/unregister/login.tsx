@@ -33,12 +33,11 @@ export default function Login(props: {
                 <div className="">
                     <TextField
                         error={false}
-                        required
                         className=' w-1/2'
                         helperText={''}
                         autoFocus={true}
                         id="standard-required"
-                        label="名字/Email"
+                        label="Email"
                         onChange={(e) => {
                             LoginUser.inputva = e.target.value
                         }}
@@ -46,28 +45,27 @@ export default function Login(props: {
                     />
                 </div>
                 <div className=''>
-
                     <TextField
-                        required
                         className=' w-1/2'
                         id="standard-required"
                         label="密碼"
-                        defaultValue="Hello World"
                         onChange={(e) => {
                             LoginUser.password = e.target.value
                         }}
                         variant="standard"
                     />
                 </div>
+
                 <div className='btn'>
                     <ButtonGroup size="large" aria-label="Large button group">
                         <button className='p-8 text-xl' onClick={LoginFunc} >登入</button>
-                        <button className='p-2' onClick={props.isRegister} >註冊</button>
-                    </ButtonGroup>
 
+                    </ButtonGroup>
                 </div>
+
                 <div className=''>
 
+                    <button className='p-2' onClick={props.isRegister} >註冊</button>
                 </div>
             </div>
         </div>

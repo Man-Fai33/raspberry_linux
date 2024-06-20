@@ -43,7 +43,7 @@ export default function Register(props: {
                     <TextField
                         className='w-1/2'
                         error={errorDisplay.nameerror}
-                        required
+
                         helperText={''}
                         autoFocus={true}
                         id="standard-required"
@@ -67,7 +67,7 @@ export default function Register(props: {
                         type='email'
                         className='w-1/2'
                         error={errorDisplay.emailerror}
-                        required
+
                         helperText={errorDisplay.emailerror ? 'Invalid email address' : ''}
                         autoFocus={true}
                         onChange={(e) => {
@@ -81,14 +81,14 @@ export default function Register(props: {
                         }}
 
                         id="standard-required"
-                        label="帳號/Email"
+                        label="Email"
                         variant="standard"
                     />
                 </div>
                 <div className=''>
                     <TextField
                         className='w-1/2'
-                        required
+
                         error={errorDisplay.pwderror}
                         helperText={''}
                         id="standard-required"
