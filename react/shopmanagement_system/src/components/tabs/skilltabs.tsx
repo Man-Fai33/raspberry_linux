@@ -3,6 +3,18 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import SkillProgress from '../progress/skillprogress';
+type Technology = {
+    frontend: Skill[],
+    backend: Skill[],
+    language: Skill[],
+    database: Skill[],
+    other: Skill[]
+};
+
+type Skill = {
+    name: string,
+    num: number
+};
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -34,126 +46,45 @@ function a11yProps(index: number) {
     };
 }
 
-export default function SkillSwitchTabs() {
+
+export default function SkillSwitchTabs(props: { data: Technology | undefined }) {
     const [value, setValue] = React.useState(0);
+
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
     };
 
+    const Panel = (value: number, num: number, skill: Skill[] | undefined) => {
+
+
+        return <CustomTabPanel value={value} index={num}  >
+            <div className='grid grid-cols-2 grid-flow-row gap-6 max-lg:grid-cols-1 max-lg:gap-4 max-md:gap-3  '>
+                {skill?.map((s, index) => (
+                    <SkillProgress key={index} name={s.name} num={s.num} />
+                ))}
+
+            </div>
+        </CustomTabPanel>
+    }
+
     return (
         <Box sx={{ width: '100%' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" variant="scrollable">
-                    <Tab label="語言" {...a11yProps(4)} />
-                    <Tab label="前端技能" {...a11yProps(0)} />
-                    <Tab label="後端技能" {...a11yProps(1)} />
-                    <Tab label="資料庫" {...a11yProps(2)} />
+                    <Tab label="語言" {...a11yProps(0)} />
+                    <Tab label="前端技能" {...a11yProps(1)} />
+                    <Tab label="後端技能" {...a11yProps(2)} />
                     <Tab label="資料庫" {...a11yProps(3)} />
+                    <Tab label="其他" {...a11yProps(4)} />
                 </Tabs>
             </Box>
             <div className='p-4 max-lg:p-2  max-md:p-0'>
-                <CustomTabPanel value={value} index={0}  >
-                    <div className='grid grid-cols-2 grid-flow-row gap-6 max-lg:grid-cols-1 max-lg:gap-4 max-md:gap-3  '>
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                    </div>
-                </CustomTabPanel>
-                <CustomTabPanel value={value} index={1}>
-                    <div className='grid grid-cols-2 grid-flow-row gap-6  max-lg:grid-cols-1 '>
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                    </div>
-                </CustomTabPanel>
-                <CustomTabPanel value={value} index={2}>
-                    <div className='grid grid-cols-2 grid-flow-row gap-6  max-lg:grid-cols-1 '>
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                    </div>
-                </CustomTabPanel>
-                <CustomTabPanel value={value} index={3}>
-                    <div className='grid grid-cols-2 grid-flow-row gap-6  max-lg:grid-cols-1 max-lg:gap-3 max-md:gap-1 '>
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                        <SkillProgress name={'hi'} num={10} />
-                    </div>
-                </CustomTabPanel>
+                {Panel(value, 0, props.data?.language)}
+                {Panel(value, 1, props.data?.frontend)}
+                {Panel(value, 2, props.data?.backend)}
+                {Panel(value, 3, props.data?.database)}
+                {Panel(value, 4, props.data?.other)}
             </div>
         </Box>
     );

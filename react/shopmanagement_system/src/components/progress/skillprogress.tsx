@@ -10,15 +10,15 @@ export default function SkillProgress(skillinfo: Skillinfo) {
     return (
         <div className=' shadow-xl p-2  rounded-lg bg-slate-300'>
 
-            <Grid container width={"100%"}>
-                <Grid item xs={2}>
+            <Grid container width={"100%"}  >
+                <Grid item xs={3}   >
                     {skillinfo.name}
                 </Grid>
-                <Grid item xs={9}>
+                <Grid item xs={8} >
                     <LinearProgress className='p-1 m-2 rounded-sm' variant="determinate" value={skillinfo.num} />
 
                 </Grid>
-                <Grid item xs={1}>
+                <Grid item xs={1}  >
                     {skillinfo.num}%
                 </Grid>
 

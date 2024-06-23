@@ -6,7 +6,6 @@ export default function Footer() {
             <div className='w-full col-span-1 '>
                 <div>
                     名字：張文輝
-                    電話：0965347203
                     電郵：cheungmanfai330@gmail.com
                 </div>
                 <div className='text-white'>

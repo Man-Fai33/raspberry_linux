@@ -52,6 +52,21 @@ export const ApiHelper = {
             return msg;
         }
     },
+    AsyncCV: async () => {
+        try {
+            let response = await fetch(URL.Url.CV, {
+                headers: header.json,
+                method: methods.get,
+
+            })
+            let respJson = await response.json();
+            return respJson;
+        } catch (e) {
+            console.log(e)
+            let msg = {};
+            return msg;
+        }
+    }
 }
 
 
