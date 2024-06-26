@@ -28,4 +28,14 @@ export class SignUpUser extends User {
 
     }
 }
+export class SignedUser {
+    _id: string = ''
+    username: string = ''
+    email: string = ''
+    password: string = ''
+    role: string = ''
+    iconUrl: string = ''
+    introduction: string = ''
+    token: string = ''
+}
 

@@ -52,6 +52,23 @@ export const ApiHelper = {
             return msg;
         }
     },
+    AsyncUserEdit: async (user: SignUpUser) => {
+        try {
+            console.log(user)
+            let url = URL.Url.User
+            let response = await fetch(url, {
+                headers: header.json,
+                method: methods.put,
+                body: JSON.stringify(user),
+            })
+            let respJson = await response.json();
+            return respJson;
+        } catch (e) {
+            console.log(e)
+            let msg = { message: e };
+            return msg;
+        }
+    },
     AsyncCV: async () => {
         try {
             let response = await fetch(URL.Url.CV, {

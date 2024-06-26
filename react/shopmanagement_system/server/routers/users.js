@@ -3,10 +3,11 @@ const router = express.Router();
 const User = require('../models/user');
 const { Helper } = require('../helper/helper');
 const { getToken, verifyToken } = require('../protect');
+const { token } = require('morgan');
 router.get('/', (req, res) => {
 
     User.findOne().exec().then(result => {
-        res.json({ status: "success", users: result })
+        res.json({ status: "success2", users: result })
     }).catch(err => {
         res.json({ status: "fail", message: err })
     })
@@ -14,13 +15,11 @@ router.get('/', (req, res) => {
 
 // Create a new user specified by a User object
 router.post('/', async (req, res) => {
-
     let user = req.body
     let userCreate = null
     let type = user.type || null
     let response = {}
     try {
-        console.log(user)
         // 註冊或者其他條件下做的事情 type是空的 和 類型不是登入的
         if (type !== null && type !== 'signin') {
             let message = await Helper.SignUpCheck(user.email, user.username)
@@ -41,18 +40,23 @@ router.post('/', async (req, res) => {
             }
         } else {
             let loginUser = await User.findOne({ email: user.email, password: user.password }).exec()
-
             if (loginUser !== null) {
-                let token = getToken(user.email)
-                response.status = "success"
-                response.user = loginUser
-                response.user.token = token
+                response = {
+                    status: "success",
+                    user: {
+                        ...loginUser.toObject(),
+                        token: getToken(user.email)
+                    }
+                }
+
+
+                console.log(response.user)
             } else {
                 response.message = "密碼名字錯誤/n 註冊新的賬號"
                 response.status = "failed"
             }
-        } return res.json(response)
-
+        }
+        return res.json(response)
     } catch (error) {
         console.log(error)
     }
@@ -61,5 +65,8 @@ router.post('/', async (req, res) => {
 router.put('/', async (req, res) => {
 
 })
+router.delete('/', async (req, res) => {
+
+});
 
 module.exports = router;

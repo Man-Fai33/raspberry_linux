@@ -2,8 +2,13 @@ import { ButtonGroup, TextField } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import backgroundImage from '../../components/image/12.jpg';
 import { ApiHelper } from '../../helper/apihelper';
-import { SignInUser } from '../../models/userModels';
+import { SignInUser, SignedUser } from '../../models/userModels';
 import { FuncHelper } from '../../helper/funchelper';
+import { useDispatch } from 'react-redux';
+import store, { setUser } from '../../components/redux/store';
+import { useNavigate } from 'react-router';
+import Swal from 'sweetalert2'
+import { motion } from 'framer-motion';
 
 class ErrorMessage {
 
@@ -14,11 +19,13 @@ class ErrorMessage {
 export default function Login(props: {
     isRegister: () => void
 }) {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const [errorDisplay,] = useState<ErrorMessage>(new ErrorMessage())
     const [LoginUser,] = useState<SignInUser>(new SignInUser());
     const [sign, setSignIn] = useState<boolean>(false);
     const LoginFunc = async () => {
-        let error: Boolean = false
         try {
             errorDisplay.email = FuncHelper.validateInputError(LoginUser.email) || !FuncHelper.validateEmail(LoginUser.email)
             errorDisplay.pwd = FuncHelper.validateInputError(LoginUser.password)
@@ -27,11 +34,19 @@ export default function Login(props: {
                 ApiHelper.AsyncValidateUser(LoginUser).then((result) => {
 
 
-                    console.log(result);
+                    if (result.status === 'success') {
+
+                        dispatch(setUser(result.user));
+                        navigate('/home')
+                    } else {
+                        Swal.fire('登入失敗', result.message, "error");
+                    }
                 });
             } else {
                 setSignIn(false)
             }
+
+            console.log(store.getState().user)
         } catch (err) {
 
         }
@@ -44,11 +59,30 @@ export default function Login(props: {
     }, [sign])
     return (
         <div className=" h-dvh w-full  rounded-lg  drop-shadow-2xl shadow-inner shadow-gray-900 backdrop-blur-md  bg-white/50 ">
-            <div className=" h-full w-full  text-center space-y-8 flex flex-col justify-center content-center ">
+
+
+            <motion.div className=" h-full w-full  text-center space-y-8 flex flex-col justify-center content-center "
+                initial={{
+                    x: "100vh", // Start below the viewport
+                    opacity: 0, // Hidden initially
+                    rotate: 1.9
+                }}
+                animate={{
+                    x: 0, // Move to the desired position
+                    opacity: 1, // Fade in
+                    position: "fixed",
+                    transitionEnd: {
+                        display: "flex",
+                    },
+                    rotate: 0
+                }}
+                transition={{
+                    duration: 2, // Duration in seconds
+                }}>
                 <div className="Logo  w-full flex justify-center"
 
                 >
-                    <img className='w-72 h-72' src={backgroundImage} />
+                    {/* <img className='w-72 h-72' src={backgroundImage} /> */}
                 </div>
                 <div className='text-xl'>
                     登入帳號
@@ -82,18 +116,22 @@ export default function Login(props: {
                     />
                 </div>
 
-                <div className='btn'>
-                    <ButtonGroup size="large" aria-label="Large button group">
-                        <button className='p-8 text-xl' onClick={() => { setSignIn(!sign) }} >登入</button>
+                <div className='btn space-x-5   '>
 
-                    </ButtonGroup>
+                    <button className=' h-20 text-xl hover:text-2xl  hover:text-slate-700 w-1/4 border-2 rounded-md  border-zinc-950 justify-center' onClick={() => {
+                        setSignIn(!sign)
+
+
+                    }} >登入</button>
+
+
+
+                </div>
+                <div className=''>
+                    <button className='p-2 justify-end' onClick={props.isRegister} >註冊</button>
                 </div>
 
-                <div className='' >
-
-                    <button className='p-2' onClick={props.isRegister} >註冊</button>
-                </div>
-            </div>
+            </motion.div>
         </div>
     )
 }   

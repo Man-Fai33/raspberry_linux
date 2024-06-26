@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { ApiHelper } from '../../helper/apihelper'
 import { FuncHelper } from '../../helper/funchelper'
 import { SignUpUser } from '../../models/userModels'
+import Swal from 'sweetalert2'
+import { motion } from 'framer-motion'
 
 class ErrorMessage {
     name: boolean = false;
@@ -30,9 +32,9 @@ export default function Register(props: {
                 console.log(error);
                 ApiHelper.AsyncUserCreate(user_info).then((res) => {
                     if (res.error) {
-                        alert(res.message)
+                        Swal.fire('登入失敗', res.message, "error");
                     } else {
-                        alert(res.message)
+                        Swal.fire(res.message)
                     }
                 })
             } else {
@@ -54,7 +56,26 @@ export default function Register(props: {
 
     return (
         <div className=" h-dvh w-full  rounded-lg  drop-shadow-2xl shadow-inner shadow-gray-900 backdrop-blur-md  bg-white/50 ">
-            <div className=" h-full w-full  text-center space-y-8 flex flex-col justify-center content-center ">
+            <motion.div className=" h-full w-full  text-center space-y-8 flex flex-col justify-center content-center "
+                initial={{
+                    x: "100vh", // Start below the viewport
+                    opacity: 0, // Hidden initially
+                    rotate: 4
+                }}
+                animate={{
+                    x: 0, // Move to the desired position
+                    opacity: 1, // Fade in
+                    position: "fixed",
+                    transitionEnd: {
+                        display: "flex",
+                    },
+                    rotate: 0
+                }}
+                transition={{
+                    duration: 2, // Duration in seconds
+                }}
+
+            >
                 <div className="Logo">
 
                 </div>
@@ -83,7 +104,7 @@ export default function Register(props: {
                         type='email'
                         className='w-1/2'
                         error={errorDisplay.email}
-                        
+
                         helperText={errorDisplay.email ? '請輸入包括@的關鍵字' : ''}
                         autoFocus={true}
                         onChange={(e) => {
@@ -101,7 +122,7 @@ export default function Register(props: {
                         className='w-1/2'
 
                         error={errorDisplay.pwd}
-                        helperText={errorDisplay.pwd?'請輸入密碼':''}
+                        helperText={errorDisplay.pwd ? '請輸入密碼' : ''}
                         id="standard-required"
                         label="密碼"
                         onChange={(e) => {
@@ -124,7 +145,7 @@ export default function Register(props: {
                 <div className=''>
 
                 </div>
-            </div>
+            </motion.div>
         </div >
     )
 }

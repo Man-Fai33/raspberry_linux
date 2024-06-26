@@ -1,29 +1,30 @@
 import { createSlice, configureStore, PayloadAction } from '@reduxjs/toolkit';
+import { SignedUser } from '../../models/userModels';
 
-class User {
 
-    token: string = ""
-}
 const sessionUser = sessionStorage.getItem('user');
-const initialUser = sessionUser ? JSON.parse(sessionUser) : new User();
+const initialUser = sessionUser ? JSON.parse(sessionUser) : new SignedUser();
+
 // 创建用户数据的slice
 const userSlice = createSlice({
     name: 'user',
     initialState: initialUser,
     reducers: {
-        setUser: (state, action: PayloadAction<User>) => {
+
+        setUser: (state, action: PayloadAction<SignedUser>) => {
             sessionStorage.setItem('user', JSON.stringify(action.payload))
 
             return { ...state, ...action.payload };
         },
         clearUser: () => {
             sessionStorage.removeItem('user');
+
             return {
                 token: '',
-
-
             }
+
         }
+
     },
 });
 

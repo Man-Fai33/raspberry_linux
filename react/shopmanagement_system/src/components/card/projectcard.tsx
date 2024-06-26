@@ -35,8 +35,8 @@ export default function ProjectCard(props: {
                 </CardContent>
             </CardActionArea >
             <div className='p-2 text-right'>
-                <Button size="small" color="primary" onClick={props.onclick}>
-                    Share
+                <Button size="small" variant='outlined'  color="primary" onClick={props.onclick}>
+                    資訊
                 </Button>
             </div>
         </Card >

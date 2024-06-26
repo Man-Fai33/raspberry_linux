@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Footer from '../components/footer';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import backgroundImage from '../components/image/background.jpeg'; // Adjust the path as necessary
 import icon from '../components/image/12.jpg';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Avatar, Box, Button, Divider, IconButton, List, ListItemIcon, ListItemText, Stack } from '@mui/material';
@@ -18,7 +17,11 @@ import { CV, Project } from '../models/cvModels';
 import Login from './unregister/login';
 import Register from './unregister/register';
 import { ApiHelper } from '../helper/apihelper';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
+import { RootState } from '../components/redux/store';
+import { SignedUser } from '../models/userModels';
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function Index() {
     const [personalProfileDisplay, setPersonalProfileDisplay] = useState(false);
@@ -26,25 +29,29 @@ export default function Index() {
     const [modaldata, setModaldata] = useState<Project | null>(null);
     const [login, setLogin] = useState(false)
     const [register, setRegister] = useState(false)
+    const navigator = useNavigate()
+    const user: SignedUser = useSelector((state: RootState) => state.user)
 
     const [cv, setCv] = useState<CV | null>(null);
+    useEffect(() => {
+        if (user.token !== '') {
+            navigator(-1)
+        }
+    }, [])
 
     const getCv = async () => {
         try {
             await ApiHelper.AsyncCV().then((response) => {
                 setCv(response)
             })
-
-
         } catch (error) {
             console.error('Error fetching CV:', error);
         }
-
     };
 
     useEffect(() => {
-        getCv(); // 组件加载时调用获取简历数据的函数
-    }, []); // 空数组作为依赖项确保只执行一次
+        getCv();
+    }, []);
 
 
     return (
@@ -87,6 +94,8 @@ export default function Index() {
                     <button className='animate-bounce shadow-2xl' onClick={() => {
                         console.log(cv)
                         setPersonalProfileDisplay(!personalProfileDisplay)
+                        setRegister(false)
+                        setLogin(false)
                     }}>
                         <KeyboardDoubleArrowDownIcon sx={{ fontSize: 50 }} />
                         <KeyboardDoubleArrowDownIcon sx={{ fontSize: 50 }} />
@@ -136,16 +145,10 @@ export default function Index() {
                                     <IconButton aria-label="LinkedIn" onClick={() => {
                                         window.location.href = cv?.link[0].link || "";
                                     }} ><LinkedInIcon fontSize="large" /></IconButton>
-
                                     <Divider orientation="vertical" variant="middle" flexItem />
                                     <IconButton aria-label="Github" onClick={() => { window.location.href = cv?.link[1].link || "" }}><GitHubIcon fontSize="large" /></IconButton>
-
-
-
                                     <Divider orientation="vertical" variant="middle" flexItem />
                                     <IconButton aria-label="Facebook" onClick={() => { window.location.href = cv?.link[2].link || "" }}><FacebookIcon fontSize="large" /></IconButton>
-
-
                                     < Divider orientation="vertical" variant="middle" flexItem />
                                     <IconButton aria-label="Email" onClick={() => { alert(cv?.link[3].link) }} ><EmailIcon fontSize="large" /></IconButton>
                                 </div>
@@ -233,7 +236,7 @@ export default function Index() {
 
                             </div>
                             <div className='h-dvh w-full bg-slate-400 p-5 max-md:p-2 space-y-4  overflow-hidden'>
-                                <div className='text-3xl'>
+                                <div className=' static top-0 text-3xl'>
                                     處理的項目
                                 </div>
                                 <div className='relative  flex justify-center content-center items-center h-full  overflow-x-auto pt-10 pb-10'>
@@ -243,13 +246,10 @@ export default function Index() {
                                                 setModaldata(value)
                                                 setModaldisable(true);
                                             }} />
-
-
                                         ))}
                                     </div>
                                     <ProjectModal data={modaldata} disable={modaldisable} onclick={() => { setModaldisable(!modaldisable) }} />
                                 </div>
-
                             </div>
                         </div >
                         <Footer />
