@@ -23,7 +23,6 @@ function App() {
 }
 function RouterController() {
   const user = useSelector((state: RootState) => state.user)
-  console.log(user.token !== '')
   return <>
     <Routes >
       {/* {routers.map((router) => (< Route key={router.path} path={router.path} element={user.token !== '' ? router.element : <Index />} />))

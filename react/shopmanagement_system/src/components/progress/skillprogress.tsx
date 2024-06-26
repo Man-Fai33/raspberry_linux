@@ -14,11 +14,11 @@ export default function SkillProgress(skillinfo: Skillinfo) {
                 <Grid item xs={3}   >
                     {skillinfo.name}
                 </Grid>
-                <Grid item xs={8} >
+                <Grid item xs={7} >
                     <LinearProgress className='p-1 m-2 rounded-sm' variant="determinate" value={skillinfo.num} />
 
                 </Grid>
-                <Grid item xs={1}  >
+                <Grid item xs={2}  >
                     {skillinfo.num}%
                 </Grid>
 

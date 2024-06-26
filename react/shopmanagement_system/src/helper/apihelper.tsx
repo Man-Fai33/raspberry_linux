@@ -52,7 +52,23 @@ export const ApiHelper = {
             return msg;
         }
     },
-    AsyncUserEdit: async (user: SignUpUser) => {
+    AsyncUploadImage: async (image: any) => {
+        try {
+            let url = URL.Url.Upload
+
+            let response = await fetch(url, {
+                headers: header.json,
+                method: methods.post,
+                body: image
+            })
+            let result = await response.json();
+            return result
+        } catch (e) {
+            return e
+        }
+
+    }
+    , AsyncUserEdit: async (user: SignUpUser) => {
         try {
             console.log(user)
             let url = URL.Url.User

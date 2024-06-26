@@ -23,19 +23,21 @@ export default function Login(props: {
     const navigate = useNavigate();
 
     const [errorDisplay,] = useState<ErrorMessage>(new ErrorMessage())
-    const [LoginUser,] = useState<SignInUser>(new SignInUser());
+    const [LoginUser, setLoginUser] = useState<SignInUser>(new SignInUser());
     const [sign, setSignIn] = useState<boolean>(false);
     const LoginFunc = async () => {
         try {
             errorDisplay.email = FuncHelper.validateInputError(LoginUser.email) || !FuncHelper.validateEmail(LoginUser.email)
             errorDisplay.pwd = FuncHelper.validateInputError(LoginUser.password)
             let error = errorDisplay.email || errorDisplay.pwd;
+            console.log(LoginUser);
             if (error === false) {
                 ApiHelper.AsyncValidateUser(LoginUser).then((result) => {
 
 
                     if (result.status === 'success') {
 
+                        setLoginUser(new SignInUser())
                         dispatch(setUser(result.user));
                         navigate('/home')
                     } else {
@@ -70,7 +72,7 @@ export default function Login(props: {
                 animate={{
                     x: 0, // Move to the desired position
                     opacity: 1, // Fade in
-                    position: "fixed",
+                    position: "relative",
                     transitionEnd: {
                         display: "flex",
                     },
@@ -97,8 +99,10 @@ export default function Login(props: {
                         id="standard-required"
                         label="Email"
                         onChange={(e) => {
-                            LoginUser.email = e.target.value
+                            setLoginUser({ ...LoginUser, email: e.target.value })
+                            console.log(LoginUser.email)
                         }}
+                        value={LoginUser.email}
                         variant="standard"
                     />
                 </div>
@@ -110,8 +114,10 @@ export default function Login(props: {
                         id="standard-required"
                         label="密碼"
                         onChange={(e) => {
-                            LoginUser.password = e.target.value
+
+                            setLoginUser({ ...LoginUser, password: e.target.value })
                         }}
+                        value={LoginUser.password}
                         variant="standard"
                     />
                 </div>

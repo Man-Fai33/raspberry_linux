@@ -56,14 +56,14 @@ export default function Index() {
 
     return (
         <div className='relative h-full '>
-            <div className='  relative  h-dvh b  bg-no-repeat bg-cover w-full   '
+            <div className=' relative  h-dvh   bg-no-repeat bg-cover w-full   '
 
                 // style={{ backgroundImage: `url(${backgroundImage})` }}
                 style={{ backgroundImage: ` url(https://picsum.photos/2560/1440)` }}
             >
 
                 <div className=' relative  w-full h-dvh '>
-                    <div className=' relative flex h-full   ' >
+                    <div className=' relative flex h-full    ' >
                         <div className={`${login ? 'w-full' : 'w-full'} h-full top-1/2  text-center  items-center  content-center`}>
 
                             <button className=' animate-pulse pt-3 pb-3 pl-8 pr-8 tracking-wide font-mono bg-gradient-to-r from-cyan-500 to-blue-500 text-3xl font-medium rounded-2xl text-white shadow-lg space-x-8'
@@ -161,7 +161,7 @@ export default function Index() {
                         </div>
                         <Divider />
                         <div className='h-auto w-full  pl-80 pr-80  max-lg:pr-0 max-lg:pl-0  max-xl:pl-20 max-xl:pr-20 '>
-                            <div className='h-dvh bg-rose-300 bg-scroll overflow-y-auto touch-pan-y space-y-20  max-md:space-y-4 p-5  pt-14 max-lg:pt-2 '>
+                            <div className='h-dvh bg-rose-300 bg-scroll overflow-y-auto touch-pan-y space-y-6   max-md:space-y-4 p-5  pb-2 pt-10 max-lg:pt-2 '>
                                 <div className='intro font-mono '>
                                     <div className='float-left pt-2 pr-4  text-2xl underline  underline-offset-8'> 自我介紹</div>
                                     <div className='text-xl max-lg:text-md max-md:text-sm tracking-wide text-justify'>
@@ -181,9 +181,9 @@ export default function Index() {
                                     </div>
                                 </div>
                             </div>
-                            <div className='h-dvh bg-slate-400  flex-wrap p-5  overflow-y-scroll touch-pan-y '>
+                            <div className='h-dvh bg-slate-400  flex-wrap p-5  overflow-y-scroll touch-pan-y space-y-4 '>
 
-                                <div className='flex  flex-row max-xl:flex-col  max-xl:space-y-4 h-2/3 max-xl:h-fit '>
+                                <div className='flex  flex-row max-xl:flex-col  max-xl:space-y-4  h-fit max-xl:h-fit '>
                                     <div className='flex-none  w-1/2 max-xl:w-fit '>
                                         <div className='text-3xl max-xl:text-base '>教育 education</div>
                                         <div className='text-base text-left font-sans tracking-normal text-ellipsis max-lg:text-sm'>

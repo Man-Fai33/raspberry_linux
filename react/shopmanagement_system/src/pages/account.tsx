@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 import { SignedUser } from '../models/userModels'
 import { RootState } from '../components/redux/store'
 import Swal from 'sweetalert2'
+import { ApiHelper } from '../helper/apihelper'
 
 export default function Account() {
     const user: SignedUser = useSelector((state: RootState) => state.user)
@@ -26,7 +27,7 @@ export default function Account() {
         }
     }, [action])
 
-    const handleImageUpload = (event: ChangeEvent<HTMLInputElement>) => {
+    const handleImageUpload = async (event: ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
         if (file) {
             const reader = new FileReader();
@@ -35,6 +36,8 @@ export default function Account() {
             };
             reader.readAsDataURL(file);
         }
+        let response = await ApiHelper.AsyncUploadImage(image);
+        console.log(response);
     }
 
 

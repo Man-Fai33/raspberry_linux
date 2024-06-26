@@ -15,6 +15,7 @@ var morgan = require('morgan');
 
 
 var UserRouter = require('./routers/users')
+var UploadRouter = require('./routers/upload')
 var CvRouter = require('./routers/cv')
 const app = express();
 const port = 3020;
@@ -22,8 +23,8 @@ const port = 3020;
 
 
 // MongoDB 连接字符串
-const dbURI = 'mongodb://manfai:mf330@localhost:27017/shopmanagement_react';
-// const dbURI = 'mongodb://localhost:27017/shopmanagement_react';
+// const dbURI = 'mongodb://manfai:mf330@localhost:27017/shopmanagement_react';
+const dbURI = 'mongodb://localhost:27017/shopmanagement_react';
 // 连接到 MongoDB
 mongoose.connect(dbURI)
   .then(() => {
@@ -60,6 +61,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/cv', CvRouter)
 app.use('/api/user', UserRouter)
+app.use('/api/upload', UploadRouter)
 
 //error handle 
 app.use((req, res, next) => {

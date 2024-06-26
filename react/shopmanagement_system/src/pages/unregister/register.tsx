@@ -18,7 +18,7 @@ export default function Register(props: {
 
 
     const [errorDisplay,] = useState<ErrorMessage>(new ErrorMessage())
-    const [user_info,] = useState<SignUpUser>(new SignUpUser());
+    const [user_info, setUserInfo] = useState<SignUpUser>(new SignUpUser());
     const [register, setRegister] = useState<boolean>(false)
     const UserRegister = async () => {
         let error: Boolean = false
@@ -29,12 +29,15 @@ export default function Register(props: {
 
             let error = errorDisplay.email || errorDisplay.pwd || errorDisplay.name;
             if (error === false) {
-                console.log(error);
+
                 ApiHelper.AsyncUserCreate(user_info).then((res) => {
                     if (res.error) {
                         Swal.fire('登入失敗', res.message, "error");
                     } else {
                         Swal.fire(res.message)
+
+
+                        setUserInfo(new SignUpUser())
                     }
                 })
             } else {
@@ -65,7 +68,7 @@ export default function Register(props: {
                 animate={{
                     x: 0, // Move to the desired position
                     opacity: 1, // Fade in
-                    position: "fixed",
+                    position: "relative",
                     transitionEnd: {
                         display: "flex",
                     },
@@ -91,11 +94,12 @@ export default function Register(props: {
                         label="名字"
                         helperText={errorDisplay.name ? '請輸入名字' : ''}
                         onChange={(e) => {
-                            user_info.username = e.target.value
+
+                            setUserInfo({ ...user_info, username: e.target.value })
 
 
                         }}
-
+                        value={user_info.username}
                         variant="standard"
                     />
                 </div>
@@ -108,10 +112,10 @@ export default function Register(props: {
                         helperText={errorDisplay.email ? '請輸入包括@的關鍵字' : ''}
                         autoFocus={true}
                         onChange={(e) => {
-                            user_info.email = e.target.value
+                            setUserInfo({ ...user_info, email: e.target.value })
 
                         }}
-
+                        value={user_info.email}
                         id="standard-required"
                         label="電郵Email"
                         variant="standard"
@@ -126,10 +130,11 @@ export default function Register(props: {
                         id="standard-required"
                         label="密碼"
                         onChange={(e) => {
-                            user_info.password = e.target.value
 
+                            setUserInfo({ ...user_info, password: e.target.value })
 
                         }}
+                        value={user_info.password}
                         variant="standard"
                     />
                 </div>
