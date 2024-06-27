@@ -25,16 +25,14 @@ export default function ProjectModal(props: {
                     {funchelper.FuncHelper.textformat(props.data?.description)}
                 </div>
 
-                <div className='flex relative   overflow-x-auto w-full pb-4 pl-2 pr-2 pt-2'>
+                <div className=' relative   overflow-x-auto w-full pb-4 pl-2 pr-2 pt-2'>
                     <div className='flex flex-none  w-full gap-4 h-auto '>
                         {props.data?.photo.map((value, index) => (
                             <img key={index} className='bg-cover' style={{ width: 300, height: 180 }} src={value} />
                         ))}
                     </div>
                 </div>
-
-
-                <div className='flex  relative bottom-0 w-full justify-center content-end  pb-3 '>
+                <div className=' static  bottom-0 w-full justify-center content-end  pb-3 '>
                     <button className=' shadow-lg h-12 rounded-md  w-1/4  bg-cyan-400 hover:text-xl hover:w-1/2 duration-500'>連結</button>
                 </div>
             </div>
