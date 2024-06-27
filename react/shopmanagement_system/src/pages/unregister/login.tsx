@@ -65,12 +65,13 @@ export default function Login(props: {
 
             <motion.div className=" h-full w-full  text-center space-y-8 flex flex-col justify-center content-center "
                 initial={{
-                    x: "100vh", // Start below the viewport
+                    x: 0, // Start below the viewport
                     opacity: 0, // Hidden initially
                     rotate: 1.9
                 }}
                 animate={{
-                    x: 0, // Move to the desired position
+
+                    x: 10, // Move to the desired position
                     opacity: 1, // Fade in
                     position: "relative",
                     transitionEnd: {
@@ -79,7 +80,7 @@ export default function Login(props: {
                     rotate: 0
                 }}
                 transition={{
-                    duration: 2, // Duration in seconds
+                    duration: 1, // Duration in seconds
                 }}>
                 <div className="Logo  w-full flex justify-center"
 
@@ -138,6 +139,6 @@ export default function Login(props: {
                 </div>
 
             </motion.div>
-        </div>
+        </div >
     )
 }   

@@ -70,8 +70,8 @@ export default function SkillSwitchTabs(props: { data: Technology | undefined })
 
     return (
         <Box sx={{ width: '100%' }}>
-            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" variant="scrollable">
+            <Box sx={{ borderBottom: 1, borderColor: 'divider'   }}>
+                <Tabs value={value} onChange={handleChange}   variant="scrollable"  className=' w-3/4' centered  >
                     <Tab label="語言" {...a11yProps(0)} />
                     <Tab label="前端技能" {...a11yProps(1)} />
                     <Tab label="後端技能" {...a11yProps(2)} />

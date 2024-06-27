@@ -22,7 +22,8 @@ import { useNavigate } from 'react-router';
 import { RootState } from '../components/redux/store';
 import { SignedUser } from '../models/userModels';
 import { motion, useScroll, useTransform } from "framer-motion";
-
+import bg_name from "../components/image/background_name.jpg"
+import bg_index from "../components/image/bg_index.jpeg"
 export default function Index() {
     const [personalProfileDisplay, setPersonalProfileDisplay] = useState(false);
     const [modaldisable, setModaldisable] = useState(false)
@@ -48,18 +49,18 @@ export default function Index() {
             console.error('Error fetching CV:', error);
         }
     };
-
     useEffect(() => {
         getCv();
     }, []);
+
 
 
     return (
         <div className='relative h-full '>
             <div className=' relative  h-dvh   bg-no-repeat bg-cover w-full   '
 
-                // style={{ backgroundImage: `url(${backgroundImage})` }}
-                style={{ backgroundImage: ` url(https://picsum.photos/2560/1440)` }}
+                style={{ backgroundImage: `url(${bg_index})` }}
+                // style={{ backgroundImage: ` url(https://picsum.photos/2560/1440)` }}
             >
 
                 <div className=' relative  w-full h-dvh '>
@@ -73,16 +74,16 @@ export default function Index() {
                                 }}> 登入</button>
                         </div>
                         <div className={` w-full  h-full  z-50   left-1/2  ${login ? '  flex' : ' hidden'}`}>
-
-                            <Login isRegister={() => {
+                            {login ? <Login isRegister={() => {
                                 setRegister(!register)
                                 setLogin(false)
-                            }} />
+                            }} /> : <></>}
+
                         </div>
                         <div className={` w-full h-full  z-50  left-1/2 ${register ? '  flex' : '  hidden'}`}>
-                            <Register Registered={() => {
+                            {register ? <Register Registered={() => {
                                 setRegister(!register)
-                            }} />
+                            }} /> : <></>}
                         </div>
                     </div>
                 </div>
@@ -92,7 +93,6 @@ export default function Index() {
                         關於我
                     </div>
                     <button className='animate-bounce shadow-2xl' onClick={() => {
-                        console.log(cv)
                         setPersonalProfileDisplay(!personalProfileDisplay)
                         setRegister(false)
                         setLogin(false)
@@ -109,10 +109,12 @@ export default function Index() {
 
             {
                 personalProfileDisplay ?
-                    <>
-                        <div className=" relative h-dvh w-full bg-scroll grid grid-cols-6 gap-4    max-lg:grid-cols-1  max-lg:gap-0   justify-self-center " >
-                            <div className='relative col-span-4 flex p-72 max-2xl:p-40  max-xl:p-20 max-md:p-0 bg-slate-500 '
-                            // style={{ backgroundImage: `url(${backgroundImage})` }}
+                    <div className=''>
+                        <div className=" relative h-dvh w-full bg-scroll grid grid-cols-6 gap-4    max-lg:grid-cols-1  max-lg:gap-0   justify-self-center bg-cover  "
+                            style={{ backgroundImage: `url(${bg_name})` }}
+                        >
+                            <div className='relative col-span-4 flex p-72 max-2xl:p-40  max-xl:p-20 max-md:p-0'
+
                             >
                                 <div className='text-5xl font-mono  content-center w-full space-y-5  max-lg:text-2xl max-lg:text-center  '>
                                     {cv?.username}
@@ -124,7 +126,7 @@ export default function Index() {
                                 </div>
 
                             </div>
-                            <div className="col-span-2 flex justify-center flex-col space-y-8  max-lg:space-y-4 max-md:space-y-1  justify-self-center   ">
+                            <div className="col-span-2 flex justify-center flex-col space-y-8  max-lg:space-y-4 max-md:space-y-1  justify-self-center   bg-white/60 w-full rounded-md shadow-xl  shadow-inner  ">
 
                                 <div className=' relative flex justify-center'>
                                     <Avatar alt="Remy Sharp" src={icon} sx={{ width: 200, height: 200 }} />
@@ -141,7 +143,7 @@ export default function Index() {
                                 <div className='text-center'>
                                     {cv?.professional}
                                 </div>
-                                <div className=' flex  space-x-5'>
+                                <div className=' flex  space-x-5 justify-center'>
                                     <IconButton aria-label="LinkedIn" onClick={() => {
                                         window.location.href = cv?.link[0].link || "";
                                     }} ><LinkedInIcon fontSize="large" /></IconButton>
@@ -159,11 +161,11 @@ export default function Index() {
                                 </div>
                             </div>
                         </div>
-                        <Divider />
-                        <div className='h-auto w-full  pl-80 pr-80  max-lg:pr-0 max-lg:pl-0  max-xl:pl-20 max-xl:pr-20 '>
-                            <div className='h-dvh bg-rose-300 bg-scroll overflow-y-auto touch-pan-y space-y-6   max-md:space-y-4 p-5  pb-2 pt-10 max-lg:pt-2 '>
+
+                        <div className='h-auto w-full  space-y-8 pl-80 pr-80  max-lg:pr-0 max-lg:pl-0  max-xl:pl-20 max-xl:pr-20 '>
+                            <div className='h-fit  bg-scroll overflow-y-auto touch-pan-y space-y-10   max-md:space-y-6 p-5  pb-10 pt-10 max-lg:pt-2 '>
                                 <div className='intro font-mono '>
-                                    <div className='float-left pt-2 pr-4  text-2xl underline  underline-offset-8'> 自我介紹</div>
+                                    <div className=' static top-0 float-left pt-2 pr-4  text-2xl underline  underline-offset-8'> 自我介紹</div>
                                     <div className='text-xl max-lg:text-md max-md:text-sm tracking-wide text-justify'>
                                         {cv?.introduction}
                                     </div>
@@ -181,7 +183,7 @@ export default function Index() {
                                     </div>
                                 </div>
                             </div>
-                            <div className='h-dvh bg-slate-400  flex-wrap p-5  overflow-y-scroll touch-pan-y space-y-4 '>
+                            <div className='h-fit    flex-wrap p-5  overflow-y-scroll touch-pan-y space-y-4 '>
 
                                 <div className='flex  flex-row max-xl:flex-col  max-xl:space-y-4  h-fit max-xl:h-fit '>
                                     <div className='flex-none  w-1/2 max-xl:w-fit '>
@@ -227,15 +229,15 @@ export default function Index() {
                                 </div>
 
                             </div>
-                            <div className='h-dvh bg-slate-700 overflow-y-auto p-4 touch-pan-y'>
-                                <div className='text-3xl pl-2'> 我的技能</div>
+                            <div className='h-dvh  relative overflow-y-auto p-4 touch-pan-y'>
+                                <div className=' static top-0 text-3xl pl-2'> 我的技能</div>
                                 <div className='p-2 max-md:p-1 pt-6'>
                                     <SkillSwitchTabs data={cv?.technology} />
                                 </div>
 
 
                             </div>
-                            <div className='h-dvh w-full bg-slate-400 p-5 max-md:p-2 space-y-4  overflow-hidden'>
+                            <div className='h-fit relative w-full   p-5 max-md:p-2 space-y-4  overflow-hidden'>
                                 <div className=' static top-0 text-3xl'>
                                     處理的項目
                                 </div>
@@ -253,7 +255,7 @@ export default function Index() {
                             </div>
                         </div >
                         <Footer />
-                    </>
+                    </div>
 
                     : <></>
             }

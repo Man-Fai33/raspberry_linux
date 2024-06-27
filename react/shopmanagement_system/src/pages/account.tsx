@@ -8,6 +8,8 @@ import { RootState } from '../components/redux/store'
 import Swal from 'sweetalert2'
 import { ApiHelper } from '../helper/apihelper'
 
+
+
 export default function Account() {
     const user: SignedUser = useSelector((state: RootState) => state.user)
 
@@ -16,19 +18,32 @@ export default function Account() {
     const [action, setAction] = useState<boolean>(false);
 
 
+    class UserEdit {
+        role: string = user.role;
+        username: string = user.username;
+        password: string = user.password;
+    }
+    const [useredit, setUseredit] = useState<UserEdit>(new UserEdit())
+
     const handleEditInfo = () => {
-        Swal.fire('?', 'sohi', 'success')
+        Swal.fire('未完成', '未完成', 'success')
     }
 
 
     useEffect(() => {
-        if (action) {
-            handleEditInfo()
+
+        if (!action) {
+            if (useredit.password !== user.password || useredit.role !== user.role || useredit.username !== user.username) {
+                handleEditInfo()
+            }
         }
     }, [action])
 
     const handleImageUpload = async (event: ChangeEvent<HTMLInputElement>) => {
+
+
         const file = event.target.files?.[0];
+
         if (file) {
             const reader = new FileReader();
             reader.onloadend = () => {
@@ -43,7 +58,7 @@ export default function Account() {
 
     return (
         <div className='flex relative  justify-center container mx-auto mt-32'   >
-            <motion.div className='  relative  h-fit  w-2/5 bg-slate-500 rounded-lg shadow-2xl shadow-cyan-500/50  justify-center flex  flex-col'
+            <motion.div className='  relative  h-fit  w-2/5 max-xl:w-2/3 max-md:w-5/6  bg-slate-500 rounded-lg shadow-2xl shadow-cyan-500/50  justify-center flex  flex-col'
                 initial={{
                     y: "100vh",
                     opacity: 0,
@@ -86,19 +101,19 @@ export default function Account() {
                         <AccordionSummary
                             aria-controls="panel1-content"
                             id="panel1-header"
-                            onClick={() => { setAction(!action) }}
+                            // eslint-disable-next-line no-const-assign
+                            onClick={(e) => { setAction(!action) }}
                         >
                             <div className='text-center w-full'>
-                                個人資料
+                                {action ? "提交修改" : "個人資料"}
                             </div>
                         </AccordionSummary>
                         <AccordionDetails>
                             <div className=' overflow-y-scroll '>
                                 <div className='space-y-5 flex-none '>
-                                    <TextField label={'權限'} variant="standard" fullWidth disabled={user.role === 'user' ? true : false} />
-
-                                    <TextField label={'名字'} variant="standard" fullWidth />
-                                    <TextField label={"密碼"} variant="standard" fullWidth />
+                                    <TextField label={'權限'} variant="standard" value={useredit.role} fullWidth disabled={user.role === 'user' ? true : false} />
+                                    <TextField label={'名字'} variant="standard" value={useredit.username} onChange={(e) => { setUseredit({ ...useredit, username: e.target.value }) }} fullWidth />
+                                    <TextField label={"密碼"} variant="standard" value={useredit.password} onChange={(e) => { setUseredit({ ...useredit, password: e.target.value }) }} fullWidth />
 
                                 </div>
                             </div>

@@ -11,7 +11,7 @@ var morgan = require('morgan');
 
 
 
-//data model
+//data <model></model>
 
 
 var UserRouter = require('./routers/users')

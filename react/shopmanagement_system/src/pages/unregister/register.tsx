@@ -61,12 +61,12 @@ export default function Register(props: {
         <div className=" h-dvh w-full  rounded-lg  drop-shadow-2xl shadow-inner shadow-gray-900 backdrop-blur-md  bg-white/50 ">
             <motion.div className=" h-full w-full  text-center space-y-8 flex flex-col justify-center content-center "
                 initial={{
-                    x: "100vh", // Start below the viewport
+                    x: 0, // Start below the viewport
                     opacity: 0, // Hidden initially
                     rotate: 4
                 }}
                 animate={{
-                    x: 0, // Move to the desired position
+                    x: 10, // Move to the desired position
                     opacity: 1, // Fade in
                     position: "relative",
                     transitionEnd: {
@@ -75,7 +75,7 @@ export default function Register(props: {
                     rotate: 0
                 }}
                 transition={{
-                    duration: 2, // Duration in seconds
+                    duration: 0.5, // Duration in seconds
                 }}
 
             >
