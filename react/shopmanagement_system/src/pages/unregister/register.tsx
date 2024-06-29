@@ -38,6 +38,7 @@ export default function Register(props: {
 
 
                         setUserInfo(new SignUpUser())
+                        props.Registered()
                     }
                 })
             } else {

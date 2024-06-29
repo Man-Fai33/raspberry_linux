@@ -11,13 +11,10 @@ import { ApiHelper } from '../helper/apihelper'
 
 
 export default function Account() {
-    const user: SignedUser = useSelector((state: RootState) => state.user)
-
+    const data: SignedUser = useSelector((state: RootState) => state.user)
+    const [user, setUser] = useState<SignedUser>(data)
     const [image, setImage] = useState<string | null>(null);
-
     const [action, setAction] = useState<boolean>(false);
-
-
     class UserEdit {
         role: string = user.role;
         username: string = user.username;
@@ -26,7 +23,11 @@ export default function Account() {
     const [useredit, setUseredit] = useState<UserEdit>(new UserEdit())
 
     const handleEditInfo = () => {
-        Swal.fire('未完成', '未完成', 'success')
+
+        ApiHelper.AsyncUserEdit({ ...user, username: useredit.username, password: useredit.password, role: useredit.role })
+        setUser(data)
+        alert(JSON.stringify(user))
+        // Swal.fire('未完成', '未完成', 'success')
     }
 
 
@@ -113,7 +114,7 @@ export default function Account() {
                                 <div className='space-y-5 flex-none '>
                                     <TextField label={'權限'} variant="standard" value={useredit.role} fullWidth disabled={user.role === 'user' ? true : false} />
                                     <TextField label={'名字'} variant="standard" value={useredit.username} onChange={(e) => { setUseredit({ ...useredit, username: e.target.value }) }} fullWidth />
-                                    <TextField label={"密碼"} variant="standard" value={useredit.password} onChange={(e) => { setUseredit({ ...useredit, password: e.target.value }) }} fullWidth />
+                                    <TextField label={"密碼"} type='password' variant="standard" value={useredit.password} onChange={(e) => { setUseredit({ ...useredit, password: e.target.value }) }} fullWidth />
 
                                 </div>
                             </div>

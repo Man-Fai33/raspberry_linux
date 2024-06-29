@@ -3,7 +3,7 @@ import Footer from '../components/footer';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import icon from '../components/image/12.jpg';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Avatar, Box, Button, Divider, IconButton, List, ListItemIcon, ListItemText, SpeedDial, Stack } from '@mui/material';
+import { Avatar, Box, Button, Divider, IconButton, List, ListItemIcon, ListItemText, SpeedDial, Stack, createStyles, makeStyles } from '@mui/material';
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
@@ -26,6 +26,7 @@ import bg_name from "../components/image/background_name.jpg"
 import bg_index from "../components/image/bg_index.jpeg"
 import bg from "../components/image/bg.jpg"
 import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
+import { Theme } from '@emotion/react';
 
 
 
@@ -66,7 +67,10 @@ export default function Index() {
     const [inView, setInView] = useState([false, false, false, false, false, false]);
     const refs = [useRef(null), useRef(null), useRef(null), useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)];
 
-    const style = {}
+    // const style = makeStyles((theme: Theme) => {
+    //     createStyles({
+    //     })
+    // })
 
     useEffect(() => {
         const observers = refs.map((ref, index) =>
@@ -274,7 +278,7 @@ export default function Index() {
                             <div className='h-fit    flex-wrap p-5  overflow-y-scroll touch-pan-y space-y-4 '>
 
                                 <div className='flex  flex-row max-xl:flex-col  max-xl:space-y-4  h-fit max-xl:h-fit  pb-3 '>
-                                    
+
                                     <div ref={refs[3]} className='flex-none  w-1/2 max-xl:w-fit '>
                                         <Section trigger={inView[3]}>
                                             <div className='text-3xl max-xl:text-base '>教育 education</div>

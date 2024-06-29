@@ -1,4 +1,4 @@
-import { SignInUser, SignUpUser } from '../models/userModels'
+import { SignInUser, SignUpUser, SignedUser } from '../models/userModels'
 import URL from './url'
 
 const methods = {
@@ -8,14 +8,17 @@ const methods = {
     patch: ('PATCH'),
     delete: ('DELETE'),
 }
-const header = {
-    json: ({ Accept: 'application/json', 'Content-Type': 'application/json', })
+const header: Record<string, string> = {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
 }
+
+
 
 export const ApiHelper = {
     AsyncUsers: async () => {
         let response = await fetch(URL.Url.User, {
-            headers: header.json,
+            headers: header,
             method: methods.get,
         })
         let responseJson = await response.json();
@@ -24,8 +27,10 @@ export const ApiHelper = {
     },
 
     AsyncValidateUser: async (user: SignInUser) => {
+
+
         let response = await fetch(URL.Url.User, {
-            headers: header.json,
+            headers: header,
             method: methods.post,
             body: JSON.stringify(user)
         })
@@ -39,7 +44,7 @@ export const ApiHelper = {
             console.log(user)
             let url = URL.Url.User
             let response = await fetch(url, {
-                headers: header.json,
+                headers: header,
                 method: methods.post,
                 body: JSON.stringify(user),
             })
@@ -57,7 +62,7 @@ export const ApiHelper = {
             let url = URL.Url.Upload
 
             let response = await fetch(url, {
-                headers: header.json,
+                headers: header,
                 method: methods.post,
                 body: image
             })
@@ -68,17 +73,24 @@ export const ApiHelper = {
         }
 
     }
-    , AsyncUserEdit: async (user: SignUpUser) => {
+    ,
+    AsyncUserEdit: async (user: SignedUser) => {
+
         try {
-            console.log(user)
-            let url = URL.Url.User
-            let response = await fetch(url, {
-                headers: header.json,
+            header['Authorization'] = `Bearer ${user.token}`;
+            console.log({
+                headers: header,
                 method: methods.put,
                 body: JSON.stringify(user),
             })
-            let respJson = await response.json();
-            return respJson;
+            let url = URL.Url.User
+            // let response = await fetch(url, {
+            //     headers: header,
+            //     method: methods.put,
+            //     body: JSON.stringify(user),
+            // })
+            // let respJson = await response.json();
+            // return respJson;
         } catch (e) {
             console.log(e)
             let msg = { message: e };
@@ -88,7 +100,7 @@ export const ApiHelper = {
     AsyncCV: async () => {
         try {
             let response = await fetch(URL.Url.CV, {
-                headers: header.json,
+                headers: header,
                 method: methods.get,
 
             })

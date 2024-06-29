@@ -15,12 +15,10 @@ import { useNavigate } from 'react-router';
 import { SignedUser } from '../models/userModels';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, clearUser } from './redux/store';
-import { useAnimate, stagger, motion } from "framer-motion";
 
 const pages = [
-    { "name": '主頁', "link": "/" },
-    { "name": '', "link": "/" },
-    { "name": 'Blog', "link": "/" }
+    { "name": '主頁', "link": "/home" },
+
 ]
 const settings = [
     { "name": '帳號', "link": "/account" },
@@ -30,35 +28,22 @@ const settings = [
 
 function TopAppBar() {
     const navigator = useNavigate();
-
     const dispatch = useDispatch();
     const user: SignedUser = useSelector((state: RootState) => state.user)
-
     const [shortMeun, setShortMeun] = React.useState<null | HTMLElement>(null);
     const [LoginMeun, setLoginMeun] = React.useState<null | HTMLElement>(null);
-
-
-
-
-
-
-
-
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
         setShortMeun(event.currentTarget);
     };
     const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
         setLoginMeun(event.currentTarget);
     };
-
     const handleCloseNavMenu = () => {
         setShortMeun(null);
     };
-
     const handleCloseUserMenu = () => {
         setLoginMeun(null);
     };
-
     return (
         <>
             {
@@ -83,7 +68,6 @@ function TopAppBar() {
                                 >
                                     CMF
                                 </Typography>
-
                                 <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                                     <IconButton
                                         size="large"
@@ -172,23 +156,19 @@ function TopAppBar() {
                                         }}
                                         open={Boolean(LoginMeun)}
                                         onClose={handleCloseUserMenu}
-                                    
+
                                     >
                                         {settings.map((setting, index) => (
                                             <MenuItem key={index} onClick={handleCloseUserMenu}>
                                                 <Typography textAlign="center" component="a" href={setting.link} >{setting.name}</Typography>
                                             </MenuItem>
                                         ))}
-
                                         <MenuItem onClick={() => {
                                             dispatch(clearUser())
-
                                             navigator('/')
                                         }}>登出</MenuItem>
-
                                     </Menu>
                                 </Box>
-
                             </Toolbar>
                         </Container>
                     </div> : <></>}

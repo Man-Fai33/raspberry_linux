@@ -18,14 +18,14 @@ export default function ProjectCard(props: {
 }) {
     return (
 
-        <Card sx={{ maxWidth: 500 }} className='flex-none '>
+        <div className='flex-none  w-2/5 max-lg:w-full bg-white rounded-lg '>
             <CardActionArea>
                 <div className='w-full p-2 text-xl '>
 
                     {props.title} - {props.year}
 
                 </div>
-                <div className="bg-cover  bg-center w-full  " style={{ backgroundImage: `url( ` + props.photo[0] + `)`, height: '450px' }}  >
+                <div className="bg-cover  bg-center w-full" style={{ backgroundImage: `url( ` + props.photo[0] + `)`, height: '450px' }}  >
                 </div>
                 <CardContent>
 
@@ -35,11 +35,11 @@ export default function ProjectCard(props: {
                 </CardContent>
             </CardActionArea >
             <div className='p-2 text-right'>
-                <Button size="small" variant='outlined'  color="primary" onClick={props.onclick}>
+                <Button size="small" variant='outlined' color="primary" onClick={props.onclick}>
                     資訊
                 </Button>
             </div>
-        </Card >
+        </div >
 
     );
 }

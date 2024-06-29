@@ -22,7 +22,7 @@ router.post('/', async (req, res) => {
     try {
         // 註冊或者其他條件下做的事情 type是空的 和 類型不是登入的
         if (type !== null && type !== 'signin') {
-            let message = await Helper.SignUpCheck(user.email, user.username)
+            let message = await Helper.SignUpCheck(user.email)
             if (message === "") {
                 user.role = 'user';
                 userCreate = new User(user); // 将 user 对象传递给构造函数
@@ -48,8 +48,6 @@ router.post('/', async (req, res) => {
                         token: getToken(user.email)
                     }
                 }
-
-
                 console.log(response.user)
             } else {
                 response.message = "密碼名字錯誤/n 註冊新的賬號"
@@ -63,6 +61,7 @@ router.post('/', async (req, res) => {
 })
 
 router.put('/', async (req, res) => {
+    let user = req.body
 
 })
 router.delete('/', async (req, res) => {
