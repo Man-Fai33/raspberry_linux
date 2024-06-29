@@ -2,19 +2,21 @@ import { Accordion, AccordionDetails, AccordionSummary, TextField } from '@mui/m
 import React, { ChangeEvent, useEffect, useState } from 'react'
 import icon from '../components/image/12.jpg'
 import { motion } from 'framer-motion'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { SignedUser } from '../models/userModels'
 import { RootState } from '../components/redux/store'
 import Swal from 'sweetalert2'
 import { ApiHelper } from '../helper/apihelper'
+import { setUser, updateIconUrl } from '../components/redux/store';
 
 
 
 export default function Account() {
     const data: SignedUser = useSelector((state: RootState) => state.user)
-    const [user, setUser] = useState<SignedUser>(data)
-    const [image, setImage] = useState<string | null>(null);
+    const [user, setUserInfo] = useState<SignedUser>(data)
+    const [image, setImage] = useState<string | null>(data.iconUrl);
     const [action, setAction] = useState<boolean>(false);
+    const dispatch = useDispatch();
     class UserEdit {
         role: string = user.role;
         username: string = user.username;
@@ -24,12 +26,24 @@ export default function Account() {
 
     const handleEditInfo = () => {
 
-        ApiHelper.AsyncUserEdit({ ...user, username: useredit.username, password: useredit.password, role: useredit.role })
-        setUser(data)
-        alert(JSON.stringify(user))
-        // Swal.fire('未完成', '未完成', 'success')
+        ApiHelper.AsyncUserEdit({ ...user, username: useredit.username, password: useredit.password, role: useredit.role }).then((result) => {
+
+            if (result.status !== 'failed') {
+                dispatch(setUser({ ...result.user, token: user.token }))
+                Swal.fire('更新個人資料', "更新成功", "success")
+            } else {
+                Swal.fire('更新個人資料', '更新失敗', 'error')
+            }
+        })
+
+
     }
 
+    useEffect(() => {
+        setUserInfo(data)
+ 
+
+    }, [data,image])
 
     useEffect(() => {
 
@@ -46,14 +60,15 @@ export default function Account() {
         const file = event.target.files?.[0];
 
         if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setImage(reader.result as string);
-            };
-            reader.readAsDataURL(file);
+            let response = await ApiHelper.AsyncUploadImage(file, user._id, "user");
+
+            dispatch(updateIconUrl(response.path))
+            setImage(response.path)
+
         }
-        let response = await ApiHelper.AsyncUploadImage(image);
-        console.log(response);
+
+
+
     }
 
 
@@ -81,8 +96,9 @@ export default function Account() {
                 <div className='relative w-full flex justify-center -mt-16'>
                     <input
                         type="file"
-                        accept="image/*"
+                        accept="image/jpg,image/jpeg,image/png,image/gif"
                         onChange={handleImageUpload}
+                        multiple
                         className="hidden"
                         id="imageUpload"
                     />

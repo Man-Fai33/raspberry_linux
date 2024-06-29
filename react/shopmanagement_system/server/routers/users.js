@@ -7,7 +7,7 @@ const { token } = require('morgan');
 router.get('/', (req, res) => {
 
     User.findOne().exec().then(result => {
-        res.json({ status: "success2", users: result })
+        res.json({ status: "success", users: result })
     }).catch(err => {
         res.json({ status: "fail", message: err })
     })
@@ -60,8 +60,25 @@ router.post('/', async (req, res) => {
     }
 })
 
-router.put('/', async (req, res) => {
+router.put('/', verifyToken, async (req, res) => {
     let user = req.body
+    let response = {}
+    try {
+
+        if (user != null) {
+
+            let updatedUser = await User.findOneAndUpdate({ email: user.email }, user, { new: true, useFindAndModify: false })
+            response.user = updatedUser;
+            response.message = "success"
+            res.status(200);
+        } else {
+            response.message = "failed"
+            res.status(400);
+        }
+        return res.json(response)
+    } catch (error) {
+        console.log(error)
+    }
 
 })
 router.delete('/', async (req, res) => {

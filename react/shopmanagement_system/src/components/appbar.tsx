@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
@@ -8,7 +8,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import CottageIcon from '@mui/icons-material/Cottage';
 import { useNavigate } from 'react-router';
@@ -26,24 +25,37 @@ const settings = [
     // { "name": 'Dashboard', "link": "/" },
 ]
 
-function TopAppBar() {
+export default function TopAppBar() {
     const navigator = useNavigate();
     const dispatch = useDispatch();
-    const user: SignedUser = useSelector((state: RootState) => state.user)
-    const [shortMeun, setShortMeun] = React.useState<null | HTMLElement>(null);
-    const [LoginMeun, setLoginMeun] = React.useState<null | HTMLElement>(null);
-    const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-        setShortMeun(event.currentTarget);
+    const data : SignedUser= useSelector((state: RootState) => state.user)
+    const [user,setUser] = useState<SignedUser>(data)
+    const [shortMenu, setShortMenu] = React.useState<null | HTMLElement>(null);
+    const [LoginMenu, setLoginMenu] = React.useState<null | HTMLElement>(null);
+
+    const handleUserMenuOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setLoginMenu(event.currentTarget);
     };
-    const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-        setLoginMeun(event.currentTarget);
+
+    const handleShortMenuOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setShortMenu(event.currentTarget);
     };
-    const handleCloseNavMenu = () => {
-        setShortMeun(null);
+
+    const handleUserMenuClose = () => {
+        setLoginMenu(null);
     };
-    const handleCloseUserMenu = () => {
-        setLoginMeun(null);
+
+    const handleShortMenuClose = () => {
+        setShortMenu(null);
     };
+
+
+    useEffect(() => {
+        setUser(data)
+    }, [data]);
+
+
+
     return (
         <>
             {
@@ -74,14 +86,14 @@ function TopAppBar() {
                                         aria-label="account of current user"
                                         aria-controls="menu-appbar"
                                         aria-haspopup="true"
-                                        onClick={handleOpenNavMenu}
+                                        onClick={handleShortMenuOpen}
                                         color="inherit"
                                     >
                                         <MenuIcon />
                                     </IconButton>
                                     <Menu
                                         id="menu-appbar"
-                                        anchorEl={shortMeun}
+                                        anchorEl={shortMenu}
                                         anchorOrigin={{
                                             vertical: 'bottom',
                                             horizontal: 'left',
@@ -91,14 +103,14 @@ function TopAppBar() {
                                             vertical: 'top',
                                             horizontal: 'left',
                                         }}
-                                        open={Boolean(shortMeun)}
-                                        onClose={handleCloseNavMenu}
+                                        open={Boolean(shortMenu)}
+                                        onClose={handleShortMenuClose}
                                         sx={{
                                             display: { xs: 'block', md: 'none' },
                                         }}
                                     >
                                         {pages.map((page, index) => (
-                                            <MenuItem key={index} onClick={handleCloseNavMenu}>
+                                            <MenuItem key={index} onClick={handleShortMenuClose}>
                                                 <a href={page.link}> <Typography textAlign="center">{page.name}</Typography></a>
                                             </MenuItem>
                                         ))}
@@ -128,7 +140,10 @@ function TopAppBar() {
                                         <Button
 
                                             key={index}
-                                            onClick={handleCloseNavMenu}
+                                            onClick={() => {
+                                                setShortMenu(null)
+                                                navigator(page.link)
+                                            }}
                                             sx={{ my: 2, color: 'black', display: 'block' }} >
                                             {page.name}
                                         </Button>
@@ -136,15 +151,15 @@ function TopAppBar() {
                                 </Box>
 
                                 <Box sx={{ flexGrow: 0 }}>
-                                    <Tooltip title="Open settings">
-                                        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                            <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                                        </IconButton>
-                                    </Tooltip>
+
+                                    <IconButton onClick={handleUserMenuOpen} sx={{ p: 0 }}>
+                                        <Avatar src={user.iconUrl} />
+                                    </IconButton>
+
                                     <Menu
                                         sx={{ mt: '45px' }}
-                                        id="menu-appbar"
-                                        anchorEl={LoginMeun}
+                                        id="simple-menu"
+                                        anchorEl={LoginMenu}
                                         anchorOrigin={{
                                             vertical: 'top',
                                             horizontal: 'right'
@@ -154,19 +169,22 @@ function TopAppBar() {
                                             vertical: 'top',
                                             horizontal: 'center',
                                         }}
-                                        open={Boolean(LoginMeun)}
-                                        onClose={handleCloseUserMenu}
+                                        open={Boolean(LoginMenu)}
+                                        onClose={handleUserMenuClose}
 
                                     >
                                         {settings.map((setting, index) => (
-                                            <MenuItem key={index} onClick={handleCloseUserMenu}>
+                                            <MenuItem key={index} onClick={handleUserMenuClose} >
                                                 <Typography textAlign="center" component="a" href={setting.link} >{setting.name}</Typography>
                                             </MenuItem>
                                         ))}
                                         <MenuItem onClick={() => {
+                                            setLoginMenu(null);
                                             dispatch(clearUser())
                                             navigator('/')
                                         }}>登出</MenuItem>
+
+
                                     </Menu>
                                 </Box>
                             </Toolbar>
@@ -175,4 +193,3 @@ function TopAppBar() {
         </>
     );
 }
-export default TopAppBar;

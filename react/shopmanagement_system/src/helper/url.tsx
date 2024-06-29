@@ -3,7 +3,7 @@ export const HOST = 'https://cheungmanfai.ngrok.io/api'
 export const Url = {
     User: (HOST + "/user"),
     CV: (HOST + "/cv"),
-    Upload: (HOST + "/upload/"),
+    Upload: (HOST + "/images"),
 
 }
 

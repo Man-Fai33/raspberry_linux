@@ -15,7 +15,7 @@ var morgan = require('morgan');
 
 
 var UserRouter = require('./routers/users')
-var UploadRouter = require('./routers/upload')
+var ImagesRouter = require('./routers/images')
 var CvRouter = require('./routers/cv')
 const app = express();
 const port = 3020;
@@ -61,7 +61,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/cv', CvRouter)
 app.use('/api/user', UserRouter)
-app.use('/api/upload', UploadRouter)
+app.use('/api/images', ImagesRouter)
 
 //error handle 
 app.use((req, res, next) => {

@@ -47,8 +47,6 @@ export default function Login(props: {
             } else {
                 setSignIn(false)
             }
-
-            console.log(store.getState().user)
         } catch (err) {
 
         }

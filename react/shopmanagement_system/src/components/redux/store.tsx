@@ -22,9 +22,12 @@ const userSlice = createSlice({
             return {
                 token: '',
             }
+        },
+        updateIconUrl: (state, action: PayloadAction<string>) => {
+            const updatedState = { ...state, iconUrl: action.payload };
+            sessionStorage.setItem('user', JSON.stringify(updatedState));
 
-        }
-
+        },
     },
 });
 
@@ -43,7 +46,7 @@ const TimeSlice = createSlice({
 });
 
 // 导出actions
-export const { setUser, clearUser } = userSlice.actions;
+export const { setUser, clearUser,updateIconUrl } = userSlice.actions;
 export const { decrementTime } = TimeSlice.actions;
 // 创建Redux store
 const store = configureStore({

@@ -57,14 +57,16 @@ export const ApiHelper = {
             return msg;
         }
     },
-    AsyncUploadImage: async (image: any) => {
+    AsyncUploadImage: async (image: any, id: string, type: string) => {
         try {
+            let data = new FormData();
+            data.append('Image', image)
+            data.append('id', id)
+            data.append('type', type)
             let url = URL.Url.Upload
-
             let response = await fetch(url, {
-                headers: header,
                 method: methods.post,
-                body: image
+                body: data
             })
             let result = await response.json();
             return result
@@ -75,22 +77,16 @@ export const ApiHelper = {
     }
     ,
     AsyncUserEdit: async (user: SignedUser) => {
-
         try {
             header['Authorization'] = `Bearer ${user.token}`;
-            console.log({
+            console.log(JSON.stringify(user))
+            let response = await fetch(URL.Url.User, {
                 headers: header,
                 method: methods.put,
                 body: JSON.stringify(user),
             })
-            let url = URL.Url.User
-            // let response = await fetch(url, {
-            //     headers: header,
-            //     method: methods.put,
-            //     body: JSON.stringify(user),
-            // })
-            // let respJson = await response.json();
-            // return respJson;
+            let respJson = await response.json();
+            return respJson;
         } catch (e) {
             console.log(e)
             let msg = { message: e };
