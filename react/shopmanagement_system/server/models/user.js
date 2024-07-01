@@ -11,7 +11,7 @@ const User = new mongoose.Schema({
     4. "Administrator"
     */
     password: { type: String },
-    role: { type: String, default: 'user'},
+    role: { type: String, default: 'user' },
     phone: { type: String, required: false },
     introduction: { type: String, default: "" },
     location: String,
@@ -21,3 +21,4 @@ const User = new mongoose.Schema({
     iconUrl: { type: String, default: "" }
 });
 module.exports = mongoose.model('User', User);
+module.exports.UserSchema = User;

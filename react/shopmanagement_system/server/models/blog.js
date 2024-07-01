@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-
+const { UserSchema } = require('./user')
 const contentSchema = new mongoose.Schema({
     type: { type: String, enum: ['text', 'image'], required: true },
     value: { type: String, required: true }
@@ -14,7 +14,7 @@ const commentsSchema = new mongoose.Schema({
 
 
 const Blog = module.exports = new mongoose.Schema({
-    owner: { type: String, required: true },
+    owner: { type: UserSchema, required: true },
     title: { type: String, required: true },
     content: [contentSchema],
     tags: [{ type: String }],
