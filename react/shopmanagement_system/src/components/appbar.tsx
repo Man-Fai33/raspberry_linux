@@ -17,7 +17,7 @@ import { RootState, clearUser } from './redux/store';
 
 const pages = [
     { "name": '主頁', "link": "/home" },
-
+    { "name": '討論區', "link": "/blog" },
 ]
 const settings = [
     { "name": '帳號', "link": "/account" },
@@ -28,11 +28,10 @@ const settings = [
 export default function TopAppBar() {
     const navigator = useNavigate();
     const dispatch = useDispatch();
-    const data : SignedUser= useSelector((state: RootState) => state.user)
-    const [user,setUser] = useState<SignedUser>(data)
+    const data: SignedUser = useSelector((state: RootState) => state.user)
+    const [user, setUser] = useState<SignedUser>(data)
     const [shortMenu, setShortMenu] = React.useState<null | HTMLElement>(null);
     const [LoginMenu, setLoginMenu] = React.useState<null | HTMLElement>(null);
-
     const handleUserMenuOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
         setLoginMenu(event.currentTarget);
     };
