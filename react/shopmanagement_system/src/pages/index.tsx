@@ -17,16 +17,16 @@ import { CV, Project } from '../models/cvModels';
 import Login from './unregister/login';
 import Register from './unregister/register';
 import { ApiHelper } from '../helper/apihelper';
-import { useDispatch, useSelector } from 'react-redux';
+import {  useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { RootState } from '../components/redux/store';
 import { SignedUser } from '../models/userModels';
-import { motion, useScroll, useTransform, useAnimation } from "framer-motion";
+import { motion,  useAnimation } from "framer-motion";
 import bg_name from "../components/image/background_name.jpg"
 import bg_index from "../components/image/bg_index.jpeg"
 import bg from "../components/image/bg.jpg"
 import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
-import { Theme } from '@emotion/react';
+// import { Theme } from '@emotion/react';
 
 
 

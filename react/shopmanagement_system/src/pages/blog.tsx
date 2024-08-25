@@ -1,5 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import BlogTabs from '../components/tabs/blogtabs'
+import { Button } from '@mui/material'
+import CreateBlogModal from '../components/Modal/createblogmodal'
+
 export default function Blog() {
 
 
@@ -11,7 +14,7 @@ export default function Blog() {
 
 
     function Blogs() {
-        return (<div className='col-span-2 max-lg:col-span-3  rounded-md w-full h-fit bg-orange-400 pt-6 pl-16 pr-16'>
+        return (<div className='col-span-4 max-lg:col-span-3  rounded-md w-full h-fit bg-orange-400 pt-6 pl-16 pr-16'>
             {/* <div className=' relative w-full h-52  bg-cover ' style={{ backgroundImage: 'url(https://picsum.photos/1920/1080)' }}>
                 <div className=' absolute w-full  f-full  bottom-0'>
                     sdsd
@@ -27,8 +30,11 @@ export default function Blog() {
 
 
 
-    function underknow() {
-        return (<div className='max-lg:hidden bg-red-200'>??
+    function Underknow() {
+        const [modal, setModal] = useState<boolean>(false);
+        return (<div className='max-lg:hidden bg-red-200 pt-5 text-center'>
+            <Button variant='outlined' onClick={() => { setModal(true) }}> 發表文章</Button>
+            <CreateBlogModal open={modal} setOpen={() => setModal(false)} />
         </div>)
     }
 
@@ -38,12 +44,12 @@ export default function Blog() {
 
 
     return (<div className='w-full h-screen flex justify-center pt-4 '>
-        <div className='  w-4/5  space-x-2  '>
+        <div className='w-4/5  space-x-2  '>
 
-            <div className=' grid grid-cols-4 grid-flow-col gap-4'>
+            <div className=' grid grid-cols-6 grid-flow-col gap-4'>
                 {BlogRankList()}
                 {Blogs()}
-                {underknow()}
+                {Underknow()}
             </div>
         </div>
 

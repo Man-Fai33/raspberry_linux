@@ -4,6 +4,7 @@ export const Url = {
     User: (HOST + "/user"),
     CV: (HOST + "/cv"),
     Upload: (HOST + "/images"),
+    Blog: (HOST + '/blog'),
 
 }
 

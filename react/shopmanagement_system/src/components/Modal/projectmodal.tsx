@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Modal from '@mui/material/Modal';
-import bgimage from '../image/12.jpg';
 import { Project } from '../../models/cvModels';
 import funchelper from '../../helper/funchelper';
 
@@ -29,6 +28,7 @@ export default function ProjectModal(props: {
                     <div className=' relative   overflow-x-auto w-full pb-3 pl-2 pr-2 pt-2'>
                         <div className='flex flex-none  w-full gap-4 h-auto '>
                             {props.data?.photo.map((value, index) => (
+                                // eslint-disable-next-line jsx-a11y/alt-text
                                 <img key={index} className='bg-cover' style={{ width: 300, height: 180 }} src={value} />
                             ))}
                         </div>

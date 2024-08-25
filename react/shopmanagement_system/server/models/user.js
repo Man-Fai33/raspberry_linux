@@ -8,16 +8,17 @@ const User = new mongoose.Schema({
     1. "Visitor"
     2. "User"
     3. "Manager"
-    4. "Administrator"
+    4. "Admin"
     */
     password: { type: String },
-    role: { type: String, default: 'user' },
+    role: { type: String, enum: ['user', 'employee', 'manager', 'admin'], default: 'user' },
     phone: { type: String, required: false },
     introduction: { type: String, default: "" },
     location: String,
     gender: Boolean,
     date: Date,
-    // shop: { type: Array, default: [] },
+    blog: { type: Array, required: false, default: [] },
+    shop: { type: Array, required: false, default: [] },
     iconUrl: { type: String, default: "" }
 });
 module.exports = mongoose.model('User', User);

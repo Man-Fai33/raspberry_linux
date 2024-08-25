@@ -11,13 +11,10 @@ export const FuncHelper = {
         return pwd === "" ? false : true
     },
     validateInputError(input: string) {
-        // 如果 input 是空字符串、未定义、null 或 '0'，返回 false；否则返回 true
         return (input === '' || input === undefined || input === null || input === '0');
     },
-    textformat(str: string | undefined): string | undefined {
-        const formattedText = str?.replace(/\n/g, '<br />');
-
-        return formattedText
+    textformat(str: string | undefined) {
+        return <pre>{str}</pre>
     }
 
 }

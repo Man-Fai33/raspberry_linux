@@ -36,17 +36,13 @@ export default function Account() {
             }
         })
 
-
     }
 
     useEffect(() => {
         setUserInfo(data)
- 
-
-    }, [data,image])
+    }, [data, image])
 
     useEffect(() => {
-
         if (!action) {
             if (useredit.password !== user.password || useredit.role !== user.role || useredit.username !== user.username) {
                 handleEditInfo()
@@ -55,20 +51,12 @@ export default function Account() {
     }, [action])
 
     const handleImageUpload = async (event: ChangeEvent<HTMLInputElement>) => {
-
-
         const file = event.target.files?.[0];
-
         if (file) {
             let response = await ApiHelper.AsyncUploadImage(file, user._id, "user");
-
             dispatch(updateIconUrl(response.path))
             setImage(response.path)
-
         }
-
-
-
     }
 
 
@@ -118,7 +106,6 @@ export default function Account() {
                         <AccordionSummary
                             aria-controls="panel1-content"
                             id="panel1-header"
-                            // eslint-disable-next-line no-const-assign
                             onClick={(e) => { setAction(!action) }}
                         >
                             <div className='text-center w-full'>

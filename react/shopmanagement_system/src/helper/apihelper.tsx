@@ -1,5 +1,5 @@
 import { SignInUser, SignUpUser, SignedUser } from '../models/userModels'
-import URL from './url'
+import URL, { Url } from './url'
 
 const methods = {
     post: ('POST'),
@@ -22,13 +22,10 @@ export const ApiHelper = {
             method: methods.get,
         })
         let responseJson = await response.json();
-
         return responseJson;
     },
 
     AsyncValidateUser: async (user: SignInUser) => {
-
-
         let response = await fetch(URL.Url.User, {
             headers: header,
             method: methods.post,
@@ -74,8 +71,7 @@ export const ApiHelper = {
             return e
         }
 
-    }
-    ,
+    },
     AsyncUserEdit: async (user: SignedUser) => {
         try {
             header['Authorization'] = `Bearer ${user.token}`;
@@ -90,6 +86,20 @@ export const ApiHelper = {
         } catch (e) {
             console.log(e)
             let msg = { message: e };
+            return msg;
+        }
+    },
+    AsyncBlogs: async () => {
+        try {
+            let response = await fetch(URL.Url.Blog, {
+                headers: header,
+                method: methods.get
+            })
+            let respJson = await response.json();
+            return respJson
+        } catch (e) {
+            console.log(e)
+            let msg = {};
             return msg;
         }
     },
@@ -112,6 +122,7 @@ export const ApiHelper = {
 
 
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
     ApiHelper
 }

@@ -11,15 +11,15 @@ router.get('/', async (req, res) => {
         res.status(500).json({ message: e.message });
     }
 });
-// 獲取個別討論文章
 router.get('/:id', getBlog, (req, res) => {
     res.json(res.blog);
 });
 
-// 创建新的博客文章
 router.post('/', async (req, res) => {
-    const blog = req.body
+    let blog = req.body
+    console.log(req.body)
     try {
+        blog = new Blog(blog);
         const newBlog = await blog.save();
         res.status(201).json(newBlog);
     } catch (err) {
