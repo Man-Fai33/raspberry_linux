@@ -24,10 +24,8 @@ interface TabPanelProps {
 
 function CustomTabPanel(props: TabPanelProps) {
     const { children, value, index, ...other } = props;
-
     return (
         <div
-
             role="tabpanel"
             hidden={value !== index}
             id={`simple-tabpanel-${index}`}
@@ -51,27 +49,19 @@ export default function SkillSwitchTabs(props: { data: Technology | undefined })
     const [value, setValue] = React.useState(0);
 
 
-    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-        setValue(newValue);
-    };
 
     const Panel = (value: number, num: number, skill: Skill[] | undefined) => {
-
-
         return <CustomTabPanel value={value} index={num}  >
             <div className='grid grid-cols-2 grid-flow-row gap-6 max-lg:grid-cols-1 max-lg:gap-4 max-md:gap-3  '>
-                {skill?.map((s, index) => (
-                    <SkillProgress key={index} name={s.name} num={s.num} />
-                ))}
-
+                {skill?.map((s, index) => (<SkillProgress key={index} name={s.name} num={s.num} />))}
             </div>
         </CustomTabPanel>
     }
 
     return (
         <Box sx={{ width: '100%' }}>
-            <Box sx={{ borderBottom: 1, borderColor: 'divider'   }}>
-                <Tabs value={value} onChange={handleChange}   variant="scrollable"  className=' w-3/4'  >
+            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                <Tabs value={value} onChange={(event: React.SyntheticEvent, newValue: number) => setValue(newValue)} variant="scrollable" className=' w-3/4'  >
                     <Tab label="語言" {...a11yProps(0)} />
                     <Tab label="前端技能" {...a11yProps(1)} />
                     <Tab label="後端技能" {...a11yProps(2)} />

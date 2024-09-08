@@ -22,7 +22,7 @@ export default function Account() {
         username: string = user.username;
         password: string = user.password;
     }
-    const [useredit, setUseredit] = useState<UserEdit>(new UserEdit())
+    const [useredit, setUserEdit] = useState<UserEdit>(new UserEdit())
 
     const handleEditInfo = () => {
 
@@ -116,8 +116,8 @@ export default function Account() {
                             <div className=' overflow-y-scroll '>
                                 <div className='space-y-5 flex-none '>
                                     <TextField label={'權限'} variant="standard" value={useredit.role} fullWidth disabled={user.role === 'user' ? true : false} />
-                                    <TextField label={'名字'} variant="standard" value={useredit.username} onChange={(e) => { setUseredit({ ...useredit, username: e.target.value }) }} fullWidth />
-                                    <TextField label={"密碼"} type='password' variant="standard" value={useredit.password} onChange={(e) => { setUseredit({ ...useredit, password: e.target.value }) }} fullWidth />
+                                    <TextField label={'名字'} variant="standard" value={useredit.username} onChange={(e) => { setUserEdit({ ...useredit, username: e.target.value }) }} fullWidth />
+                                    <TextField label={"密碼"} type='password' variant="standard" value={useredit.password} onChange={(e) => { setUserEdit({ ...useredit, password: e.target.value }) }} fullWidth />
 
                                 </div>
                             </div>

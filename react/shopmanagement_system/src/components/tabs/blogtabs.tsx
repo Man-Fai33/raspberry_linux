@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useTransition } from 'react'
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
@@ -21,6 +21,8 @@ function CustomTabPanel(props: {
     const [selected, setSelected] = useState<{ value: string, title: string }>(list_select[0])
 
 
+
+
     return (
         <div
             className=' pb-4'
@@ -31,14 +33,12 @@ function CustomTabPanel(props: {
             {...other}
         >
             <div className='mt-2 mb-2' >
-
                 <Select
                     labelId="selected-id"
                     id="demo-simple-select"
                     defaultValue={selected.value}
                     onChange={(e: SelectChangeEvent) => {
-                        // eslint-disable-next-line array-callback-return
-                        list_select.map((value) => {
+                        list_select.forEach((value) => {
                             if (e.target.value === value.value) {
                                 setSelected(value)
                             }
@@ -58,26 +58,27 @@ function CustomTabPanel(props: {
 function a11yProps(index: number) { return { id: `simple-tab-${index}`, 'aria-controls': `simple-tabpanel-${index}`, }; }
 
 export default function BlogTabs() {
+
+    const [isPending, startTransaction] = useTransition()
+    const [loading, ] = useState<boolean>(false)
     const [value, setValue] = React.useState(0);
     const [blog, setBlog] = useState<Blog[]>([])
     const data: SignedUser = useSelector((state: RootState) => state.user)
-    const LoadBlog = async () => {
-        await ApiHelper.AsyncBlogs().then((result: Blog[]) => { setBlog(result) })
-    }
+
 
     useEffect(() => {
+        const LoadBlog = async () => {
+
+            await ApiHelper.AsyncBlogs().then((result: Blog[]) => { setBlog(result) })
+        }
         LoadBlog()
     }, []);
 
 
-
-    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-        setValue(newValue);
-    };
     return (
         <Box sx={{ width: '100%' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+                <Tabs value={value} onChange={(e, value) => setValue(value)} aria-label="blog">
                     <Tab label="全部" {...a11yProps(0)} />
                     <Tab label="追蹤" {...a11yProps(1)} />
                     {/* <Tab label="Item Three" {...a11yProps(2)} /> */}
@@ -85,18 +86,17 @@ export default function BlogTabs() {
             </Box>
 
             <CustomTabPanel value={value} index={0}>
-
                 <>
-                    {blog.map(blog => <BlogCard key={blog._id} data={blog} userid={data._id} />)}
-
+                    {(loading) ? startTransaction(() => { blog.map(blog => <BlogCard key={blog._id} data={blog} userid={data._id} />) }) : <div> loading..</div>}
                 </>
             </CustomTabPanel>
+
+
+
             <CustomTabPanel value={value} index={1}>
                 追蹤hsihi
             </CustomTabPanel>
-            {/* <CustomTabPanel value={value} index={2}>
-                Item Three
-            </CustomTabPanel> */}
+
         </Box>
     )
 }

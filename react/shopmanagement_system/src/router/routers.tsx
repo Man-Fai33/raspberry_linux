@@ -1,21 +1,60 @@
 import Account from "../pages/account"
-import Blog from "../pages/blog"
+
 import Home from "../pages/home"
 import Index from "../pages/index"
 import Test from "../pages/test"
+
+
+
+//shop  import 
+import ShopIndex from "../pages/shoppage/shopindex"
+import Shop from "../pages/shoppage/shop"
+import ItemInformation from "../pages/shoppage/item"
+
+
+
+//blog import  
+import Blog from "../pages/blog"
+
+
+
+
+//blog
+const blog = [
+    { path: 'blog', element: <Blog /> },
+]
+
+
+//shop
+const shop = [
+    { path: '/shop', element: <ShopIndex /> },
+    { path: 'shop/shop', element: <Shop /> },
+    { path: 'shop/item', element: <ItemInformation /> },
+]
+
+
+
+
+
+
+
+
+
+
 
 const routers = [
     { path: '/', element: <Index /> },
 
     { path: 'home', element: <Home /> },
-    // { path: '/personal_profile', element: <Personal_Profile /> },
     { path: 'account', element: <Account /> },
-    { path: 'blog', element: <Blog /> },
+
     { path: 'test', element: <Test /> },
-    // { path: 'profile', element: <Profile /> },
-    // { path: 'sm_ac', element: <AcManagement /> },
-    // { path: 'sm_storage', element: <AcManagement /> },
-    // { path: 'sm_vcenter', element: <AcManagement /> },
+
+
+    // blog page 導入
+    ...blog,
+    // shop page 導入
+    ...shop
 ]
 
 export default routers

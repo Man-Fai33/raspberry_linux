@@ -5,7 +5,6 @@ import { SignedUser } from '../../models/userModels';
 const sessionUser = sessionStorage.getItem('user');
 const initialUser = sessionUser ? JSON.parse(sessionUser) : new SignedUser();
 
-// 创建用户数据的slice
 const userSlice = createSlice({
     name: 'user',
     initialState: initialUser,
@@ -45,10 +44,10 @@ const TimeSlice = createSlice({
 
 });
 
-// 导出actions
-export const { setUser, clearUser,updateIconUrl } = userSlice.actions;
+export const { setUser, clearUser, updateIconUrl } = userSlice.actions;
 export const { decrementTime } = TimeSlice.actions;
-// 创建Redux store
+
+
 const store = configureStore({
     reducer: {
         user: userSlice.reducer,

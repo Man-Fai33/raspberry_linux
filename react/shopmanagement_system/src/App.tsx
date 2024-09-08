@@ -9,6 +9,7 @@ import Index from './pages';
 
 function App() {
 
+
   return (
     <Provider store={store}>
       <div className="App">
@@ -25,14 +26,7 @@ function RouterController() {
   const user = useSelector((state: RootState) => state.user)
   return <>
     <Routes >
-      {/* {routers.map((router) => (< Route key={router.path} path={router.path} element={user.token !== '' ? router.element : <Index />} />))
-
-      } */}
-      {routers.map((router) => (< Route key={router.path} path={router.path} element={user.token !== '' ? router.element : <Index />} />))
-
-      }
-
-
+      {routers.map((router) => (< Route key={router.path} path={router.path} element={user.token !== '' ? router.element : <Index />} />))}
     </Routes>
   </>
 }

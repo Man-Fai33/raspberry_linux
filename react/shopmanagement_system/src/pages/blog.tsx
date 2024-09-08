@@ -39,13 +39,8 @@ export default function Blog() {
     }
 
 
-
-
-
-
     return (<div className='w-full h-screen flex justify-center pt-4 '>
         <div className='w-4/5  space-x-2  '>
-
             <div className=' grid grid-cols-6 grid-flow-col gap-4'>
                 {BlogRankList()}
                 {Blogs()}
