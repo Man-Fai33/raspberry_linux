@@ -10,6 +10,7 @@ import { FilterType } from "../../models/filterModels";
 export default function ShopIndex() {
     const [list,] = useState<ShopItemModels[]>([
         {
+            "_id": "12456457",
             "photo": "https://via.placeholder.com/150?text=Shop+1",
             "rank": 5,
             "saleOut": 45,
@@ -18,7 +19,8 @@ export default function ShopIndex() {
             "discount": 15,
             "price": 75
         }, {
-            "photo": "https://via.placeholder.com/150?text=Shop+1",
+            "_id": "12456457",
+            "photo":"https://via.placeholder.com/150?text=Shop+1",
             "rank": 5,
             "saleOut": 45,
             "location": "Taipei",
@@ -26,7 +28,8 @@ export default function ShopIndex() {
             "discount": 15,
             "price": 75
         }, {
-            "photo": "https://via.placeholder.com/150?text=Shop+1",
+            "_id": "12456457",
+            "photo":"https://via.placeholder.com/150?text=Shop+1",
             "rank": 5,
             "saleOut": 45,
             "location": "Taipei",
@@ -34,7 +37,8 @@ export default function ShopIndex() {
             "discount": 15,
             "price": 75
         }, {
-            "photo": "https://via.placeholder.com/150?text=Shop+1",
+            "_id": "12456457",
+            "photo":"https://via.placeholder.com/150?text=Shop+1",
             "rank": 5,
             "saleOut": 45,
             "location": "Taipei",
@@ -42,7 +46,8 @@ export default function ShopIndex() {
             "discount": 15,
             "price": 75
         }, {
-            "photo": "https://via.placeholder.com/150?text=Shop+1",
+            "_id": "12456457",
+            "photo":"https://via.placeholder.com/150?text=Shop+1",
             "rank": 5,
             "saleOut": 45,
             "location": "Taipei",
@@ -51,6 +56,7 @@ export default function ShopIndex() {
             "price": 75
         },
         {
+            "_id": "12456457",
             "photo": "https://via.placeholder.com/150?text=Shop+2",
             "rank": 4,
             "saleOut": 67,
@@ -60,6 +66,7 @@ export default function ShopIndex() {
             "price": 50
         },
         {
+            "_id": "12456457",
             "photo": "https://via.placeholder.com/150?text=Shop+3",
             "rank": 3,
             "saleOut": 33,
@@ -69,6 +76,7 @@ export default function ShopIndex() {
             "price": 40
         },
         {
+            "_id": "12456457",
             "photo": "https://via.placeholder.com/150?text=Shop+4",
             "rank": 2,
             "saleOut": 12,
@@ -78,6 +86,7 @@ export default function ShopIndex() {
             "price": 65
         },
         {
+            "_id": "12456457",
             "photo": "https://via.placeholder.com/150?text=Shop+5",
             "rank": 1,
             "saleOut": 78,
@@ -87,6 +96,7 @@ export default function ShopIndex() {
             "price": 80
         },
         {
+            "_id": "12456457",
             "photo": "https://via.placeholder.com/150?text=Shop+6",
             "rank": 4,
             "saleOut": 55,
@@ -96,6 +106,7 @@ export default function ShopIndex() {
             "price": 35
         },
         {
+            "_id": "12456457",
             "photo": "https://via.placeholder.com/150?text=Shop+7",
             "rank": 3,
             "saleOut": 22,
@@ -105,6 +116,7 @@ export default function ShopIndex() {
             "price": 90
         },
         {
+            "_id": "12456457",
             "photo": "https://via.placeholder.com/150?text=Shop+8",
             "rank": 5,
             "saleOut": 61,
@@ -114,6 +126,7 @@ export default function ShopIndex() {
             "price": 55
         },
         {
+            "_id": "12456457",
             "photo": "https://via.placeholder.com/150?text=Shop+9",
             "rank": 2,
             "saleOut": 19,
@@ -123,6 +136,7 @@ export default function ShopIndex() {
             "price": 60
         },
         {
+            "_id": "12456457",
             "photo": "https://via.placeholder.com/150?text=Shop+10",
             "rank": 1,
             "saleOut": 84,
@@ -132,6 +146,7 @@ export default function ShopIndex() {
             "price": 70
         },
         {
+            "_id": "12456457",
             "photo": "https://via.placeholder.com/150?text=Shop+11",
             "rank": 3,
             "saleOut": 40,
@@ -141,6 +156,7 @@ export default function ShopIndex() {
             "price": 48
         },
         {
+            "_id": "12456457",
             "photo": "https://via.placeholder.com/150?text=Shop+12",
             "rank": 4,
             "saleOut": 71,
@@ -150,6 +166,7 @@ export default function ShopIndex() {
             "price": 53
         },
         {
+            "_id": "12456457",
             "photo": "https://via.placeholder.com/150?text=Shop+13",
             "rank": 5,
             "saleOut": 35,
@@ -159,6 +176,7 @@ export default function ShopIndex() {
             "price": 65
         },
         {
+            "_id": "12456457",
             "photo": "https://via.placeholder.com/150?text=Shop+14",
             "rank": 2,
             "saleOut": 27,
@@ -168,6 +186,7 @@ export default function ShopIndex() {
             "price": 75
         },
         {
+            "_id": "12456457",
             "photo": "https://via.placeholder.com/150?text=Shop+15",
             "rank": 1,
             "saleOut": 89,
@@ -177,6 +196,7 @@ export default function ShopIndex() {
             "price": 85
         },
         {
+            "_id": "12456457",
             "photo": "https://via.placeholder.com/150?text=Shop+16",
             "rank": 3,
             "saleOut": 58,
@@ -186,6 +206,7 @@ export default function ShopIndex() {
             "price": 67
         },
         {
+            "_id": "12456457",
             "photo": "https://via.placeholder.com/150?text=Shop+17",
             "rank": 4,
             "saleOut": 63,
@@ -195,6 +216,7 @@ export default function ShopIndex() {
             "price": 42
         },
         {
+            "_id": "12456457",
             "photo": "https://via.placeholder.com/150?text=Shop+17",
             "rank": 4,
             "saleOut": 63,
@@ -204,6 +226,7 @@ export default function ShopIndex() {
             "price": 42
         },
         {
+            "_id": "12456457",
             "photo": "https://via.placeholder.com/150?text=Shop+17",
             "rank": 4,
             "saleOut": 63,
@@ -213,6 +236,7 @@ export default function ShopIndex() {
             "price": 42
         },
         {
+            "_id": "12456457",
             "photo": "https://via.placeholder.com/150?text=Shop+17",
             "rank": 4,
             "saleOut": 63,
@@ -222,6 +246,7 @@ export default function ShopIndex() {
             "price": 42
         },
         {
+            "_id": "12456457",
             "photo": "https://via.placeholder.com/150?text=Shop+17",
             "rank": 4,
             "saleOut": 63,
@@ -231,6 +256,7 @@ export default function ShopIndex() {
             "price": 42
         },
         {
+            "_id": "12456457",
             "photo": "https://via.placeholder.com/150?text=Shop+18",
             "rank": 5,
             "saleOut": 38,
@@ -240,6 +266,7 @@ export default function ShopIndex() {
             "price": 55
         },
         {
+            "_id": "12456457",
             "photo": "https://via.placeholder.com/150?text=Shop+19",
             "rank": 2,
             "saleOut": 29,
@@ -249,6 +276,7 @@ export default function ShopIndex() {
             "price": 62
         },
         {
+            "_id": "12456457",
             "photo": "https://via.placeholder.com/150?text=Shop+20",
             "rank": 1,
             "saleOut": 92,

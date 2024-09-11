@@ -59,8 +59,6 @@ export default function Login(props: {
     }, [sign])
     return (
         <div className=" h-dvh w-full  rounded-lg  drop-shadow-2xl shadow-inner shadow-gray-900 backdrop-blur-md  bg-white/50 ">
-
-
             <motion.div className=" h-full w-full  text-center space-y-8 flex flex-col justify-center content-center "
                 initial={{
                     x: 0,

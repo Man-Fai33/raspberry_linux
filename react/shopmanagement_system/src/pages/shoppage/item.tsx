@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
+import { useDispatch, useSelector } from 'react-redux';
+import { addItem, RootState } from '../../components/redux/store';
 //店鋪的商品
 export default function ItemInformation() {
     const location = useLocation();
@@ -14,7 +16,8 @@ export default function ItemInformation() {
     useEffect(() => {
         console.log(data)
     }, [data])
-
+    const dispatch = useDispatch();
+    const hi: ShopItemModels[] = useSelector((state: RootState) => state.shopcart)
     return (<div className="w-full flex  justify-center">
         <div className="w-10/12  mt-10 space-y-4 ">
             <div className=' w-full bg-slate-300 p-6 rounded-md '>
@@ -73,7 +76,10 @@ export default function ItemInformation() {
                             </div>
                         </div>
                         <div className='space-x-5 '>
-                            <Button variant='contained' ><AddShoppingCartOutlinedIcon />加入購物車</Button>
+                            <Button variant='contained' onClick={() => {
+                                dispatch(addItem(data))
+
+                            }} ><AddShoppingCartOutlinedIcon />加入購物車</Button>
                             <Button variant='contained' color='error'>直接購買</Button>
                         </div>
                     </Stack>

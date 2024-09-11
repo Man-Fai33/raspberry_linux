@@ -1,4 +1,5 @@
 export class ShopItemModels {
+    _id: string = "";
     // productId: string="";
     photo: string = "";
     rank: number = 0;

@@ -23,11 +23,13 @@ export default function Register(props: {
     const UserRegister = async () => {
         let error: Boolean = false
         try {
-            errorDisplay.email = FuncHelper.validateInputError(user_info.email) && !FuncHelper.validateEmail(user_info.email)
+            errorDisplay.email = FuncHelper.validateInputError(user_info.email) || !FuncHelper.validateEmail(user_info.email)
+
             errorDisplay.name = FuncHelper.validateInputError(user_info.username)
             errorDisplay.pwd = FuncHelper.validateInputError(user_info.password)
 
             let error = errorDisplay.email || errorDisplay.pwd || errorDisplay.name;
+
             if (error === false) {
 
                 ApiHelper.AsyncUserCreate(user_info).then((res) => {
@@ -35,8 +37,6 @@ export default function Register(props: {
                         Swal.fire('登入失敗', res.message, "error");
                     } else {
                         Swal.fire(res.message)
-
-
                         setUserInfo(new SignUpUser())
                         props.Registered()
                     }

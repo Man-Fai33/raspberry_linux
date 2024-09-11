@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState, clearUser } from './redux/store';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import { ShopItemModels } from '../models/shopmodelsl';
 const pages = [
     { "name": '主頁', "link": "/home" },
     { "name": '購物', "link": "/shop" },
@@ -34,7 +35,7 @@ export default function TopAppBar() {
     const [user, setUser] = useState<SignedUser>(data)
     const [shortMenu, setShortMenu] = React.useState<null | HTMLElement>(null);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const ShopCart = useRef(null);
+
     const [LoginMenu, setLoginMenu] = React.useState<null | HTMLElement>(null);
     const handleUserMenuOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
         setLoginMenu(event.currentTarget);
@@ -51,9 +52,10 @@ export default function TopAppBar() {
     const handleShortMenuClose = () => {
         setShortMenu(null);
     };
+    const ShopCart: ShopItemModels[] = useSelector((state: RootState) => state.shopcart)
     useEffect(() => {
-
-    }, [])
+        ShopCart.map((item) => console.log(item))
+    }, [ShopCart])
 
     useEffect(() => {
         setUser(data)
@@ -152,9 +154,10 @@ export default function TopAppBar() {
                                 ))}
                             </Box>
 
-                            <Box className=" w-14" sx={{ flexGrow: 0 }}>
-                                <IconButton  >
-                                    {ShopCart.current ? <ShoppingCartIcon /> : <ShoppingCartOutlinedIcon />}
+                            <Box className=" w-24" sx={{ flexGrow: 0 }}>
+                                {ShopCart.length}
+                                <IconButton onClick={() => { ShopCart.map(item => alert(item.title)) }}  >
+                                    {ShopCart.length > 0 ? <ShoppingCartIcon /> : <ShoppingCartOutlinedIcon />}
                                 </IconButton>
                             </Box>
 
