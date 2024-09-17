@@ -19,10 +19,11 @@ const Helper = {
         return message
     },
     generateFakeShop() {
-        const fakeImage = Array.from({ length: faker.number.int({ min: 0, max: 10 }) }).map(() => (
-            faker.image.url({ width: 600, height: 500})
-        ));
+
         const generateData = () => {
+            const fakeImage = Array.from({ length: faker.number.int({ min: 0, max: 10 }) }).map(() => (
+                faker.image.url({ width: 600, height: 500 })
+            ));
             return {
                 _id: faker.string.uuid(),
                 photo: fakeImage,
@@ -42,33 +43,34 @@ const Helper = {
 
     },
     generateFakeBlog() {
-        const fakeContent = [
-            {
-                type: 'text',
-                value: faker.lorem.paragraph()
-            },
-            {
-                type: 'image',
-                value: faker.image.url()
-            }
-        ];
 
-        const fakeTags = [faker.lorem.word(), faker.lorem.word(), faker.lorem.word()];
-
-        const fakeLike = Array.from({ length: faker.number.int({ min: 8, max: 10 }) }).map(() => ({
-            _id: faker.string.uuid()
-        }));
-
-        const fakeKeeper = Array.from({ length: faker.number.int({ min: 0, max: 5 }) }).map(() => ({
-            _id: faker.string.uuid()
-        }));
-
-        const fakeCommit = Array.from({ length: faker.number.int({ min: 0, max: 50 }) }).map(() => ({
-            _id: faker.person.jobTitle()
-        }));
 
 
         const generateData = () => {
+            const fakeContent = [
+                {
+                    type: 'text',
+                    value: faker.lorem.paragraph()
+                },
+                {
+                    type: 'image',
+                    value: faker.image.url()
+                }
+            ];
+
+            const fakeTags = [faker.lorem.word(), faker.lorem.word(), faker.lorem.word()];
+
+            const fakeLike = Array.from({ length: faker.number.int({ min: 8, max: 10 }) }).map(() => ({
+                _id: faker.string.uuid()
+            }));
+
+            const fakeKeeper = Array.from({ length: faker.number.int({ min: 0, max: 5 }) }).map(() => ({
+                _id: faker.string.uuid()
+            }));
+
+            const fakeCommit = Array.from({ length: faker.number.int({ min: 0, max: 50 }) }).map(() => ({
+                _id: faker.person.jobTitle()
+            }));
             return {
                 _id: faker.string.uuid(),
                 ownerId: faker.string.uuid(),

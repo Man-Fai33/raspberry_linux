@@ -43,14 +43,14 @@ export default function ShopItemFilter(props: {
                 </div>
                 {/* <Button variant="contained"> 評價</Button> */}
                 {/* <Button variant="contained"> 價格範圍</Button> */}
-                <div className=" absolute right-0 top-0 w-1/2 flex-nowrap  flex justify-end">
+                <div className=" absolute right-0 top-0 w-1/2 flex-nowrap  flex justify-end   ">
                     <InputBase
                         value={searchText || ''}
-                        className=" w-4/5"
+                        className=" w-4/5 bg-stone-200 rounded-md p-2 hover:bg-stone-300"
                         placeholder="查詢"
                         onChange={(e) => setSearchText(e.target.value.trim())}
                     />
-                    <IconButton type="button" sx={{ p: '10px' }} aria-label="search" onClick={() => {
+                    <IconButton className=" rounded-xl  hover:bg-gray-400"  type="button" sx={{ p: '10px' }} aria-label="search" onClick={() => {
                         props.setFilter({ ...props.filter, search: searchText })
                         if (searchText !== '') {
                             props.setCurrentPage(1)
