@@ -18,7 +18,7 @@ export default function ShopIndex() {
 
     //可供選擇顯示的數量
     const [displayItemNum, setDisplayItemNum] = useState<number>(12)
-    const [totalPageCount, setTotalPageCount] = useState<number>(TotalPageCounter(list,displayItemNum))
+    const [totalPageCount, setTotalPageCount] = useState<number>(TotalPageCounter(list, displayItemNum))
 
     //顯示item的數目
     const [currentPage, setCurrentPage] = useState<number>(1);
@@ -42,19 +42,16 @@ export default function ShopIndex() {
         } else if (filter.totalTypeChoice === "hot") {
             result.sort((a, b) => b.saleOut - a.saleOut);
         }
-
-
         if (filter.price === "higher") {
-
             result.sort((a, b) => (b.price * (b.discount / 100)) - (a.price * (a.discount / 100)));
-        }
-        if (filter.price === "lower") {
+        } else if (filter.price === "lower") {
             result.sort((a, b) => (a.price * (a.discount / 100)) - (b.price * (b.discount / 100)));
         }
         const LastItemIndex = currentPage * displayItemNum
         const startItemIndex = LastItemIndex - displayItemNum
- 
-        setTotalPageCount(TotalPageCounter(result,displayItemNum))
+
+        setTotalPageCount(TotalPageCounter(result, displayItemNum))
+
         return result.slice(startItemIndex, LastItemIndex)
     }, [list, filter.search, filter.totalTypeChoice, filter.price, currentPage, displayItemNum])
 

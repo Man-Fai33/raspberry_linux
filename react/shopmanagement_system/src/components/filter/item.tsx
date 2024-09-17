@@ -23,24 +23,24 @@ export default function ShopItemFilter(props: {
         switch (newPage) {
             case 'prePage':
                 props.setCurrentPage(props.currentPage - 1)
-                console.log(props.currentPage)
+
                 break;
             case 'nextPage':
                 props.setCurrentPage(props.currentPage + 1)
-                console.log(props.currentPage)
+
                 break;
+
         }
     };
 
     const [searchText, setSearchText] = useState<string>('')
-    useEffect(()=>{console.log(props.filter.search)},[props.filter.search])
+    useEffect(() => { console.log(props.filter.search) }, [props.filter.search])
     return (
         <div className="  bg-slate-100 pt-2 pb-2 pr-3 pl-3 rounded-md space-y-3">
             <div className=" space-x-2 relative">
                 <div className="">
                     <Button variant="contained" disabled> 分類</Button>
                 </div>
-
                 {/* <Button variant="contained"> 評價</Button> */}
                 {/* <Button variant="contained"> 價格範圍</Button> */}
                 <div className=" absolute right-0 top-0 w-1/2 flex-nowrap  flex justify-end">
@@ -48,14 +48,13 @@ export default function ShopItemFilter(props: {
                         value={searchText || ''}
                         className=" w-4/5"
                         placeholder="查詢"
-                        onChange={(e) => setSearchText(e.target.value)}
+                        onChange={(e) => setSearchText(e.target.value.trim())}
                     />
                     <IconButton type="button" sx={{ p: '10px' }} aria-label="search" onClick={() => {
-                 
                         props.setFilter({ ...props.filter, search: searchText })
-                        
-                        
-
+                        if (searchText !== '') {
+                            props.setCurrentPage(1)
+                        }
                     }}   >
                         <SearchIcon />
                     </IconButton>

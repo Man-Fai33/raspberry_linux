@@ -16,17 +16,17 @@ export const FuncHelper = {
     textformat(str: string | undefined) {
         return <pre>{str}</pre>
     },
-    CountOfTwo(input: number) {
+    CountOfTwo(input: number): number {
         if (input % 2 === 0) {
             return Math.round(input)
         }
-        return input.toFixed(2)
+        return Number(input.toFixed(2))
     },
-    CountOfOne(input: number) {
+    CountOfOne(input: number): number {
         if (input % 2 === 0) {
             return Math.round(input)
         }
-        return input.toFixed(1)
+        return Number(input.toFixed(1))
     },
     compareNumbers(a: number, b: number) {
         return a - b;

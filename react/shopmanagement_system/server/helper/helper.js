@@ -19,10 +19,13 @@ const Helper = {
         return message
     },
     generateFakeShop() {
+        const fakeImage = Array.from({ length: faker.number.int({ min: 0, max: 10 }) }).map(() => (
+            faker.image.url({ width: 600, height: 500})
+        ));
         const generateData = () => {
             return {
                 _id: faker.string.uuid(),
-                photo: faker.image.url(),
+                photo: fakeImage,
                 title: faker.commerce.productName(),
                 price: faker.number.int({ min: 0, max: 300 }),
                 location: faker.location.city(),
@@ -37,6 +40,49 @@ const Helper = {
     },
     generateFakeShopItem() {
 
+    },
+    generateFakeBlog() {
+        const fakeContent = [
+            {
+                type: 'text',
+                value: faker.lorem.paragraph()
+            },
+            {
+                type: 'image',
+                value: faker.image.url()
+            }
+        ];
+
+        const fakeTags = [faker.lorem.word(), faker.lorem.word(), faker.lorem.word()];
+
+        const fakeLike = Array.from({ length: faker.number.int({ min: 8, max: 10 }) }).map(() => ({
+            _id: faker.string.uuid()
+        }));
+
+        const fakeKeeper = Array.from({ length: faker.number.int({ min: 0, max: 5 }) }).map(() => ({
+            _id: faker.string.uuid()
+        }));
+
+        const fakeCommit = Array.from({ length: faker.number.int({ min: 0, max: 50 }) }).map(() => ({
+            _id: faker.person.jobTitle()
+        }));
+
+
+        const generateData = () => {
+            return {
+                _id: faker.string.uuid(),
+                ownerId: faker.string.uuid(),
+                title: faker.lorem.sentence(),
+                content: fakeContent,
+                tags: fakeTags,
+                like: fakeLike,
+                keeper: fakeKeeper,
+                createdAt: faker.date.past(),
+                comments: fakeCommit,
+                status: faker.helpers.arrayElement(['active', 'draft', 'archived'])
+            };
+        }
+        return Helper.generateCount(100, generateData)
     },
     generateCount(count, fn) {
         const list = [];

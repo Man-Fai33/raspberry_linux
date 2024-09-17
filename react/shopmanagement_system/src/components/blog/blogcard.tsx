@@ -16,7 +16,7 @@ export default function BlogCard(props: {
 }) {
     const [btnMore, setBtnMore] = React.useState<null | HTMLElement>(null);
 
-
+    console.log(props.data)
     return (<div className='grid grid-rows-4 grid-flow-col gap bg-slate-200 p-4 rounded-md'>
         <div className='icon col-span-5 h-fit '>
             <div className=' relative w-full flex flex-row  items-center space-x-2 '>
@@ -71,19 +71,20 @@ export default function BlogCard(props: {
                         }} />   </IconButton>
                     {props.data.comments.length}
                 </div>
+
+
                 {/* keep button */}
                 <div className='grid-cols-1'>
                     <IconButton onClick={() => { }}>
                         <BookmarkRoundedIcon fontSize='medium' sx={{
-                            color:
-                                props.data.keeper.some((value) => value._id === props.userid) ? blue[600] : grey[500]
+                            color: props.data.keeper.some((value) => value._id === props.userid) ? blue[600] : grey[500]
                         }} />
                     </IconButton>
                     {props.data.keeper.length}
                 </div>
             </div>
         </div>
-        <div className=' relative row-span-3  col-span-1 flex justify-end'>
+        <div className={` relative row-span-3  col-span-1 flex justify-end `}>
             <img className='bg-cover rounded-md' style={{ width: '109px', height: '110px' }} src={Icon} alt="img" />
         </div>
 

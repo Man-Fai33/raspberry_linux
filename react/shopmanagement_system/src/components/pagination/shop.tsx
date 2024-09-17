@@ -21,7 +21,7 @@ export default function ShopPagination(props: {
                     />
                 )}
                 page={props.currentItem}
-                onChange={(event: React.ChangeEvent<unknown>, value: number) =>{props.setCurrentItem( value)}}
+                onChange={(event: React.ChangeEvent<unknown>, value: number) => { props.setCurrentItem(value) }}
             />
         </Stack>
     </>

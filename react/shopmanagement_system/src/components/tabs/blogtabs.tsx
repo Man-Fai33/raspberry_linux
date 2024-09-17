@@ -60,7 +60,7 @@ function a11yProps(index: number) { return { id: `simple-tab-${index}`, 'aria-co
 export default function BlogTabs() {
 
     const [isPending, startTransaction] = useTransition()
-    const [loading, ] = useState<boolean>(false)
+    const [loading,] = useState<boolean>(false)
     const [value, setValue] = React.useState(0);
     const [blog, setBlog] = useState<Blog[]>([])
     const data: SignedUser = useSelector((state: RootState) => state.user)
@@ -69,7 +69,10 @@ export default function BlogTabs() {
     useEffect(() => {
         const LoadBlog = async () => {
 
-            await ApiHelper.AsyncBlogs().then((result: Blog[]) => { setBlog(result) })
+            await ApiHelper.AsyncBlogs().then((result: Blog[]) => {
+                console.log(result);
+                setBlog(result)
+            })
         }
         LoadBlog()
     }, []);
@@ -87,7 +90,7 @@ export default function BlogTabs() {
 
             <CustomTabPanel value={value} index={0}>
                 <>
-                    {(loading) ? startTransaction(() => { blog.map(blog => <BlogCard key={blog._id} data={blog} userid={data._id} />) }) : <div> loading..</div>}
+                    {blog.map(blog => <BlogCard key={blog._id} data={blog} userid={data._id} />)}
                 </>
             </CustomTabPanel>
 

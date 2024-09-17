@@ -1,12 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const Blog = require('../models/blog');
+const { Helper } = require('../helper/helper');
 
 //
 router.get('/', async (req, res) => {
     try {
         const blogs = await Blog.find();
-        res.json(blogs);
+
+        res.json(Helper.generateFakeBlog());
     } catch (e) {
         res.status(500).json({ message: e.message });
     }
@@ -26,7 +28,7 @@ router.post('/', async (req, res) => {
         res.status(400).json({ message: err.message });
     }
 });
- 
+
 router.patch('/:id', getBlog, async (req, res) => {
     if (req.body.title != null) {
         res.blog.title = req.body.title;
