@@ -26,8 +26,7 @@ router.post('/', async (req, res) => {
         res.status(400).json({ message: err.message });
     }
 });
-
-// 更新博客文章
+ 
 router.patch('/:id', getBlog, async (req, res) => {
     if (req.body.title != null) {
         res.blog.title = req.body.title;
@@ -51,7 +50,6 @@ router.patch('/:id', getBlog, async (req, res) => {
     }
 });
 
-// 删除博客文章
 router.delete('/:id', getBlog, async (req, res) => {
     try {
         await res.blog.remove();

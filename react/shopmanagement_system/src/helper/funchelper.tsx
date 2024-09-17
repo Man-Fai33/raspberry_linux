@@ -15,6 +15,21 @@ export const FuncHelper = {
     },
     textformat(str: string | undefined) {
         return <pre>{str}</pre>
+    },
+    CountOfTwo(input: number) {
+        if (input % 2 === 0) {
+            return Math.round(input)
+        }
+        return input.toFixed(2)
+    },
+    CountOfOne(input: number) {
+        if (input % 2 === 0) {
+            return Math.round(input)
+        }
+        return input.toFixed(1)
+    },
+    compareNumbers(a: number, b: number) {
+        return a - b;
     }
 
 }

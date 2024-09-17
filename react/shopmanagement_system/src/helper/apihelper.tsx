@@ -117,6 +117,20 @@ export const ApiHelper = {
             let msg = {};
             return msg;
         }
+    },
+    AsyncShopItem: async () => {
+        try {
+            let response = await fetch(URL.Url.ShopItem, {
+                headers: header,
+                method: methods.get,
+            })
+            let respJson = await response.json();
+            return respJson;
+        } catch (e) {
+            console.log(e)
+            let msg = {};
+            return msg;
+        }
     }
 }
 

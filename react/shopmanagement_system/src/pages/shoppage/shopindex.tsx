@@ -4,311 +4,77 @@ import { ShopItemModels } from "../../models/shopmodelsl";
 import ShopItem from "../../components/item/shopitem";
 import ShopItemFilter from "../../components/filter/item";
 import { FilterType } from "../../models/filterModels";
+import { ApiHelper } from "../../helper/apihelper";
+const TotalPageCounter = (list: ShopItemModels[], num: number): number => {
+    return list.length % num === 0 ? list.length / num : Math.ceil(list.length / num)
+
+}
 
 
 //購物網站的主頁
 export default function ShopIndex() {
-    const [list,] = useState<ShopItemModels[]>([
-        {
-            "_id": "12456457",
-            "photo": "https://via.placeholder.com/150?text=Shop+1",
-            "rank": 5,
-            "saleOut": 45,
-            "location": "Taipei",
-            "title": "Shop A",
-            "discount": 15,
-            "price": 75
-        }, {
-            "_id": "12456457",
-            "photo":"https://via.placeholder.com/150?text=Shop+1",
-            "rank": 5,
-            "saleOut": 45,
-            "location": "Taipei",
-            "title": "Shop A",
-            "discount": 15,
-            "price": 75
-        }, {
-            "_id": "12456457",
-            "photo":"https://via.placeholder.com/150?text=Shop+1",
-            "rank": 5,
-            "saleOut": 45,
-            "location": "Taipei",
-            "title": "Shop A",
-            "discount": 15,
-            "price": 75
-        }, {
-            "_id": "12456457",
-            "photo":"https://via.placeholder.com/150?text=Shop+1",
-            "rank": 5,
-            "saleOut": 45,
-            "location": "Taipei",
-            "title": "Shop A",
-            "discount": 15,
-            "price": 75
-        }, {
-            "_id": "12456457",
-            "photo":"https://via.placeholder.com/150?text=Shop+1",
-            "rank": 5,
-            "saleOut": 45,
-            "location": "Taipei",
-            "title": "Shop A",
-            "discount": 15,
-            "price": 75
-        },
-        {
-            "_id": "12456457",
-            "photo": "https://via.placeholder.com/150?text=Shop+2",
-            "rank": 4,
-            "saleOut": 67,
-            "location": "Kaohsiung",
-            "title": "Shop B",
-            "discount": 20,
-            "price": 50
-        },
-        {
-            "_id": "12456457",
-            "photo": "https://via.placeholder.com/150?text=Shop+3",
-            "rank": 3,
-            "saleOut": 33,
-            "location": "Taichung",
-            "title": "Shop C",
-            "discount": 25,
-            "price": 40
-        },
-        {
-            "_id": "12456457",
-            "photo": "https://via.placeholder.com/150?text=Shop+4",
-            "rank": 2,
-            "saleOut": 12,
-            "location": "Tainan",
-            "title": "Shop D",
-            "discount": 30,
-            "price": 65
-        },
-        {
-            "_id": "12456457",
-            "photo": "https://via.placeholder.com/150?text=Shop+5",
-            "rank": 1,
-            "saleOut": 78,
-            "location": "Hsinchu",
-            "title": "Shop E",
-            "discount": 40,
-            "price": 80
-        },
-        {
-            "_id": "12456457",
-            "photo": "https://via.placeholder.com/150?text=Shop+6",
-            "rank": 4,
-            "saleOut": 55,
-            "location": "Taipei",
-            "title": "Shop F",
-            "discount": 18,
-            "price": 35
-        },
-        {
-            "_id": "12456457",
-            "photo": "https://via.placeholder.com/150?text=Shop+7",
-            "rank": 3,
-            "saleOut": 22,
-            "location": "Kaohsiung",
-            "title": "Shop G",
-            "discount": 50,
-            "price": 90
-        },
-        {
-            "_id": "12456457",
-            "photo": "https://via.placeholder.com/150?text=Shop+8",
-            "rank": 5,
-            "saleOut": 61,
-            "location": "Taichung",
-            "title": "Shop H",
-            "discount": 10,
-            "price": 55
-        },
-        {
-            "_id": "12456457",
-            "photo": "https://via.placeholder.com/150?text=Shop+9",
-            "rank": 2,
-            "saleOut": 19,
-            "location": "Tainan",
-            "title": "Shop I",
-            "discount": 22,
-            "price": 60
-        },
-        {
-            "_id": "12456457",
-            "photo": "https://via.placeholder.com/150?text=Shop+10",
-            "rank": 1,
-            "saleOut": 84,
-            "location": "Hsinchu",
-            "title": "Shop J",
-            "discount": 35,
-            "price": 70
-        },
-        {
-            "_id": "12456457",
-            "photo": "https://via.placeholder.com/150?text=Shop+11",
-            "rank": 3,
-            "saleOut": 40,
-            "location": "Taipei",
-            "title": "Shop K",
-            "discount": 25,
-            "price": 48
-        },
-        {
-            "_id": "12456457",
-            "photo": "https://via.placeholder.com/150?text=Shop+12",
-            "rank": 4,
-            "saleOut": 71,
-            "location": "Kaohsiung",
-            "title": "Shop L",
-            "discount": 20,
-            "price": 53
-        },
-        {
-            "_id": "12456457",
-            "photo": "https://via.placeholder.com/150?text=Shop+13",
-            "rank": 5,
-            "saleOut": 35,
-            "location": "Taichung",
-            "title": "Shop M",
-            "discount": 15,
-            "price": 65
-        },
-        {
-            "_id": "12456457",
-            "photo": "https://via.placeholder.com/150?text=Shop+14",
-            "rank": 2,
-            "saleOut": 27,
-            "location": "Tainan",
-            "title": "Shop N",
-            "discount": 40,
-            "price": 75
-        },
-        {
-            "_id": "12456457",
-            "photo": "https://via.placeholder.com/150?text=Shop+15",
-            "rank": 1,
-            "saleOut": 89,
-            "location": "Hsinchu",
-            "title": "Shop O",
-            "discount": 10,
-            "price": 85
-        },
-        {
-            "_id": "12456457",
-            "photo": "https://via.placeholder.com/150?text=Shop+16",
-            "rank": 3,
-            "saleOut": 58,
-            "location": "Taipei",
-            "title": "Shop P",
-            "discount": 30,
-            "price": 67
-        },
-        {
-            "_id": "12456457",
-            "photo": "https://via.placeholder.com/150?text=Shop+17",
-            "rank": 4,
-            "saleOut": 63,
-            "location": "Kaohsiung",
-            "title": "Shop Q",
-            "discount": 12,
-            "price": 42
-        },
-        {
-            "_id": "12456457",
-            "photo": "https://via.placeholder.com/150?text=Shop+17",
-            "rank": 4,
-            "saleOut": 63,
-            "location": "Kaohsiung",
-            "title": "Shop Q",
-            "discount": 12,
-            "price": 42
-        },
-        {
-            "_id": "12456457",
-            "photo": "https://via.placeholder.com/150?text=Shop+17",
-            "rank": 4,
-            "saleOut": 63,
-            "location": "Kaohsiung",
-            "title": "Shop Q",
-            "discount": 12,
-            "price": 42
-        },
-        {
-            "_id": "12456457",
-            "photo": "https://via.placeholder.com/150?text=Shop+17",
-            "rank": 4,
-            "saleOut": 63,
-            "location": "Kaohsiung",
-            "title": "Shop Q",
-            "discount": 12,
-            "price": 42
-        },
-        {
-            "_id": "12456457",
-            "photo": "https://via.placeholder.com/150?text=Shop+17",
-            "rank": 4,
-            "saleOut": 63,
-            "location": "Kaohsiung",
-            "title": "Shop Q",
-            "discount": 12,
-            "price": 42
-        },
-        {
-            "_id": "12456457",
-            "photo": "https://via.placeholder.com/150?text=Shop+18",
-            "rank": 5,
-            "saleOut": 38,
-            "location": "Taichung",
-            "title": "Shop R",
-            "discount": 18,
-            "price": 55
-        },
-        {
-            "_id": "12456457",
-            "photo": "https://via.placeholder.com/150?text=Shop+19",
-            "rank": 2,
-            "saleOut": 29,
-            "location": "Tainan",
-            "title": "Shop S",
-            "discount": 25,
-            "price": 62
-        },
-        {
-            "_id": "12456457",
-            "photo": "https://via.placeholder.com/150?text=Shop+20",
-            "rank": 1,
-            "saleOut": 92,
-            "location": "Hsinchu",
-            "title": "Shop T",
-            "discount": 20,
-            "price": 78
-        }
-    ]
-    )
+    const [list, setList] = useState<ShopItemModels[]>([])
+    const [filterList, setFilterList] = useState<ShopItemModels[]>([])
 
     //可供選擇顯示的數量
-    const displayItemNum = 12
+    const [displayItemNum, setDisplayItemNum] = useState<number>(12)
+    const [totalPageCount, setTotalPageCount] = useState<number>(TotalPageCounter(list,displayItemNum))
 
     //顯示item的數目
     const [currentPage, setCurrentPage] = useState<number>(1);
-
     const [filter, setFilter] = useState<FilterType>(new FilterType())
 
-    const slicelist = useMemo(() => {
+
+
+
+
+    //計算
+    const sliceList = useMemo(() => {
+        let result = list;
+
+
+        if (filter.search) {
+            result = result.filter(item => item.title.match(filter.search))
+        }
+
+        if (filter.totalTypeChoice === "totalRank") {
+            result.sort((a, b) => b.rank - a.rank);
+        } else if (filter.totalTypeChoice === "hot") {
+            result.sort((a, b) => b.saleOut - a.saleOut);
+        }
+
+
+        if (filter.price === "higher") {
+
+            result.sort((a, b) => (b.price * (b.discount / 100)) - (a.price * (a.discount / 100)));
+        }
+        if (filter.price === "lower") {
+            result.sort((a, b) => (a.price * (a.discount / 100)) - (b.price * (b.discount / 100)));
+        }
         const LastItemIndex = currentPage * displayItemNum
         const startItemIndex = LastItemIndex - displayItemNum
+ 
+        setTotalPageCount(TotalPageCounter(result,displayItemNum))
+        return result.slice(startItemIndex, LastItemIndex)
+    }, [list, filter.search, filter.totalTypeChoice, filter.price, currentPage, displayItemNum])
 
-        return list.slice(startItemIndex, LastItemIndex)
-    }, [currentPage, list])
-
-    const totalPageCount = list.length % displayItemNum === 0 ? list.length / displayItemNum : Math.ceil(list.length / displayItemNum)
 
 
     useEffect(() => {
-        console.log(filter.selectType)
-    }, [filter])
+        ApiHelper.AsyncShopItem().then(item => setList(item))
+    }, [])
+
+
+    useEffect(() => {
+        setFilterList(sliceList)
+    }, [sliceList])
+
+
+
+
+    function ItemListDisplay() {
+        return filterList.map((item, key) => <ShopItem key={key} data={item} />)
+    }
 
     return (
         <div className="flex justify-center  w-full">
@@ -319,11 +85,11 @@ export default function ShopIndex() {
                 {/* shop item */}
                 <div className="relative h-fit">
                     <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-8 p-3">
-                        {slicelist.map((item, key) => <ShopItem key={key} data={item} />)}
+                        {ItemListDisplay()}
                     </div>
-                    <div className="relative bottom-0 w-full  flex justify-center pt-1 pb-1 bg-white/40  mt-2 mb-2">
+                    <div className={`relative bottom-0 w-full  flex justify-center pt-1 pb-1 bg-white/40  mt-2 mb-2 `}>
                         <ShopPagination
-                            totalItems={list.length % displayItemNum === 0 ? list.length / displayItemNum : Math.ceil(list.length / displayItemNum)}
+                            totalItems={totalPageCount}
                             currentItem={currentPage}
                             setCurrentItem={setCurrentPage}
                         />

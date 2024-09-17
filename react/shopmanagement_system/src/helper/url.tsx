@@ -6,6 +6,8 @@ export const Url = {
     CV: (HOST + "/cv"),
     Upload: (HOST + "/images"),
     Blog: (HOST + '/blog'),
+    Shop: (HOST + "/shop"),
+    ShopItem: (HOST + "/shop/item"),
 
 }
 

@@ -1,5 +1,5 @@
 export class FilterType {
     search: string = ""
-    selectType: string =""
-
+    price: string = ""
+    totalTypeChoice: string = ""
 }
