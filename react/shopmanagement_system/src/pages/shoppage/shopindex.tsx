@@ -34,7 +34,7 @@ export default function ShopIndex() {
 
 
         if (filter.search) {
-            result = result.filter(item => item.title.match(filter.search))
+            result = result.filter(item => item.name.match(filter.search))
         }
 
         if (filter.totalTypeChoice === "totalRank") {

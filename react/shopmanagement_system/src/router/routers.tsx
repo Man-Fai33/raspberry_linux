@@ -29,7 +29,7 @@ const blog = [
 
 //shop
 const shop = [
-    { path: '/shop', element: <ShopIndex /> },
+    { path: 'shop', element: <ShopIndex /> },
     { path: 'shop/shop', element: <Shop /> },
     { path: 'shop/item', element: <ItemInformation /> },
     { path: 'shop/shopcart', element: <ShopCartPage /> }

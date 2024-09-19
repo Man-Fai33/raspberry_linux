@@ -24,6 +24,7 @@ const pages = [
 ]
 const settings = [
     { "name": '帳號', "link": "/account" },
+    { "name": '賣場管理', "link": "" }
     // { "name": 'Account', "link": "/" },
     // { "name": 'Dashboard', "link": "/" },
 ]

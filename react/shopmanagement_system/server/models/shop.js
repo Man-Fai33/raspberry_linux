@@ -1,12 +1,11 @@
 const mongoose = require('mongoose')
 const Shop = new mongoose.Schema({
-    Icon: { type: String, default: "" },
-    Name: { type: String, required: true },
-    Type: { type: String, required: true },
-    Location: { type: String, required: true },
-    ManagerID: { type: String, required: true },
-    Introduction: { type: String, required: false },
-    operation: { type: Boolean, default: false },
+    name: { type: String, required: true },
+    owner: { type: String, required: true },
+    icon: { type: String, default: "" },
+    type: { type: String, required: true },
+    location: { type: String, required: true },
+    introduction: { type: String, required: false },
     rank: { type: Number, default: 0 },
     rating: { type: Number, default: 0 },
     product: { type: Array, default: [] },

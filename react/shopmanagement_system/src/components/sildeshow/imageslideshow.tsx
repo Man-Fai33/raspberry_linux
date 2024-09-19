@@ -8,12 +8,6 @@ import { useState } from "react";
 export default function ImageSlideShow(props: { images: string[] }) {
     const { images } = props;
     const [currentIndex, setCurrentIndex] = useState<number>(0);
-    // useEffect(() => {
-    //     const interval = setInterval(() => {
-    //         setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    //     }, 3000); // 每3秒切换图片
-    //     return () => clearInterval(interval);
-    // }, [images.length]);
 
     return (<>
         <div className="relative w-full h-80 overflow-hidden">
@@ -55,7 +49,7 @@ export default function ImageSlideShow(props: { images: string[] }) {
                     <ArrowCircleRightSharpIcon fontSize={"large"} />
                 </IconButton>
             </div>
-            {/* 图片索引指示器 */}
+
             <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
                 {images.map((_, index) => (
                     <div

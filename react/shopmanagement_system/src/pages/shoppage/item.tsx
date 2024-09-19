@@ -1,7 +1,8 @@
-import { useLocation } from 'react-router-dom';
+
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ShopItemModels } from '../../models/shopmodelsl';
 import { Avatar, Button, FormControl, IconButton, InputAdornment, OutlinedInput, Rating, Stack, Typography } from '@mui/material';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
@@ -9,6 +10,9 @@ import { useDispatch } from 'react-redux';
 import { addItem } from '../../components/redux/store';
 import { FuncHelper } from '../../helper/funchelper';
 import ImageSlideShow from '../../components/sildeshow/imageslideshow';
+
+
+
 //店鋪的商品
 export default function ItemInformation() {
     const location = useLocation();
@@ -16,7 +20,6 @@ export default function ItemInformation() {
     const [itemNum, setItemNum] = useState<number>(1);
 
     const dispatch = useDispatch();
-    // const hi: ShopItemModels[] = useSelector((state: RootState) => state.shopcart)
     useEffect(() => {
         if (data.quantity === undefined) {
             setData({ ...data, quantity: 1 });
@@ -25,6 +28,33 @@ export default function ItemInformation() {
             setData({ ...data, quantity: itemNum });
         }
     }, [data, itemNum])
+    const ItemSpecification = () => {
+        return (
+            <div className="  bg-slate-300 w-full rounded-sm">
+
+                <div className=" p-6 rounded-lg ">
+                    <h2 className=" items-center flex bg-gray-100 text-2xl font-semibold border-b  p-2 mb-2 rounded-md">商品規格</h2>
+                    <ul className='space-x-4 space-y-4 '>
+                        <li ></li>
+                        <li ><strong>商品數量：</strong>{data.stock}</li>
+                        <li ><strong>分類：</strong>蝦皮購物 {'>'} 美妝保養 {'>'} 醫美清潔保養 {'>'} 眼霜、眼膜</li>
+                        <li ><strong>品牌：</strong><a className="text-blue-600 hover:underline">{data.brand}</a></li>
+
+                        <li ><strong>出貨地：</strong>{data.location}</li>
+                    </ul>
+                </div>
+
+                <div className=" p-6 rounded-lg ">
+                    <h2 className=" items-center flex bg-gray-100 text-2xl font-semibold border-b  p-2 mb-2 rounded-md">商品描述</h2>
+                    <div className=' space-x-4 space-y-4'>
+                        {data.introduction}
+                    </div>
+                </div>
+            </div>
+
+        )
+    }
+
 
 
     return (<div className="w-full flex  justify-center">
@@ -37,7 +67,7 @@ export default function ItemInformation() {
                         </div>
                     </div>
                     <Stack direction="column" className=' space-y-5 relative'>
-                        <h1>{data.title}</h1> <p>{data.saleOut}</p>
+                        <h1>{data.name}</h1> <p>{data.saleOut}</p>
                         <div className='flex items-center'>
                             <div className='underline text-red-600'>{FuncHelper.CountOfOne(data.rank)}</div>
                             <Rating name="read-only" size="small" value={data.rank} readOnly />
@@ -47,9 +77,9 @@ export default function ItemInformation() {
                         <div className='flex items-center  space-x-3'>
                             <div>數量</div>
                             <div>
-                                <FormControl variant="outlined" size='small' className=' w-1/2'  >
+                                <FormControl variant="outlined" size='small' className='  '  >
                                     <OutlinedInput
-                                        className='text-center'
+                                        className=' flex text-center'
                                         id="outlined-adornment-password"
                                         value={itemNum}
 
@@ -78,6 +108,7 @@ export default function ItemInformation() {
                                     />
                                 </FormControl>
                             </div>
+                            <div  > 剩餘{data.stock}</div>
                         </div>
                         <div className='space-x-5 flex md:justify-normal  max-sm:justify-center'>
                             <Button variant='contained' onClick={() => {
@@ -93,15 +124,16 @@ export default function ItemInformation() {
             <ShopInformation />
             <ItemSpecification />
         </div>
-        {/* <div>店鋪</div>
-        <div>商品規格</div>
-        <div>商品評價</div> */}
+
 
     </div>
     )
+
+
 }
 
 const ShopInformation = () => {
+    const navigator = useNavigate()
     return (
         <div className=' bg-slate-300 w-full rounded-sm p-4 grid   md:grid-flow-col  gap-4   lg:flex-row  items-center shadow-md '>
             {/* 左側區域 */}
@@ -122,7 +154,7 @@ const ShopInformation = () => {
                         <Button variant="contained" color="error">
                             聊聊
                         </Button>
-                        <Button variant="outlined">查看賣場</Button>
+                        <Button variant="outlined" onClick={() => { navigator('/shop/shop') }}>查看賣場</Button>
                     </div>
                 </div>
             </div>
@@ -156,51 +188,4 @@ const ShopInformation = () => {
     )
 }
 
-
-const ItemSpecification = () => {
-    return (
-        <div className="  bg-slate-300 w-full rounded-sm">
-
-            <div className=" p-6 rounded-lg ">
-                <h2 className=" items-center flex bg-gray-100 text-2xl font-semibold border-b  p-2 mb-2 rounded-md">商品規格</h2>
-                <ul className='space-x-4 space-y-4 '>
-                    <li ></li>
-                    <li ><strong>商品數量：</strong>3</li>
-                    <li ><strong>分類：</strong>蝦皮購物 {'>'} 美妝保養 {'>'} 醫美清潔保養 {'>'} 眼霜、眼膜</li>
-                    <li ><strong>品牌：</strong><a className="text-blue-600 hover:underline">L'OREAL Paris 巴黎萊雅</a></li>
-                    <li ><strong>容量：</strong>30ml</li>
-                    <li ><strong>出貨地：</strong>台北市中山區</li>
-                </ul>
-            </div>
-
-            <div className=" p-6 rounded-lg ">
-                <h2 className=" items-center flex bg-gray-100 text-2xl font-semibold border-b  p-2 mb-2 rounded-md">商品描述</h2>
-                <div className=' space-x-4 space-y-4'>
-                    <p></p>
-                    <p className="mb-6">福利品無外包裝*介意者勿下單*</p>
-
-                    <p className="mb-6">[三入一組] 內容物如圖示</p>
-
-                    <ul className="mb-6">
-                        <li className="mb-4">
-                            玻尿酸眼霜極效撫紋精華霜-按摩頭版30ml *1 入
-                            <span>製造日期：2023.05</span>
-                            <span>保存期限：三年</span>
-                        </li>
-                        <li className="mb-4">
-                            玻尿酸眼霜極效撫紋精華霜-一般版30ml *2 入
-                            <span>製造日期：2023.02</span>
-                            <span>保存期限：三年</span>
-                        </li>
-                    </ul>
-
-                    <p className="text-purple-600">#紫製斗</p>
-                </div>
-            </div>
-        </div>
-
-
-
-    )
-}
 

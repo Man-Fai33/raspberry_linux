@@ -10,7 +10,7 @@ export default function ShopItem(props: {
     data: ShopItemModels,
 }) {
     const navigate = useNavigate();
-    const { _id, photo, rank, saleOut, location, title, discount, price } = props.data
+    const { _id, photo, rank, saleOut, location, name, discount, price } = props.data
 
     return (
         <>
@@ -21,7 +21,7 @@ export default function ShopItem(props: {
                     <div className="absolute bottom-0 right-0"></div>
                 </div>
                 <div className="  h-2/5  ">
-                    <div className="pt-1 pl-1"> {title}</div>
+                    <div className="pt-1 pl-1"> {name}</div>
                     <div className=" pl-1  ">
                         <span className=" text-red-400">NT:</span>
                         <span className=" text-xl text-red-500"> {FuncHelper.CountOfTwo(price * discount)} </span>

@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { ShopItemModels } from '../../models/shopmodelsl';
 import { useDispatch, useSelector } from 'react-redux';
 import { addItemOfCart, deleteItem, minusItemOfCart, RootState } from '../../components/redux/store';
+
 export default function ShopCartPage() {
     const dispatch = useDispatch();
     const cartItems: ShopItemModels[] = useSelector((state: RootState) => state.shopcart)
@@ -13,17 +14,17 @@ export default function ShopCartPage() {
     const cartItemsFilter = useMemo(() => {
         let result = cartItems;
         if (searchText !== "") {
-            result = result.filter(item => item.title.toLowerCase().match(searchText.toLowerCase()))
+            result = result.filter(item => item.name.toLowerCase().match(searchText.toLowerCase()))
         }
         return result
     }, [cartItems, searchText])
     return (
-        <div className='flex justify-center'>
-            <div className="md:w-10/12 sm:w-full  space-y-4">
+        <div className='flex justify-center max-sm:pl-1 max-sm:pr-1'>
+            <div className="sm:w-10/12 max-sm:w-full   space-y-4">
                 {/* Header */}
                 <div className="sticky top-0 bg-white z-10 shadow-lg flex  flex-nowrap  items-center p-5   justify-between rounded-md">
                     <div className=' flex items-center flex-nowrap space-x-4 '>
-                        <div className='text-5xl blur-sm'>CMF </div>
+                        
                         <Divider orientation='vertical' variant="middle" flexItem />
                         <div className=' text-2xl'> 購物車</div>
                     </div>
@@ -62,8 +63,8 @@ export default function ShopCartPage() {
                                         <Checkbox />
                                     </td>
                                     <td className="p-2 flex items-center flex-nowrap">
-                                        <img src={item.photo[0]} alt={item.title} className="h-12 w-12 md:h-20 md:w-20 mr-4" />
-                                        <span>{item.title}</span>
+                                        <img src={item.photo[0]} alt={item.name} className="h-12 w-12 md:h-20 md:w-20 mr-4" />
+                                        <span>{item.name}</span>
                                     </td>
                                     <td className="p-2  text-center"></td>
                                     <td className="p-2  text-center">${item.price}</td>

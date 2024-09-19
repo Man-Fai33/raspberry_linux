@@ -44,7 +44,7 @@ export default function ShopItemFilter(props: {
     const open = Boolean(anchorEl);
     return (
         <div className="  bg-slate-100 pt-2 pb-2 pr-3 pl-3 rounded-md space-y-3">
-            <div className=" space-x-2 relative">
+            <div className=" space-x-2 relative flex justify-between md:flex-row  max-sm:flex-col max-sm: space-y-2">
                 <div className="space-x-2">
                     <Button aria-describedby={open ? 'simple-popover' : undefined} variant="contained" onClick={handleClick} disabled> 分類</Button>
                     <Button aria-describedby={open ? 'simple-popover' : undefined} variant="contained" onClick={handleClick} disabled> 運送方式</Button>
@@ -64,7 +64,7 @@ export default function ShopItemFilter(props: {
                 </div>
                 {/* <Button variant="contained"> 評價</Button> */}
                 {/* <Button variant="contained"> 價格範圍</Button> */}
-                <div className=" absolute right-0 top-0 w-1/2 flex-nowrap  flex justify-end  ">
+                <div className="  w-1/2 max-sm:w-full flex-nowrap  flex sm:justify-end    ">
                     <InputBase
                         value={searchText || ''}
                         className=" w-4/5 bg-stone-200 rounded-md p-2 hover:bg-stone-300"
