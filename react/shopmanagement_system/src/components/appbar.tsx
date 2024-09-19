@@ -34,7 +34,6 @@ export default function TopAppBar() {
     const data: SignedUser = useSelector((state: RootState) => state.user)
     const [user, setUser] = useState<SignedUser>(data)
     const [shortMenu, setShortMenu] = React.useState<null | HTMLElement>(null);
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
 
     const [LoginMenu, setLoginMenu] = React.useState<null | HTMLElement>(null);
     const handleUserMenuOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -44,7 +43,6 @@ export default function TopAppBar() {
     const handleShortMenuOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
         setShortMenu(event.currentTarget);
     };
-
     const handleUserMenuClose = () => {
         setLoginMenu(null);
     };
@@ -53,9 +51,6 @@ export default function TopAppBar() {
         setShortMenu(null);
     };
     const ShopCart: ShopItemModels[] = useSelector((state: RootState) => state.shopcart)
-    useEffect(() => {
-        ShopCart.map((item) => console.log(item))
-    }, [ShopCart])
 
     useEffect(() => {
         setUser(data)
@@ -156,7 +151,7 @@ export default function TopAppBar() {
 
                             <Box className=" w-24" sx={{ flexGrow: 0 }}>
                                 {ShopCart.length}
-                                <IconButton onClick={() => { ShopCart.map(item => alert(item.title)) }}  >
+                                <IconButton onClick={() => { navigator('/shop/shopcart') }}  >
                                     {ShopCart.length > 0 ? <ShoppingCartIcon /> : <ShoppingCartOutlinedIcon />}
                                 </IconButton>
                             </Box>

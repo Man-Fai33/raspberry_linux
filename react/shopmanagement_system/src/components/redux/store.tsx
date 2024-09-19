@@ -35,10 +35,27 @@ const shopCartSlice = createSlice({
     initialState: [] as ShopItemModels[],
     reducers: {
         addItem: (state, action: PayloadAction<ShopItemModels>) => {
-            state.push(action.payload);
+            const itemIndex = state.findIndex(item => item._id === action.payload._id);
+
+            if (itemIndex === -1) {
+                state.push(action.payload);
+            } else {
+                state[itemIndex].quantity += action.payload.quantity
+                state[itemIndex] = { ...state[itemIndex], quantity: state[itemIndex].quantity }
+            }
+
         },
         deleteItem: (state, action: PayloadAction<string>) => {
             return state.filter(state => state._id !== action.payload)
+        },
+        addItemOfCart: (state, action: PayloadAction<string>) => {
+            const itemIndex = state.findIndex(item => item._id === action.payload);
+            state[itemIndex] = { ...state[itemIndex], quantity: state[itemIndex].quantity + 1 }
+
+        },
+        minusItemOfCart: (state, action: PayloadAction<string>) => {
+            const itemIndex = state.findIndex(item => item._id === action.payload);
+            state[itemIndex] = { ...state[itemIndex], quantity: state[itemIndex].quantity - 1 }
         },
     },
 });
@@ -59,7 +76,7 @@ const TimeSlice = createSlice({
 
 export const { setUser, clearUser, updateIconUrl } = userSlice.actions;
 export const { decrementTime } = TimeSlice.actions;
-export const { addItem, deleteItem } = shopCartSlice.actions;
+export const { addItem, deleteItem, addItemOfCart, minusItemOfCart } = shopCartSlice.actions;
 
 const store = configureStore({
     reducer: {

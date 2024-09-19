@@ -13,7 +13,7 @@ export default function ShopPagination(props: {
     return <>
 
         <Stack spacing={2}>
-            <Pagination count={props.totalItems} showFirstButton showLastButton
+            <Pagination count={props.totalItems} 
                 renderItem={(item) => (
                     <PaginationItem
                         slots={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}

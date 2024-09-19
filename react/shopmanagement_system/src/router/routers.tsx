@@ -10,11 +10,13 @@ import Test from "../pages/test"
 import ShopIndex from "../pages/shoppage/shopindex"
 import Shop from "../pages/shoppage/shop"
 import ItemInformation from "../pages/shoppage/item"
+import ShopCartPage from "../pages/shoppage/shopcart"
 
 
 
 //blog import  
 import Blog from "../pages/blog"
+import path from "path"
 
 
 
@@ -30,6 +32,7 @@ const shop = [
     { path: '/shop', element: <ShopIndex /> },
     { path: 'shop/shop', element: <Shop /> },
     { path: 'shop/item', element: <ItemInformation /> },
+    { path: 'shop/shopcart', element: <ShopCartPage /> }
 ]
 
 

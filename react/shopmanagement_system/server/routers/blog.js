@@ -6,9 +6,10 @@ const { Helper } = require('../helper/helper');
 //
 router.get('/', async (req, res) => {
     try {
-        const blogs = await Blog.find();
-
-        res.json(Helper.generateFakeBlog());
+        // const blogs = await Blog.find();
+        const blogs =Helper.generateFakeBlog()
+        console.log(blogs+"?")
+        res.json(blogs);
     } catch (e) {
         res.status(500).json({ message: e.message });
     }

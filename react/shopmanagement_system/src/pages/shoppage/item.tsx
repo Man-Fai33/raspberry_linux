@@ -5,56 +5,36 @@ import { useEffect, useState } from 'react';
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
-import { useDispatch, useSelector } from 'react-redux';
-import { addItem, RootState } from '../../components/redux/store';
+import { useDispatch } from 'react-redux';
+import { addItem } from '../../components/redux/store';
 import { FuncHelper } from '../../helper/funchelper';
-import { Slide } from 'react-slideshow-image';
-import 'react-slideshow-image/dist/styles.css';
+import ImageSlideShow from '../../components/sildeshow/imageslideshow';
 //店鋪的商品
 export default function ItemInformation() {
     const location = useLocation();
-    const data: ShopItemModels = location.state;
+    const [data, setData] = useState<ShopItemModels>(location.state);
     const [itemNum, setItemNum] = useState<number>(1);
-    useEffect(() => {
-        console.log(data)
-    }, [data])
+
     const dispatch = useDispatch();
-    const hi: ShopItemModels[] = useSelector((state: RootState) => state.shopcart)
+    // const hi: ShopItemModels[] = useSelector((state: RootState) => state.shopcart)
+    useEffect(() => {
+        if (data.quantity === undefined) {
+            setData({ ...data, quantity: 1 });
 
-    const Slideshow = (data: string[]) => {
-        const slideImages = () => {
-            let list = [];
-            for (let i = 0; i < data.length; i++) {
-                list.push(
-                    <div key={i} className="flex justify-center bg-cover bg-no-repeat  h-96  text-center">
-                        <div className='w-full h-98' style={{ backgroundImage: `url(${data[i]})` }}>
+        } else {
+            setData({ ...data, quantity: itemNum });
+        }
+    }, [data, itemNum])
 
-                        </div>
-                    </div>
-                );
-            }
-            return list;
-        };
 
-        return (
-            <Slide>
-                {slideImages()}
-            </Slide >
-        );
-    };
     return (<div className="w-full flex  justify-center">
         <div className=" md:w-10/12 sm:w-full   mt-10 space-y-4  ">
             <div className=' w-full bg-slate-300 p-6 rounded-md '>
                 <div className='grid md:grid-cols-2 sm:grid-cols-1 gap-4  '>
                     <div className='relative p-3 w-full h-96  '  >
-                        <div className=' h-full w-full rounded-sm'>
-                            {Slideshow(data.photo)}
-
+                        <div className=' h-auto w-full rounded-sm items-center flex align-middle '>
+                            <ImageSlideShow images={data.photo} />
                         </div>
-
-                        {/* <div className='absolute bottom-0 w-full justify-center'>
-
-                        </div> */}
                     </div>
                     <Stack direction="column" className=' space-y-5 relative'>
                         <h1>{data.title}</h1> <p>{data.saleOut}</p>
@@ -72,6 +52,7 @@ export default function ItemInformation() {
                                         className='text-center'
                                         id="outlined-adornment-password"
                                         value={itemNum}
+
                                         endAdornment={
                                             <InputAdornment position="end">
                                                 <IconButton
@@ -127,7 +108,7 @@ const ShopInformation = () => {
             <div className="flex  space-x-6 ">
                 <Avatar
                     alt="Seller Avatar"
-                    src="https://example.com/avatar.png" // 使用真實圖像URL
+                    src="https://example.com/avatar.png"
                     sx={{ width: 80, height: 80 }}
                 />
                 <div>
@@ -178,17 +159,48 @@ const ShopInformation = () => {
 
 const ItemSpecification = () => {
     return (
-        <div className='p-4 bg-slate-300 flex-col'>
-            <div className="">
-                <div className='bg-slate-200 p-4 rounded-md'> 商品規格</div>
-                的沙發
-            </div>
-            <div className="">
-                <div className='bg-slate-200 p-4 rounded-md'>商品描述</div>
-                大幅
+        <div className="  bg-slate-300 w-full rounded-sm">
 
+            <div className=" p-6 rounded-lg ">
+                <h2 className=" items-center flex bg-gray-100 text-2xl font-semibold border-b  p-2 mb-2 rounded-md">商品規格</h2>
+                <ul className='space-x-4 space-y-4 '>
+                    <li ></li>
+                    <li ><strong>商品數量：</strong>3</li>
+                    <li ><strong>分類：</strong>蝦皮購物 {'>'} 美妝保養 {'>'} 醫美清潔保養 {'>'} 眼霜、眼膜</li>
+                    <li ><strong>品牌：</strong><a className="text-blue-600 hover:underline">L'OREAL Paris 巴黎萊雅</a></li>
+                    <li ><strong>容量：</strong>30ml</li>
+                    <li ><strong>出貨地：</strong>台北市中山區</li>
+                </ul>
+            </div>
+
+            <div className=" p-6 rounded-lg ">
+                <h2 className=" items-center flex bg-gray-100 text-2xl font-semibold border-b  p-2 mb-2 rounded-md">商品描述</h2>
+                <div className=' space-x-4 space-y-4'>
+                    <p></p>
+                    <p className="mb-6">福利品無外包裝*介意者勿下單*</p>
+
+                    <p className="mb-6">[三入一組] 內容物如圖示</p>
+
+                    <ul className="mb-6">
+                        <li className="mb-4">
+                            玻尿酸眼霜極效撫紋精華霜-按摩頭版30ml *1 入
+                            <span>製造日期：2023.05</span>
+                            <span>保存期限：三年</span>
+                        </li>
+                        <li className="mb-4">
+                            玻尿酸眼霜極效撫紋精華霜-一般版30ml *2 入
+                            <span>製造日期：2023.02</span>
+                            <span>保存期限：三年</span>
+                        </li>
+                    </ul>
+
+                    <p className="text-purple-600">#紫製斗</p>
+                </div>
             </div>
         </div>
+
+
+
     )
 }
 

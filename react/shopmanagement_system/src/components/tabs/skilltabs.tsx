@@ -59,8 +59,8 @@ export default function SkillSwitchTabs(props: { data: Technology | undefined })
     }
 
     return (
-        <Box sx={{ width: '100%' }}>
-            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <div className=' w-full'  >
+            <div className=''>
                 <Tabs value={value} onChange={(event: React.SyntheticEvent, newValue: number) => setValue(newValue)} variant="scrollable" className=' w-3/4'  >
                     <Tab label="語言" {...a11yProps(0)} />
                     <Tab label="前端技能" {...a11yProps(1)} />
@@ -68,7 +68,7 @@ export default function SkillSwitchTabs(props: { data: Technology | undefined })
                     <Tab label="資料庫" {...a11yProps(3)} />
                     <Tab label="其他" {...a11yProps(4)} />
                 </Tabs>
-            </Box>
+            </div>
             <div className='p-4 max-lg:p-2  max-md:p-0'>
                 {Panel(value, 0, props.data?.language)}
                 {Panel(value, 1, props.data?.frontend)}
@@ -76,6 +76,6 @@ export default function SkillSwitchTabs(props: { data: Technology | undefined })
                 {Panel(value, 3, props.data?.database)}
                 {Panel(value, 4, props.data?.other)}
             </div>
-        </Box>
+        </div>
     );
 }

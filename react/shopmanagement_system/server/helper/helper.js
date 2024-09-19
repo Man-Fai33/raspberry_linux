@@ -21,7 +21,7 @@ const Helper = {
     generateFakeShop() {
 
         const generateData = () => {
-            const fakeImage = Array.from({ length: faker.number.int({ min: 0, max: 10 }) }).map(() => (
+            const fakeImage = Array.from({ length: faker.number.int({ min: 8, max: 10 }) }).map(() => (
                 faker.image.url({ width: 600, height: 500 })
             ));
             return {
@@ -45,7 +45,6 @@ const Helper = {
     generateFakeBlog() {
 
 
-
         const generateData = () => {
             const fakeContent = [
                 {
@@ -57,18 +56,17 @@ const Helper = {
                     value: faker.image.url()
                 }
             ];
-
             const fakeTags = [faker.lorem.word(), faker.lorem.word(), faker.lorem.word()];
 
             const fakeLike = Array.from({ length: faker.number.int({ min: 8, max: 10 }) }).map(() => ({
                 _id: faker.string.uuid()
             }));
 
-            const fakeKeeper = Array.from({ length: faker.number.int({ min: 0, max: 5 }) }).map(() => ({
+            const fakeKeeper = Array.from({ length: faker.number.int({ min: 20, max: 5 }) }).map(() => ({
                 _id: faker.string.uuid()
             }));
 
-            const fakeCommit = Array.from({ length: faker.number.int({ min: 0, max: 50 }) }).map(() => ({
+            const fakeCommit = Array.from({ length: faker.number.int({ min: 30, max: 50 }) }).map(() => ({
                 _id: faker.person.jobTitle()
             }));
             return {
@@ -84,6 +82,7 @@ const Helper = {
                 status: faker.helpers.arrayElement(['active', 'draft', 'archived'])
             };
         }
+        console.log(Helper.generateCount(100, generateData))
         return Helper.generateCount(100, generateData)
     },
     generateCount(count, fn) {

@@ -1,7 +1,6 @@
+
 export default function Home() {
+    return <>
+    </>
 
-
-    return (<div className='pt-10 pl-60'>
-    </div>)
 }
-

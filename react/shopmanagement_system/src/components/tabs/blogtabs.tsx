@@ -68,15 +68,27 @@ export default function BlogTabs() {
 
     useEffect(() => {
         const LoadBlog = async () => {
-
             await ApiHelper.AsyncBlogs().then((result: Blog[]) => {
-                console.log(result);
                 setBlog(result)
             })
         }
         LoadBlog()
     }, []);
 
+
+    const ListOfBlog = (data: Blog[]) => {
+        if (!data) return <div> loading...</div>
+        if (data !== null && data.length > 0) {
+            return (
+                <>
+                    {data.map(item => {
+
+                        return <BlogCard key={item._id} data={item} userid={item._id} />
+                    })}
+                </>
+            )
+        }
+    }
 
     return (
         <Box sx={{ width: '100%' }}>
@@ -90,16 +102,13 @@ export default function BlogTabs() {
 
             <CustomTabPanel value={value} index={0}>
                 <>
-                    {blog.map(blog => <BlogCard key={blog._id} data={blog} userid={data._id} />)}
+                    {ListOfBlog(blog)}
                 </>
             </CustomTabPanel>
-
-
 
             <CustomTabPanel value={value} index={1}>
                 追蹤hsihi
             </CustomTabPanel>
-
         </Box>
     )
 }
