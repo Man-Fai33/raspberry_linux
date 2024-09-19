@@ -6,10 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addItemOfCart, deleteItem, minusItemOfCart, RootState } from '../../components/redux/store';
 export default function ShopCartPage() {
     const dispatch = useDispatch();
-
     const cartItems: ShopItemModels[] = useSelector((state: RootState) => state.shopcart)
-
-
     const totalAmount = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
     const [inputText, setInputText] = useState<string>("");
     const [searchText, setSearchText] = useState<string>("")
@@ -20,10 +17,6 @@ export default function ShopCartPage() {
         }
         return result
     }, [cartItems, searchText])
-
-    // useEffect(() => { 
-        
-    // }, [searchText])
     return (
         <div className='flex justify-center'>
             <div className="md:w-10/12 sm:w-full  space-y-4">
@@ -34,12 +27,11 @@ export default function ShopCartPage() {
                         <Divider orientation='vertical' variant="middle" flexItem />
                         <div className=' text-2xl'> 購物車</div>
                     </div>
-
                     <div className='flex flex-nowrap w-1/2'>
                         <TextField
                             value={inputText || ""}
                             variant="outlined"
-                            placeholder="9/18 加碼超商免運 看更多免運店家"
+                            placeholder="search item of shopping cart"
                             size="small"
                             className="flex-grow  w-full"
                             onChange={(e) => setInputText(e.target.value)}
@@ -51,9 +43,7 @@ export default function ShopCartPage() {
                 </div>
                 {/* Cart Content */}
                 <div className="mt-4">
-
                     <table className=" table-auto w-full border-collapse">
-
                         <thead className="bg-gray-100">
                             <tr >
                                 <th className="w-6"><Checkbox /></th>
@@ -67,33 +57,35 @@ export default function ShopCartPage() {
                         </thead>
                         <tbody>
                             {cartItemsFilter.map((item) => (
-                                <tr key={item._id} className="border-t  p-2">
+                                <tr key={item._id} className="border-t      ">
                                     <td className="p-2  items-center">
                                         <Checkbox />
                                     </td>
                                     <td className="p-2 flex items-center flex-nowrap">
-                                        <img src={item.photo[0]} alt={item.title} className="h-12 w-12 mr-4" />
+                                        <img src={item.photo[0]} alt={item.title} className="h-12 w-12 md:h-20 md:w-20 mr-4" />
                                         <span>{item.title}</span>
                                     </td>
                                     <td className="p-2  text-center"></td>
                                     <td className="p-2  text-center">${item.price}</td>
-                                    <td className="p-2 text-center  items-center">
-                                        <Button
-                                            variant="outlined"
-                                            onClick={() => {
-                                                if (item.quantity > 1) {
-                                                    dispatch(minusItemOfCart(item._id))
-                                                } else {
-                                                    alert("拜托不能在減了")
-                                                }
-                                            }}
-                                        >
-                                            -
-                                        </Button>
-                                        <span className="mx-2">{item.quantity}</span>
-                                        <Button variant="outlined" onClick={() => { dispatch(addItemOfCart(item._id)) }} >
-                                            +
-                                        </Button>
+                                    <td className="p-2  text-center">
+                                        <div className=' flex flex-col sm:flex-row justify-center items-center'>
+                                            <Button
+                                                variant="outlined"
+                                                onClick={() => {
+                                                    if (item.quantity > 1) {
+                                                        dispatch(minusItemOfCart(item._id))
+                                                    } else {
+                                                        alert("拜托不能在減了")
+                                                    }
+                                                }}
+                                            >
+                                                -
+                                            </Button>
+                                            <span className="mx-2">{item.quantity}</span>
+                                            <Button variant="outlined" onClick={() => { dispatch(addItemOfCart(item._id)) }} >
+                                                +
+                                            </Button>
+                                        </div>
                                     </td>
                                     <td className="p-2 text-center">${item.price}</td>
                                     <td className="p-2 text-center">
@@ -107,12 +99,7 @@ export default function ShopCartPage() {
                     </table>
                     {/* Checkout section */}
                     <div className="mt-4 flex justify-between items-center">
-                        <div className="text-sm">
-                            <p>選擇優惠券或輸入優惠代碼</p>
-                            <Button variant="contained" className="bg-orange-500">
-                                確認優惠
-                            </Button>
-                        </div>
+
                         <div className="text-lg font-bold">
                             總金額 ({cartItems.length} 個商品): ${totalAmount}
                         </div>
